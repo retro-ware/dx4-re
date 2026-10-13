@@ -10,7 +10,7 @@ MANUAL = {'DXM.EXE': {'12a3:0349': 'Dos.Intr', '12a3:016a': 'Dos.FSearch', '12a3
                        '12e1:02a1': 'Crt.NormVideo', '12e1:0308': 'Crt.KeyPressed'}}
 orig, seg, unit = sys.argv[1], int(sys.argv[2], 16), sys.argv[3]
 dirs = sys.argv[4:] or [os.path.dirname(os.path.abspath(unit))]
-W = ROOT + '/work/u'
+W = os.environ.get('TRYWORK') or ROOT + '/work/u'
 shutil.rmtree(W, ignore_errors=True); os.makedirs(W)
 for d in dirs:
     for f in os.listdir(d):
