@@ -69,6 +69,22 @@ var
   History: PHistory;
   DriveFlag: array[1..26] of Boolean;
   ViewerName: string[79];
+  MouseSpeed: Byte;
+
+var
+  { SaveCfg (0362) globals }
+  CfgStr932, CfgStr982: string[79];
+  CfgColors: array[0..64] of Byte;
+  CfgColors2: array[0..64] of Byte;
+  CfgB809, CfgB808, CfgB9D3, CfgB9D2, CfgB2263, CfgB3674, CfgBABC, CfgBABD: Byte;
+  CfgW806, CfgW83E: Word;
+  CfgStr814, CfgStr7F8: string[12];
+  CfgBlkA68: array[0..25] of Byte;
+  CfgStr2200, CfgStr3611: string[79];
+  CfgStr226E, CfgStr367F: string[80];
+  CfgBlkA9C: array[0..31] of Byte;
+  CfgLABE, CfgLAC2, CfgLAC6, CfgLACA: Longint;
+  CfgBlkAFE: array[0..47] of Byte;
 
 implementation
 

@@ -54,7 +54,8 @@
     MovePackWin, PackSettings), Help — all MATCH(addr)
   - [x] o115f Browser, o18c6 Passwd+ (ChangePassword, SelectDrives), o18c9 Toggle (new TToggle object unit) match
   - [x] o115c AddProg matches; U129A: no DXMAIN segment found yet
-  - [x] new own overlay units matched: o0fdb KeyMode (key-bar mode menu), o0325 DriveOps (label drive, sys disk)
+  - [x] new own overlay units matched: o0fdb KeyMode (key-bar mode menu), o0325 DriveOps (label drive, sys disk),
+    o1156 DelTree, o0fd2 RmTree, o0fcf SearchBr (search bar + drive list), o0362 SaveCfg (dx.ini writer, TConfig layout)
   - [ ] decompile main + 0365 + remaining ~50 own overlay units
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
 
