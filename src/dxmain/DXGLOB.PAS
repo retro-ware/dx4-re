@@ -66,6 +66,7 @@ const
   RunMode: Byte = 0;
   PackFull: Boolean = False;
   ArcLoaded: Boolean = False;
+  ShowDirSizes: Boolean = False;
   MarkSame: Boolean = True;
   CmpDirNames: Boolean = False;
 

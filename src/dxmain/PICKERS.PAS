@@ -34,7 +34,7 @@ var
   Dummy: string[7];
   B: Byte;
   S: string[4];
-  M, D: Word;
+  M, D: Integer;
 begin
   DayNoToDate(Line + Top, Year, M, D);
   Str(Year, S);
@@ -46,9 +46,10 @@ function PickDate(X, Y, Ht, Bg: Byte; Year, Month, Day: Word; var S: Str12): Boo
 var
   List: TDateList;
   Key: Word;
-  A: string[9];
-  DayNo: Word;
-  B: string[13];
+  Fill: array[1..8] of Byte;
+  MDays: Integer;
+  DayNo: Integer;
+  MonthName: string[13];
 begin
   MouseHide;
   PushScreen(DlgStack);
@@ -56,7 +57,7 @@ begin
   OpenFrame(X - 1, Y - 1, 13, Ht, 0, Bg);
   List.Year := Year;
   List.Init(0, 3, 0, 2, X, Y, Ht, DaysInYear(Year), 12, True);
-  DateToDayNo(Year, Month, Day, A, DayNo, B);
+  DateToDayNo(Year, Month, Day, MDays, DayNo, MonthName);
   List.SetPos(DayNo, 3);
   MouseShow;
   repeat Idle until MouseButton = 0;
