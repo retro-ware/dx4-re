@@ -50,6 +50,12 @@ const
   SoundOn: Boolean = True;
   SortAsc: Boolean = True;
   ConfirmDel: Boolean = True;
+  G9F5: Boolean = False;
+  GA08: Boolean = False;
+  GA19: Boolean = False;
+  VidSeg: Word = $B800;
+  CopyCount: Longint = 0;
+  CopySize: Longint = 0;
   LongNames: Boolean = False;
   IniId: string[41] = 'DOS-Expander 4.0 (C) 1994-1996 Hombergs';
   IniName: string[12] = 'dx.ini';
@@ -85,6 +91,36 @@ var
   CfgBlkA9C: array[0..31] of Byte;
   CfgLABE, CfgLAC2, CfgLAC6, CfgLACA: Longint;
   CfgBlkAFE: array[0..47] of Byte;
+
+type
+  { panel record of resident unit 0365 (placeholder layout, size $1411) }
+  TPanelData = array[0..$1003] of Byte;
+  TPanel = record
+    Data: TPanelData;
+    Flag: Boolean;
+    B1005: Byte;
+    Mode: Byte;
+    W1007, W1009, W100B: Word;
+    B100D: Byte;
+    Path: string[79];
+    S105E: string[79];
+    S10AE: string;
+    Fill11AE: array[0..79] of Byte;
+    S11FE: string[79];
+    W124E: Word;
+    W1250, W1252: Word;
+    S1254: string[12];
+    B1261: Byte;
+    Blk1262: array[0..9] of Byte;
+    S126C: string[80];
+    Fill12BD: array[$12BD..$1410] of Byte;
+  end;
+
+var
+  Panels: array[1..2] of TPanel;
+  G7F1: Byte;
+  GB90: Word;
+  G562: Boolean;
 
 implementation
 
