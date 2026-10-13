@@ -13,6 +13,10 @@ const
   LastDate: string[25] = 'x';
   LastTime: string[6] = 'x';
 
+type
+  Str14 = string[14];
+
+function ShortDate: Str14;
 procedure ClockOff;
 procedure ClockOn;
 procedure DateOff;
@@ -26,6 +30,14 @@ function GetKey(var Key: Word): Boolean;
 implementation
 
 uses Dos, Crt, DXGlob, Mouse, Screen, Windows, Times, U118C, Saver;
+
+function ShortDate: Str14;
+var
+  Y, M, D, DoW: Word;
+begin
+  GetDate(Y, M, D, DoW);
+  ShortDate := TimeToStr(D, M, Y);
+end;
 
 procedure ClockOff;
 var
