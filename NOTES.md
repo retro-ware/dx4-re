@@ -42,3 +42,7 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
 - Dos.DirStr is string[67] in TP7; a local copied with limit 0x4f (80 bytes) is `string[79]`, not DirStr.
 - `var P: TRecord` params reuse es:di across field accesses; the original reloading `les di,[bp+x]` before every
   access means the parameter is a pointer (`P: PRecord`, accessed as `P^.field`).
+- `mov si,SEG; mov es,si; mov al,es:[OFS]` = access to a variable declared `absolute SEG:OFS`;
+  `mov ax,SEG; push ax; mov di,OFS; pop es; mov ax,es:[di]` = `MemW[SEG:OFS]`.
+- Overlay units with many case/message tables: tools/procdump.py (condensed per-proc dump with decoded literals)
+  plus a template generator beats hand-transcribing (see U13A5, SysInfo).

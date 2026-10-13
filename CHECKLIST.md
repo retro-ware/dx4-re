@@ -65,7 +65,8 @@
     o10f5 FileAsk (copy/delete prompts), o106e CDDlg (CD player/tray); resident 1439 U1439 (calendar) byte-identical
     (tools/try1439.py: tryunit wrapper for the segment the table lumps into 1435),
     o156f LongName (Win95 LFN helpers, replaces U156F), o10f2 DirDisk (copy dir tree to disks), o142f AskDlgs (ask dialogs, replaces U142F),
-    o1159 Pas (Point-And-Shoot file associations; Lists.SetData rows param is Integer)
+    o1159 Pas (Point-And-Shoot file associations; Lists.SetData rows param is Integer),
+    o1077 SysInfo (interrupt list, XMS/EMS info, key test, ports); placeholders U109E (resident XMS), U12C7 (viewer)
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping
     Cfg* / ViewerName (0x982) and CfgB809 / BorderColor (0x809) names to reconcile
   - [ ] decompile main + 0365 + remaining ~50 own overlay units

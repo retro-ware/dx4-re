@@ -67,6 +67,8 @@ const
   PackFull: Boolean = False;
   ArcLoaded: Boolean = False;
   ShowDirSizes: Boolean = False;
+  DxXmsHandle: Word = 0;
+  TempDir: string[79] = '';
   MarkSame: Boolean = True;
   CmpDirNames: Boolean = False;
 
