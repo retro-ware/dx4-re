@@ -18,7 +18,7 @@ terminal app (ratatui + crossterm); no DOS/Crt/video-memory emulation.
 - `ChDir` flag of an entry is stored and edited, but DXM ignores it: `dxstart.bat` always changes into the
   program's directory. Port: same (always changes directory), flag kept in the file.
 - New group: the original refuses or truncates a name when the menu bar (80 columns) would overflow.
-  Port: keeps the 15-group limit; the bar scrolls instead of truncating.
+  Port: keeps the 15-group limit; the bar shows the groups that fit, PgUp/PgDn/Tab reach all of them.
 - Entry editor "Einfügen" (insert and shift down) left the inserted entry's `ChDir` flag at whatever the
   shifted entry had; "Eintragen" used the checkbox. Port: both use the checkbox.
 
