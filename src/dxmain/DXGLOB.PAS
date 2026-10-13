@@ -65,6 +65,8 @@ const
   PackY1: Byte = 3;
   RunMode: Byte = 0;
   PackFull: Boolean = False;
+  MarkSame: Boolean = True;
+  CmpDirNames: Boolean = False;
 
 type
   THistory = array[0..25] of string[128];
@@ -94,7 +96,15 @@ var
 
 type
   { panel record of resident unit 0365 (placeholder layout, size $1411) }
-  TPanelData = array[0..$1003] of Byte;
+  TFileEntry = record
+    Name: string[12];
+    Size: Longint;
+    Time: Longint;
+    Attr: Byte;
+    Marked: Boolean;
+  end;
+  PFileEntry = ^TFileEntry;
+  TPanelData = array[0..$400] of PFileEntry;
   TPanel = record
     Data: TPanelData;
     Flag: Boolean;
@@ -116,11 +126,16 @@ type
     Fill12BD: array[$12BD..$1410] of Byte;
   end;
 
+  PPanel = ^TPanel;
+
 var
   Panels: array[1..2] of TPanel;
   G7F1: Byte;
   GB90: Word;
   G562: Boolean;
+
+var
+  GB44: Word;
 
 implementation
 

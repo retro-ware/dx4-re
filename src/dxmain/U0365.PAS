@@ -11,6 +11,7 @@ procedure P0365_EF(N: Byte; var P: TPanel);
 procedure P0365_C3B(var S: string; var P: TPanel);
 procedure P0365_41FB(var P: TPanel);
 procedure P0365_C28F(var S: string; A, B: Byte; W: Word; var P: TPanel);
+procedure P0365_602(var P: TPanel);
 
 implementation
 
@@ -31,6 +32,10 @@ begin
 end;
 
 procedure P0365_C28F(var S: string; A, B: Byte; W: Word; var P: TPanel);
+begin
+end;
+
+procedure P0365_602(var P: TPanel);
 begin
 end;
 
