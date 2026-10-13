@@ -70,14 +70,27 @@ y = y + bytes(-len(y) % 16)
 from model import CS
 d = [k for k in range(min(len(x), len(y))) if x[k] != y[k]]
 # split: operand-only differences (same instruction shape, differing disp/imm: DS addresses) vs real ones
-xi = {i.address: i for i in CS.disasm(ocode, 0)}
-yi = {i.address: i for i in CS.disasm(bytes(y), 0)}
+def lin(b):   # linear disassembly that resumes after undecodable bytes
+    out, p = {}, 0
+    while p < len(b):
+        n = 0
+        for i in CS.disasm(b[p:], p):
+            out[i.address] = i; n = i.address + i.size
+        p = max(n, p) + (1 if n <= p or n < len(b) else 0)
+    return out
+xi = lin(bytes(ocode))
+yi = lin(bytes(y))
 starts = sorted(xi)
+ystarts = sorted(yi)
 import bisect
 real, addr = [], []
 for k in d:
     a = starts[bisect.bisect_right(starts, k) - 1] if starts else 0
     i, j = xi.get(a), yi.get(a)
+    if not (i and j and a + i.size > k):   # linear disassembly of one side desynced (literals): use the other's
+        a = ystarts[bisect.bisect_right(ystarts, k) - 1] if ystarts else 0
+        i, j = xi.get(a), yi.get(a)
+        if not i and j: i = next(CS.disasm(bytes(ocode[a:a + 16]), a), None)
     dk = [q for q in range(a, a + (i.size if i else 1)) if q < len(y) and x[q] != y[q]]
     if i and j and i.size == j.size and i.mnemonic == j.mnemonic and x[a:a + 1] == y[a:a + 1] and i.op_str.split(",")[0].split("[")[0] == j.op_str.split(",")[0].split("[")[0] \
             and dk and dk[-1] - dk[0] <= 1:
@@ -89,7 +102,10 @@ print(f'{name}: orig={len(x):#x} built={len(y):#x} real diffs={len(real)} addr d
 pairs = {}
 for k in addr:
     a = starts[bisect.bisect_right(starts, k) - 1]
-    i, j = xi[a], yi[a]
+    i, j = xi.get(a), yi.get(a)
+    if not (i and j and a + i.size > k):
+        a = ystarts[bisect.bisect_right(ystarts, k) - 1]
+        i, j = xi.get(a) or next(CS.disasm(bytes(ocode[a:a + 16]), a)), yi[a]
     ov = [op.imm if op.type == 2 else op.mem.disp for op in i.operands if op.type in (2, 3)]
     bv = [op.imm if op.type == 2 else op.mem.disp for op in j.operands if op.type in (2, 3)]
     for u, v in zip(ov, bv):
