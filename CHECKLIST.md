@@ -71,6 +71,10 @@
     o1077 SysInfo (interrupt list, XMS/EMS info, key test, ports); placeholders U109E (resident XMS), U12C7 (viewer),
     o156b DirTree (dir tree sizes/browser), o033a Clocks (stopwatches), o1097 BootEdit (boot sector text editor),
     o1546 CDAudio (MSCDEX driver, replaces U1546), o1067 CmdMenu (dir command menu + macros), o100d TextView (text viewer)
+  - [ ] o1013 DiskImg WIP: MakeImage matches, RestoreImage local layout still off (frame 0x2c10)
+  - [ ] tryunit strict displacement check (2026-10-14) flags hidden local-layout diffs in: UserMenu, Dialogs, Status,
+    Execute, Palette (false positive: [bx+const] typed-const table), Screen, Mouse, Passwd?, DelTree, SaveCfg, TextSrch,
+    PanelIni, DirCmp (size!), U1D10, CDDlg, CDAudio, TextView — re-run work/recheck.sh and fix each
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping
     Cfg* / ViewerName (0x982) and CfgB809 / BorderColor (0x809) names to reconcile
   - [ ] decompile main + 0365 + remaining ~50 own overlay units

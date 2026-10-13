@@ -46,3 +46,8 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
   `mov ax,SEG; push ax; mov di,OFS; pop es; mov ax,es:[di]` = `MemW[SEG:OFS]`.
 - Overlay units with many case/message tables: tools/procdump.py (condensed per-proc dump with decoded literals)
   plus a template generator beats hand-transcribing (see U13A5, SysInfo).
+- TP allocates locals downward from the last used byte: a multi-byte var after an odd-ending byte var gets one
+  alignment byte of gap (9 Booleans at -1..-9 are followed by a Word at -0xc, not -0xa).
+- tryunit now treats differing displacements off a base register (locals [bp-x], fields [di+x]) as real diffs
+  unless the (built - orig) delta also occurs among direct DS references; "MATCH(addr)" before this change did
+  not verify local-variable layout.

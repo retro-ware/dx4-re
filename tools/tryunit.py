@@ -94,8 +94,10 @@ for k in d:
     dk = [q for q in range(a, a + (i.size if i else 1)) if q < len(y) and x[q] != y[q]]
     def same_shape(i, j, a):
         dk = [q for q in range(a, a + (i.size if i else 1)) if q < len(y) and x[q] != y[q]]
-        return i and j and i.size == j.size and i.mnemonic == j.mnemonic and x[a:a + 1] == y[a:a + 1] \
-            and i.op_str.split(",")[0].split("[")[0] == j.op_str.split(",")[0].split("[")[0] and dk and dk[-1] - dk[0] <= 1
+        if not (i and j and i.size == j.size and i.mnemonic == j.mnemonic and x[a:a + 1] == y[a:a + 1]
+                and i.op_str.split(",")[0].split("[")[0] == j.op_str.split(",")[0].split("[")[0] and dk and dk[-1] - dk[0] <= 1):
+            return False
+        return True
     if same_shape(i, j, a):
         addr.append(k)
     else:   # both linear disassemblies may be desynced here (literal pool): retry from nearby starts
@@ -105,6 +107,33 @@ for k in d:
                 xi[a2], yi[a2] = i2, j2; addr.append(k); break
         else:
             real.append(k)
+# locals ([bp-x]) and record fields ([di+x]) are code layout: a based displacement only counts as a DS address when the
+# same (orig, built) pair also occurs as a direct DS reference or immediate
+def opvals(i, j):
+    ov = [op.imm if op.type == 2 else op.mem.disp for op in i.operands if op.type in (2, 3)]
+    bv = [op.imm if op.type == 2 else op.mem.disp for op in j.operands if op.type in (2, 3)]
+    return [(u & 0xffff, v & 0xffff) for u, v in zip(ov, bv) if u != v]
+def insn_at(k):
+    a = starts[bisect.bisect_right(starts, k) - 1] if starts else 0
+    i, j = xi.get(a), yi.get(a)
+    if not (i and j and a + i.size > k):
+        a = ystarts[bisect.bisect_right(ystarts, k) - 1] if ystarts else 0
+        i, j = xi.get(a) or next(CS.disasm(bytes(ocode[a:a + 16]), a), None), yi.get(a)
+    return a, i, j
+dsdeltas = set()
+for k in addr:
+    a, i, j = insn_at(k)
+    if i and j and not any(op.type == 3 and op.mem.base != 0 for op in i.operands):
+        dsdeltas.update((v - u) & 0xffff for u, v in opvals(i, j))
+keep = []
+for k in addr:
+    a, i, j = insn_at(k)
+    if i and j and any(op.type == 3 and op.mem.base != 0 for op in i.operands) \
+            and not all(((v - u) & 0xffff) in dsdeltas for u, v in opvals(i, j)):
+        real.append(k)
+    else:
+        keep.append(k)
+addr = keep; real.sort()
 ok = not real and len(x) == len(y)
 print(f'{name}: orig={len(x):#x} built={len(y):#x} real diffs={len(real)} addr diffs={len(addr)}', 'MATCH' if ok and not addr else 'MATCH(addr)' if ok else '')
 pairs = {}

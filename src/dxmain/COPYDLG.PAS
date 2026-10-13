@@ -35,7 +35,7 @@ end;
 procedure ShowSizes;
 var
   Free: Longint;
-  Dummy: Word;
+  Dummy: Byte;
 begin
   ArrowCursor;
   CopySize := 0;
