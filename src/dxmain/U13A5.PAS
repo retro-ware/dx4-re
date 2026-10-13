@@ -4,14 +4,14 @@ unit U13A5;
 
 interface
 
-procedure P13A5_3B2;
+procedure P13A5_3B2(N: Byte);
 procedure P13A5_973(N: Byte; S: string);
 procedure P13A5_1171;
 procedure P13A5_149B(N: Byte; S: string);
 
 implementation
 
-procedure P13A5_3B2;
+procedure P13A5_3B2(N: Byte);
 begin
 end;
 
