@@ -40,7 +40,16 @@
   - [ ] DS layout (typed consts 0..644, vars 6a0..12f8) and full-EXE link
 - [~] DXE.EXE (102 KB) — Turbo Vision program — SKIPPED (out of scope, decided 2026-10-13)
 - [~] DXCD.EXE (113 KB) — shares many units with DXM — SKIPPED (out of scope, decided 2026-10-13)
-- [ ] DXMAIN.EXE + DXMAIN.OVR (816 KB + 653 KB, 68 overlaid units)
+- [ ] DXMAIN.EXE (816 KB, overlay appended to the EXE: FBOV at 0x27510, 654902 B, 68 overlaid units)
+  - target = DXMAIN.EXE with its appended overlay; the shipped DXMAIN.OVR (652675 B, 15.4.96) is a different build
+  - resident: 0000 main (31b0), 0365 big unit (c6a0), 20ff System; 2339 boot-sector code (after System?)
+  - shared with DXM (shape match, work/dxmain_shared.txt; "+" = DXMAIN copy is larger, has extra procs):
+    o0353 DXMenu, o0356 UserMenu, 154f DatStr, 1579 Dialogs+, 1824 Sounds, 184a Status, o18bc Saver,
+    o18bf Execute+, 18cd Fonts, o1915 Help, 1918 Lists, 1a18 Buttons+, 1c1b Windows+, 1ce7 Times, 1d66 ScrSave,
+    1d9f Mouse, 1df3 Palette, 1e26 Screen+; AddProg/Browser/Passwd/U129A not found by shape
+  - [ ] identify stock units (System 20ff, Dos/Crt/Overlay among 1fc8/202a/208a)
+  - [ ] port shared units (DXM sources, adapt to DXMAIN versions)
+  - [ ] decompile main + 0365 + remaining ~50 own overlay units
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
 
 ## Per program steps
