@@ -4,12 +4,16 @@ unit DXMenu;
 interface
 
 function MainMenu(var Prog: string; var Pos: Word; var Mode: Byte): Boolean;
+procedure AddToMenu(Path: string; G: Word);
 
 implementation
 
-uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, Help, UserMenu, AddProg;
+uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, Help, UserMenu, AddProg, Lists;
 
 type
+  TSelList = object(TList)
+    procedure DrawLine(Line: Integer); virtual;
+  end;
   TBtn = object
     X, Y, FocFg, FocBg, Len, Fg, Bg, FocShadow: Byte;
     Pressed, Focused, OldPressed, OldFocused: Boolean;
@@ -318,7 +322,6 @@ begin
   PopScreen(DlgStack);
 end;
 
-{$I+}
 function MainMenu(var Prog: string; var Pos: Word; var Mode: Byte): Boolean;
 var
   I, J, K: Integer;
@@ -486,6 +489,7 @@ const
   Sel: Byte = 1;
 var
   Key: Word;
+  Unused: array[1..6] of Byte;
   Items: array[1..6] of string[16];
   Still: Boolean;
   OldY, OldX: Byte;
@@ -570,8 +574,8 @@ begin
     if (Key = 27) or (Key = $42C) or (MouseButton = 2) then Done := True;
   until (Key = 13) or Done;
   CloseDialog;
-  if not Done then
-    case Sel of
+  if Done then Exit;
+  case Sel of
       1: FrameMenu := #196;
       2: FrameMenu := '*';
       3: FrameMenu := '~';
@@ -581,7 +585,6 @@ begin
     end;
 end;
 
-{$I+}
 function ItemMenu(G, It, X, Y: Byte): Boolean;
 const
   Sel: Byte = 1;
@@ -749,7 +752,7 @@ begin
            GotoXY(1, 1);
            SetColor(14, 3);
            ClrEol;
-           Write('    Eintrag ''''' + S + ''''' vertauschen: Klicken Sie auf den Zielschalter');
+           Write('    Eintrag ''' + S + ''' vertauschen: Klicken Sie auf den Zielschalter');
            MouseShow;
            Cancel := False;
            Ok := False;
@@ -1055,7 +1058,8 @@ begin
       ShowGroup;
       if ItemMenu(CurGroup, NewCur, MX, MY) then Key := $42C;
       ShowGroup;
-    end;
+    end
+    else if MouseButton = 2 then Key := $42C;
     Quit := (Key = 27) or (Key = $42C);
     Run := ((Key = 13) or ((Key >= $423) and (Key <= $429)) or ((Key >= $450) and (Key <= $456)) or
       ((Key >= $446) and (Key <= $44C)) or Any) and (Menu^.Groups[CurGroup].Items[Cur].Prog <> '');
@@ -1077,6 +1081,151 @@ begin
   Pos := Cur shl 8 + CurGroup;
   SaveCfg;
   WaitRelease;
+end;
+
+procedure TSelList.DrawLine(Line: Integer);
+begin
+  Text := '';
+  if Line + Top <= Menu^.Count then Text := ' ' + Menu^.Groups[Line + Top].Name;
+  TList.DrawLine(Line);
+end;
+
+function SelectGroup(Current: Byte): Byte;
+var
+  List: TSelList;
+  Key: Word;
+  Sel: Integer;
+  H: Byte;
+begin
+  OpenDialog;
+  H := 26;
+  Frame(25, 3, H, 1, 11, 3, 0, 1);
+  WriteCenter(H - 1, ' Gruppe w'#132'hlen');
+  Frame(25, 6, H, 15, 11, 3, 0, 1);
+  List.Init(0, 3, 14, 1, 26, 7, 15, Menu^.Count, H, False);
+  List.SetPos(Current, 1);
+  MouseShow;
+  repeat
+    GetKey(Key);
+    Sel := List.Handle(Key);
+    if (List.Cur = MouseY - 7) and DoubleClick(MouseX, MouseY) then Key := 13;
+    if Key = 13 then SelectGroup := Sel;
+  until IsCancel(Key) or (Key = 13) or MouseOutside(25, 55, 3, 22);
+  if Key <> 13 then SelectGroup := 0;
+  CloseDialog;
+  InitMouse;
+end;
+
+procedure AddToMenu(Path: string; G: Word);
+var
+  Dir: DirStr;
+  Name: NameStr;
+  Ext: ExtStr;
+  Title: string;
+  B: TButton3;
+  Key: Word;
+  Ins, Other, Cancel: Boolean;
+  ChDirF: Boolean;
+  N: Byte;
+
+function GroupFull(var N: Byte): Boolean;
+var
+  I: Integer;
+  Full: Boolean;
+begin
+  Full := True;
+  I := 0;
+  repeat
+    Inc(I);
+    if Menu^.Groups[G].Items[I].Name = '' then Full := False;
+  until (I = 21) or not Full;
+  N := I;
+  GroupFull := Full;
+end;
+
+begin
+  FSplit(Path, Dir, Name, Ext);
+  Title := LowerStr(Name);
+  Title[1] := UpCaseC(Title[1]);
+  Ext := UpperStr(Ext);
+  G := Lo(G);
+  if (Ext <> '.EXE') and (Ext <> '.COM') and (Ext <> '.BAT') then
+  begin
+    ErrorBox('Hier sind nur startf'#132'hige Dateien m'#148'glich!', Shorten(Path, 50));
+    Exit;
+  end;
+  OpenDialog;
+  ChDirF := True;
+  Frame(13, 7, 54, 11, 11, 3, 0, 1);
+  WriteCenterXY(1, 1, 54, 'Einf'#129'gen der Datei');
+  WriteCenterXYF(1, 3, 54, 14, Shorten(Path, 50));
+  MouseShow;
+  if not LoadMenu then
+  begin
+    ErrorBox('Fehler beim Lesen von dxmenu.dat!', 'Erzeugen Sie eine neue Datei mit F2 im DX.');
+    Dispose(Menu);
+    CloseDialog;
+    Exit;
+  end;
+  MouseHide;
+  Dir := Menu^.Groups[G].Name;
+  Delete(Dir, Pos('~', Dir), 1);
+  WriteCenterXY(1, 5, 54, 'in das Startmen'#129' in Gruppe ' + Dir + ' mit');
+  WriteXYF(3, 7, 14, 'N');
+  Write('amen:');
+  InputLine(23, 14, 30, 61, Title, 18, 0, #216, False);
+  InitButton3(True, 16, 16, 33, 16, 51, 16, 14, 0, 11, 3, '  Einf'#129'gen  ', 'andere Gruppe', ' Abbrechen ', B);
+  WriteXY(44, 14, '[X] ');
+  WriteF(14, 'V');
+  Write('erzeichniswechsel');
+  MouseShow;
+  Key := 0;
+  repeat
+    if (Key = $430) or (Key = $3F7) or (Key = 9) or (Key = $419) or (LoCaseW(Key) = 'n') or MouseOn(14, 23, 42) then
+      InputLine(23, 14, 7, 30, Title, 18, 18, #216, False);
+    HandleButton3(Ins, Other, Cancel, Key, B);
+    if LoCaseW(Key) = 'e' then Ins := True;
+    if LoCaseW(Key) = 'g' then Other := True;
+    if LoCaseW(Key) = 'a' then Cancel := True;
+    if (Key = $417) or (LoCaseW(Key) = 'v') or MouseOn(14, 44, 65) then
+    begin
+      ChDirF := not ChDirF;
+      MouseHide;
+      if ChDirF then WriteXY(45, 14, 'X') else WriteXY(45, 14, ' ');
+      MouseShow;
+      WaitRelease;
+    end;
+    if Other then
+    begin
+      Key := SelectGroup(G);
+      if Key <> 0 then
+      begin
+        G := Key;
+        Dir := Menu^.Groups[G].Name;
+        Delete(Dir, Pos('~', Dir), 1);
+        MouseHide;
+        WriteCenterXY(14, 12, 54, 'in das Startmen'#129' in Gruppe ' + Dir + ' mit');
+        MouseShow;
+      end;
+      Key := 0;
+    end;
+    if IsCancel(Key) or MouseOutside(13, 68, 7, 19) then Cancel := True;
+    if Ins then
+      if GroupFull(N) then
+      begin
+        ErrorBox('Einf'#129'gen ist nicht mehr m'#148'glich!', 'Es sind keine leeren Eintr'#132'ge in dieser Gruppe.');
+        Ins := False;
+      end;
+  until Ins or Cancel;
+  if Ins then
+  begin
+    Menu^.Groups[G].Items[N].Name := Title;
+    Menu^.Groups[G].Items[N].Prog := Path;
+    Menu^.Groups[G].Items[N].ChDir := ChDirF;
+    SaveMenu;
+  end;
+  CloseDialog;
+  Dispose(Menu);
 end;
 
 end.

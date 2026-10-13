@@ -170,3 +170,19 @@ if real and pstarts:
 for k in real[:30]:
     print(f'  {k:04x}: {x[k]:02x} {y[k]:02x}')
 open(W + '/seg.bin', 'wb').write(y); open(W + '/orig.bin', 'wb').write(x)
+# TRYDUMP=start-end: named disassembly of the original (far-call targets resolved) for decompiling missing procs
+if os.environ.get('TRYDUMP'):
+    s_, e_ = (int(v, 16) for v in os.environ['TRYDUMP'].split('-'))
+    img = ocode if ovl else O.m.image
+    base = 0 if ovl else seg * 16
+    ctab = {}
+    for k in ([r for r in orel] if ovl else [o - seg * 16 for o in O.m.reloc_offsets()]):
+        o = k + base
+        if 3 <= k and img[o - 3] == 0x9a:
+            ts, to = stubname(int.from_bytes(img[o:o + 2], 'little'), int.from_bytes(img[o - 2:o], 'little'))
+            ctab[k - 3] = ('System.' + O.rtl.get(to, f'?{to:x}')) if ts == O.sysseg else \
+                names.get(f'{ts:04x}:{to:04x}', f'?{ts:04x}:{to:x}') if ts != seg else f'local {to:x}'
+    for a_ in sorted(xi):
+        if s_ <= a_ < e_:
+            i_ = xi[a_]
+            print(f'{a_:04x} {i_.mnemonic} {i_.op_str}' + (f'   ; {ctab[a_]}' if a_ in ctab else ''))
