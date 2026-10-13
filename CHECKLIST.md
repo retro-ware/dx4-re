@@ -53,7 +53,7 @@
   - [x] overlaid shared units: DXMenu, UserMenu, Saver, Execute (DXMAIN adds RunFull/RunWindow/RunPacker, int 29h capture,
     MovePackWin, PackSettings), Help — all MATCH(addr)
   - [x] o115f Browser, o18c6 Passwd+ (ChangePassword, SelectDrives), o18c9 Toggle (new TToggle object unit) match
-  - [ ] AddProg / U129A: no DXMAIN segment found yet (not referenced by the matched units)
+  - [x] o115c AddProg matches; U129A: no DXMAIN segment found yet
   - [ ] decompile main + 0365 + remaining ~50 own overlay units
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
 
