@@ -12,7 +12,7 @@ function RenameFiles(P: PPanel): Boolean;
 
 implementation
 
-uses Dos, Crt, Buttons, Mouse, Screen, Windows, Dialogs, U0365, U13A5, U156F;
+uses Dos, Crt, Buttons, Mouse, Screen, Windows, Dialogs, U0365, U13A5, LongName;
 
 type
   PFileRec = ^TFileRec;
@@ -151,7 +151,7 @@ begin
   ArrowCursor;
   if CfgColors[56] <> 0 then
   begin
-    P156F_D7B(Old, Old, 0);
+    GetLongName(Old, Old, False);
     New := Old;
   end;
   NormalCursor;
@@ -164,7 +164,7 @@ begin
   RenameFiles := True;
   if P^.W1252 = 0 then
   begin
-    New := P156F_7DE(New, Old);
+    New := ApplyMask(New, Old);
     if ((CfgColors[56] = 0) and (LowerStr(New) = LowerStr(Old))) or
        ((CfgColors[56] <> 0) and (Old = New)) or (New = '') or (New = '*.*') or
        (LowerStr(New + '.') = LowerStr(Old)) then Exit;
@@ -191,10 +191,10 @@ begin
     end
     else
     begin
-      if P156F_ADA(New) and (LowerStr(New) <> LowerStr(Old)) then
+      if LfnFileExists(New) and (LowerStr(New) <> LowerStr(Old)) then
       begin
         if not AskOverwrite(New) then Exit;
-        P156F_E7D(New, Short, 0);
+        GetShortName(New, Short, False);
         Assign(F, Short);
         Erase(F);
         if IOResult <> 0 then
@@ -203,12 +203,12 @@ begin
           Exit;
         end;
       end;
-      if not P156F_167(Old, New) then
+      if not LfnRename(Old, New) then
       begin
         ErrorBox('Fehler beim Umbenennen von', CutStr(Old, 53));
         Exit;
       end;
-      P156F_E7D(New, New, 0);
+      GetShortName(New, New, False);
     end;
     Assign(F, New);
     GetFAttr(F, Attr);
@@ -239,8 +239,8 @@ begin
     if TPanelFiles(P^.Data)[I]^.Sel then
     begin
       S2 := P0365_3C(I, P^);
-      if CfgColors[56] <> 0 then P156F_D7B(S2, S2, 0);
-      New := P156F_7DE(Mask, S2);
+      if CfgColors[56] <> 0 then GetLongName(S2, S2, False);
+      New := ApplyMask(Mask, S2);
       if ((CfgColors[56] = 0) and (LowerStr(S2) <> LowerStr(New))) or
          ((CfgColors[56] <> 0) and (S2 <> New)) then
       begin
@@ -251,13 +251,13 @@ begin
           if IOResult <> 0 then
             if not RenameError(S2) then Break;
         end
-        else if not P156F_167(S2, New) then
+        else if not LfnRename(S2, New) then
           if not RenameError(S2) then Break;
       end;
     end;
   until I = P^.W1007;
-  if TPanelFiles(P^.Data)[P^.W1009 + P^.W100B]^.Sel then Old := P156F_7DE(Mask, Old);
-  if CfgColors[56] <> 0 then P156F_E7D(Old, Old, 0);
+  if TPanelFiles(P^.Data)[P^.W1009 + P^.W100B]^.Sel then Old := ApplyMask(Mask, Old);
+  if CfgColors[56] <> 0 then GetShortName(Old, Old, False);
   Old := CompressName(Old);
   Assign(F, Old);
   GetFAttr(F, Attr);

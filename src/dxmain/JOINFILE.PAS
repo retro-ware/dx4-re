@@ -17,7 +17,7 @@ function JoinFiles(Dst: string; var List: TFileList; Count: Integer; Sel: Word; 
 
 implementation
 
-uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, Status, Dialogs, U13A5, U156F;
+uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, Status, Dialogs, U13A5, LongName;
 
 function CopyInto(Src, Dst: string; var F: File; Num, Total: Word): Boolean;
 var
@@ -144,7 +144,7 @@ begin
   WriteXY(18, 7, '[X] Bin'#$84'res Kopieren');
   WriteXYF(22, 7, 14, 'B');
   if ((CfgColors[56] = 0) and (FSearch(Dst, '') <> '')) or
-     ((CfgColors[56] <> 0) and P156F_ADA(Dst)) then
+     ((CfgColors[56] <> 0) and LfnFileExists(Dst)) then
   begin
     InitButton3(True, 3, 9, 23, 9, 39, 9, 14, 0, 11, 3, ' '#$9A'berschreiben ', '  Anf'#$81'gen  ',
       ' Abbrechen ', B3);
@@ -192,13 +192,13 @@ begin
   end;
   if CfgColors[56] <> 0 then
   begin
-    if not App and not P156F_CB0(Dst) then
+    if not App and not LfnCreate(Dst) then
     begin
       MsgBox('Fehler beim Erzeugen der Datei', Dst);
       CloseDialog;
       Exit;
     end;
-    if not P156F_E7D(Dst, Dst, 1) then
+    if not GetShortName(Dst, Dst, True) then
     begin
       MsgBox('Fehler beim Ermitteln des kurzen Namens von', Dst);
       CloseDialog;

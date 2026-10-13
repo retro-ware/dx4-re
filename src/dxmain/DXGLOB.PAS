@@ -146,6 +146,15 @@ var
 var
   GA07: Boolean;
 
+type
+  TNameArr = array[1..255] of string[12];
+  PNameArr = ^TNameArr;
+
+var
+  NameList: PNameArr;
+  SetupName: string[12];
+  LastSearch: string[128];
+
 implementation
 
 end.

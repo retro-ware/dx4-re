@@ -7,7 +7,7 @@ function DelDirectory(Path: string; var Ask: Boolean; var Cancel: Boolean): Bool
 
 implementation
 
-uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, U156F;
+uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, LongName;
 
 type
   PDirList = ^TDirList;
@@ -152,7 +152,7 @@ begin
     begin
       MouseShow;
       ArrowCursor;
-      P156F_D7B(Disp, Disp, 1);
+      GetLongName(Disp, Disp, True);
     end;
     WriteCenterXYF(1, 5, 54, 14, Shorten(Disp, 50));
     WriteCenterXYF(1, 8, 54, 15, 'inclusive aller Unterverzeichnisse l'#$94'schen?');

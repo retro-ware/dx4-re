@@ -19,7 +19,7 @@ function SearchMarked(Last, First: Word; Files: PFileList; var NMarked: Word): B
 
 implementation
 
-uses Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, U142F;
+uses Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, AskDlgs;
 
 function SearchFile(Name, Text: string; Flags: Byte; var Status: Byte): Boolean;
 var
@@ -183,7 +183,7 @@ begin
   Name := CompressName(Name);
   Single := (Files^[First]^.Attr and $10 <> 0) and (NMarked = 0);
   Text := Name;
-  P142F_578(Text, NMarked, '');
+  AskSearchText(Text, NMarked, '');
   if Text = '' then Exit;
   SearchMarked := True;
   OpenDialog;
