@@ -28,6 +28,9 @@ implementation
 
 uses Crt, Mouse;
 
+type
+  TScreenBuf = array[1..$12C0] of Byte;
+
 procedure InitStack(var S: TScrStack);
 begin
   S.Tmp := nil;
@@ -37,7 +40,7 @@ end;
 
 procedure SaveScreen(var P: PScrSave);
 begin
-  Move(Ptr($B800, 0)^, P^.Buf^, $12C0);
+  TScreenBuf(P^.Buf^) := TScreenBuf(Ptr($B800, 0)^);
   P^.X1 := Lo(WindMin) + 1;
   P^.Y1 := Hi(WindMin) + 1;
   P^.X2 := Lo(WindMax) + 1;
@@ -86,7 +89,7 @@ begin
   GotoXY(P^.CurX, P^.CurY);
   TextAttr := P^.Attr;
   MouseHide;
-  Move(P^.Buf^, Ptr($B800, 0)^, $12C0);
+  TScreenBuf(Ptr($B800, 0)^) := TScreenBuf(P^.Buf^);
   MouseShow;
 end;
 

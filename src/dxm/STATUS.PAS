@@ -7,11 +7,6 @@ const
   LastSec: Word = 0;
   Blink: Boolean = True;
   CurSec: Word = 0;
-  ClockHidden: Boolean = False;
-  DateHidden: Boolean = False;
-  G36C: Word = 1;
-  LastDate: string[25] = 'x';
-  LastTime: string[6] = 'x';
 
 procedure ClockOff;
 procedure ClockOn;

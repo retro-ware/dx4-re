@@ -21,8 +21,8 @@ procedure ScreenSaver;
 
 implementation
 
-uses Dos, Crt, DXGlob, Mouse, Screen, Windows, ScrSave, Palette, Buttons, Times, Passwd, Fonts,
-  Dialogs, Execute;
+uses Dos, Crt, DXGlob, Mouse, Screen, Windows, ScrSave, Palette, Buttons, Times, Help, Fonts,
+  Passwd, Dialogs, Execute;
 
 function CheckPassword: Boolean;
 var
@@ -197,7 +197,7 @@ var
   Rate: Real;
   Btn: TButton;
   BtnHit, X1, HadCursor: Boolean;
-  SavedMap: array[1..28, 1..80] of Byte;
+  SavedMap: TMouseMap;
   SaveThin: Boolean;
   Ok: Boolean;
   Dummy: array[1..8] of Byte;
@@ -214,7 +214,7 @@ begin
     Window(1, 1, 80, ScreenRows);
     SetColor(11, 0);
     StarCount := 0;
-    Move(MouseMap, SavedMap, SizeOf(SavedMap));
+    SavedMap := MouseMap;
     InitMouse;
     Ok := False;
     if CursorOn then
@@ -330,7 +330,7 @@ begin
       if MouseSaver then
       begin
         SaveThin := ThinButtons;
-        if not G96 and not SaveThin then ThinButtons := True;
+        if not CustomFont and not SaveThin then ThinButtons := True;
         MouseHide;
         Frame(30, 14, 16, 3, 11, 3, 0, 1);
         ClrScr;
@@ -367,7 +367,7 @@ begin
     PopScreen(DlgStack);
     SetBorder(BorderColor);
     if HadCursor then ShowCursor;
-    Move(SavedMap, MouseMap, SizeOf(MouseMap));
+    MouseMap := SavedMap;
   end;
 end;
 
@@ -414,16 +414,16 @@ end;
 
 procedure FadeScreen;
 var
-  Save: array[0..15] of TRGB;
+  Save: TPalette;
   I: Byte;
 begin
-  Move(Pal2, Save, SizeOf(Save));
+  Save := Pal2;
   FadeOut;
   Window(1, 1, 80, ScreenRows);
   SetColor(11, 0);
   ClrScr;
   SetBorder(0);
-  Move(Save, Pal2, SizeOf(Pal2));
+  Pal2 := Save;
   for I := 0 to 15 do
     SetRGB(I, Pal2[I]);
 end;
@@ -431,12 +431,12 @@ end;
 procedure ExternalSaver;
 var
   Key: Word;
-  SavedMap: array[1..28, 1..80] of Byte;
+  SavedMap: TMouseMap;
   SaveThin, HadCursor: Boolean;
 begin
   MouseMoved := 0;
   Mouse.MouseButton := 0;
-  Move(MouseMap, SavedMap, SizeOf(SavedMap));
+  SavedMap := MouseMap;
   HadCursor := CursorOn;
   if MaxAvail < $F000 then
   begin
@@ -463,7 +463,7 @@ begin
     TextMode(CO80 + Font8x8)
   else
     TextMode(CO80);
-  SetPalRegs(TPalRegs(PalRegs));
+  SetPalRegs(PalMap);
   SetPal2;
   if not ThinButtons then
     InitFont
@@ -473,7 +473,7 @@ begin
     InitPlainFont;
     ThinButtons := True;
   end;
-  Move(SavedMap, MouseMap, SizeOf(MouseMap));
+  MouseMap := SavedMap;
   ResetMouse;
   InstallHandler;
   MouseShow;
@@ -487,12 +487,12 @@ end;
 
 procedure BlankScreen;
 var
-  SavedMap: array[1..28, 1..80] of Byte;
+  SavedMap: TMouseMap;
   Key: Word;
   R: Registers;
 begin
   OpenDialog;
-  Move(MouseMap, SavedMap, SizeOf(SavedMap));
+  SavedMap := MouseMap;
   if FadeOn then
     FadeScreen
   else
@@ -526,7 +526,7 @@ begin
   until CheckPassword;
   ResetMouse;
   InstallHandler;
-  Move(SavedMap, MouseMap, SizeOf(MouseMap));
+  MouseMap := SavedMap;
   MouseDefCursor;
   MouseShow;
   MouseYRange(0, ScreenRows - 1);

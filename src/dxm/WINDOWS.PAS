@@ -85,7 +85,7 @@ begin
     until A <= X;
   end;
   Window(X, Y, 80, ScreenRows);
-  if SingleFrame then
+  if ThinButtons then
   begin
     TL := #$DA;
     TR := #$BF;

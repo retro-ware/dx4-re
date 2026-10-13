@@ -3,7 +3,7 @@ unit Dialogs;
 
 interface
 
-uses Palette, ScrSave, Lists;
+uses Palette, ScrSave;
 
 type
   Str12 = string[12];
@@ -13,14 +13,11 @@ type
   end;
   TDrives = array[1..26] of TDrive;
   PDrives = ^TDrives;
-  TDriveList = object(TList)
-    procedure DrawLine(Line: Integer); virtual;
-  end;
 
 var
   DlgStack: TScrStack;
+  DlgStack2: TScrStack;
   Drives: PDrives;
-  Pal1, Pal2: array[0..15] of TRGB;
 
 procedure OpenDialog;
 procedure WaitRelease;
@@ -47,7 +44,12 @@ function SelectDrive(X, Y: Byte; Drive: Char): Char;
 
 implementation
 
-uses Dos, Crt, DXGlob, Mouse, Screen, Windows, Buttons, Sounds, U129A, Status;
+uses Dos, Crt, DXGlob, Mouse, Screen, Windows, Status, Buttons, Lists, Sounds, U129A;
+
+type
+  TDriveList = object(TList)
+    procedure DrawLine(Line: Integer); virtual;
+  end;
 
 const
   Blanks = '                                                                ' +

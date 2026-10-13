@@ -49,7 +49,7 @@ var
   Kind, H: Byte;
   L1, L2, L3, L4, L5, L6, L7, L8, L9, L10, L11, L12: TGlyph;
 begin
-  if Mode28 then
+  if BigCursor then
   begin
     Kind := 2;
     ScreenRows := 28;
@@ -62,13 +62,13 @@ begin
   MenuRows := ScreenRows - 7;
   if G507 then MenuRows := ScreenRows - 8;
   ListRows := MenuRows - 2;
-  if SingleFrame then
+  if ThinButtons then
     InitPlainFont
   else
   begin
     CustomFont := True;
     ShowCursor;
-    if Mode28 then
+    if BigCursor then
     begin
       L1 := G14_1;
       L2 := G14_2;
@@ -101,7 +101,7 @@ begin
       ScreenRows := 25;
     end;
     H := 16;
-    if Mode28 then H := 14;
+    if BigCursor then H := 14;
     GetMem(P, $1000);
     GetFont(P, Kind);
     for I := 1 to H do
@@ -131,7 +131,7 @@ procedure InitPlainFont;
 var
   R: Registers;
 begin
-  if Mode28 then
+  if BigCursor then
     ScreenRows := 28
   else
     ScreenRows := 25;
@@ -142,7 +142,7 @@ begin
   ShowCursor;
   R.AH := $11;
   R.AL := $14;
-  if Mode28 then R.AL := $11;
+  if BigCursor then R.AL := $11;
   R.BL := 0;
   Intr($10, R);
   HideCursor;

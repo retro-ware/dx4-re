@@ -9,7 +9,7 @@
 ## Programs (Borland Pascal 7.01 DOS unless noted)
 - [x] DX.EXE (3552 B) — src/dx/DX.PAS, byte-identical
 - [x] DX.COM (1077 B) — src/dxcom/DX.ASM (TASM 3.2, tools/bdxcom.sh), byte-identical
-- [ ] DXM.EXE (97 KB) — menu editor; {$F+,G+,S-}; own text-mode UI units (src/dxm/)
+- [x] DXM.EXE (97 KB) — menu editor; {$F+,G+,S-}; own text-mode UI units (src/dxm/) — byte-identical (tools/dxmbuild.sh)
   - per-unit check: `tools/tryunit.py dist/DX4/DXM.EXE SEG src/dxm/UNIT.PAS` (MATCH(addr) = only DS addresses differ)
   - [x] 0000 program main (5f0) — src/dxm/DXM.PAS, {$I-,V-}
   - [x] 005f (3300) DXMenu
@@ -36,8 +36,10 @@
   - [x] 1191 PALETTE (2c0)
   - [x] 11bd SCREEN (dd0)
   - [x] 129a U129A (90)
-  - [ ] 12a3 Dos, 12e1 Crt, 1343 System — stock BP 7.01 (verify in full link)
-  - [ ] DS layout (typed consts 0..644, vars 6a0..12f8) and full-EXE link
+  - [x] 12a3 Dos, 12e1 Crt, 1343 System — stock BP 7.01 (verified in full link)
+  - [x] link order: uses clauses arranged so TPC -B completion order = original segment order
+  - [x] DS layout (typed consts 0..644, vars 694..12f8): config options/HomeDir/History/DriveFlag are DXGlob typed consts, Pal1/Pal2 in Palette, CON/NUL in Execute; block copies are structured assignments (not Move); {$M 24000,0,655360}
+  - [x] full-EXE link: work/dxm/DXM.EXE == dist/DX4/DXM.EXE
 - [~] DXE.EXE (102 KB) — Turbo Vision program — SKIPPED (out of scope, decided 2026-10-13)
 - [~] DXCD.EXE (113 KB) — shares many units with DXM — SKIPPED (out of scope, decided 2026-10-13)
 - [ ] DXMAIN.EXE (816 KB, overlay appended to the EXE: FBOV at 0x27510, 654902 B, 68 overlaid units)

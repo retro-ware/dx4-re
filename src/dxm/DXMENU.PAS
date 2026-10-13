@@ -486,6 +486,7 @@ const
   Sel: Byte = 1;
 var
   Key: Word;
+  Dummy0: array[1..6] of Byte;
   Items: array[1..6] of string[16];
   Still: Boolean;
   OldY, OldX: Byte;
@@ -570,8 +571,8 @@ begin
     if (Key = 27) or (Key = $42C) or (MouseButton = 2) then Done := True;
   until (Key = 13) or Done;
   CloseDialog;
-  if not Done then
-    case Sel of
+  if Done then Exit;
+  case Sel of
       1: FrameMenu := #196;
       2: FrameMenu := '*';
       3: FrameMenu := '~';
@@ -749,7 +750,7 @@ begin
            GotoXY(1, 1);
            SetColor(14, 3);
            ClrEol;
-           Write('    Eintrag ''''' + S + ''''' vertauschen: Klicken Sie auf den Zielschalter');
+           Write('    Eintrag ''' + S + ''' vertauschen: Klicken Sie auf den Zielschalter');
            MouseShow;
            Cancel := False;
            Ok := False;
@@ -832,7 +833,7 @@ end;
 begin
   CurGroup := Lo(Pos);
   LastGroup := 0;
-  ClockHidden := False;
+  LastTime := '';
   InitMouse;
   MainMenu := False;
   OpenDialog;
@@ -871,7 +872,7 @@ begin
     end;
     MouseHide;
   end;
-  ClockHidden := False;
+  LastTime := '';
   GotoXY(1, ScreenRows);
   SetColor(0, 3);
   ClrEol;

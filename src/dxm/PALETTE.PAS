@@ -10,11 +10,23 @@ type
     R, G, B: Byte;
   end;
   TPalRegs = array[0..16] of Byte;
+  TPalette = array[0..15] of TRGB;
   TFontData = array[1..$1000] of Byte;
   PFontData = ^TFontData;
 
 const
-  PalMap: array[0..15] of Byte = (0, 1, 2, 3, 4, 5, $14, 7, $38, $39, $3A, $3B, $3C, $3D, $3E, $3F);
+  Pal1: TPalette = (
+    (R: 0; G: 0; B: 0), (R: 0; G: 0; B: 42), (R: 63; G: 63; B: 63), (R: 0; G: 42; B: 42),
+    (R: 42; G: 0; B: 0), (R: 51; G: 41; B: 31), (R: 0; G: 38; B: 36), (R: 42; G: 42; B: 42),
+    (R: 21; G: 21; B: 21), (R: 21; G: 21; B: 63), (R: 21; G: 63; B: 21), (R: 21; G: 63; B: 63),
+    (R: 63; G: 21; B: 21), (R: 63; G: 21; B: 63), (R: 63; G: 63; B: 21), (R: 63; G: 63; B: 63));
+  Pal2: TPalette = (
+    (R: 0; G: 0; B: 0), (R: 0; G: 0; B: 42), (R: 63; G: 63; B: 63), (R: 0; G: 42; B: 42),
+    (R: 42; G: 0; B: 0), (R: 51; G: 41; B: 31), (R: 0; G: 38; B: 36), (R: 42; G: 42; B: 42),
+    (R: 21; G: 21; B: 21), (R: 21; G: 21; B: 63), (R: 21; G: 63; B: 21), (R: 21; G: 63; B: 63),
+    (R: 63; G: 21; B: 21), (R: 63; G: 21; B: 63), (R: 63; G: 63; B: 21), (R: 63; G: 63; B: 63));
+  PalMap: TPalRegs = (0, 1, 2, 3, 4, 5, $14, 7, $38, $39, $3A, $3B, $3C, $3D, $3E, $3F, 0);
+  PalPad: Byte = 0;
 
 procedure GetRGB(C: Byte; var RGB: TRGB);
 procedure SetPalRegs(P: TPalRegs);
@@ -66,7 +78,7 @@ begin
   if Kind = 2 then R.BH := 2;
   Intr($10, R);
   Q := Ptr(R.ES, R.BP);
-  Move(Q^, P^, $1000);
+  P^ := TFontData(Q^);
 end;
 
 procedure SetFont(P: PFontData; Kind: Byte);

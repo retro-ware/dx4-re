@@ -74,7 +74,7 @@ begin
     WriteXYFB(Width + 1, Rows, 2, 0, #25);
     MouseShow;
   end;
-  Move(MouseMap, SavedMap, SizeOf(SavedMap));
+  TMouseMap(SavedMap) := MouseMap;
   InitMouse;
   FillChar(MouseMap[Y - 1, X], Width + 1, 24);
   FillChar(MouseMap[Y + Rows, X], Width + 1, 25);
@@ -355,7 +355,7 @@ end;
 
 destructor TList.Done;
 begin
-  Move(SavedMap, MouseMap, SizeOf(SavedMap));
+  MouseMap := TMouseMap(SavedMap);
 end;
 
 end.

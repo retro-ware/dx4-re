@@ -21,7 +21,7 @@ begin
   GotoXY(X, Y);
   ShowCursor;
   A := TextAttr;
-  G36E := 0;
+  LastDate := '';
   N := 0;
   SetColor(0, 2);
   S := '';

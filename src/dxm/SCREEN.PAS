@@ -10,6 +10,7 @@ const
   ShiftDown: Boolean = False;
   CtrlDown: Boolean = False;
   ScanCode: Byte = 0;
+  X0642: Word = 0;
 
 procedure DelBackslash(var S: string);
 function DriveValid(Drive: Char): Boolean;

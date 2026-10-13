@@ -13,7 +13,6 @@ const
   MouseMoved: Integer = 0;
   ScreenMask: Word = $40FF;
   CursorMask: Word = $4E00;
-  NoMouseReset: Boolean = True;
 
 type
   TMouseMap = array[1..28, 1..80] of Byte;
@@ -47,7 +46,7 @@ function DoubleClick(X, Y: Integer): Boolean;
 
 implementation
 
-uses Crt;
+uses Crt, DXGlob;
 
 procedure MouseYRange(Min, Max: Byte);
 var

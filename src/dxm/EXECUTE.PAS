@@ -9,6 +9,10 @@ implementation
 
 uses Dos, Crt, DXGlob, Mouse, Screen, Windows, ScrSave, Dialogs, U0DA0;
 
+const
+  ConName: array[0..3] of Char = 'CON'#0;
+  NulName: array[0..3] of Char = 'NUL'#0;
+
 procedure ShowError(Prog: string; Err, Code: Byte); forward;
 
 function RunProg(Prog, Params: string): Boolean;

@@ -329,6 +329,7 @@ begin
 function HotKey(S: Str30): Char;
 var
   P: Byte;
+  I: Integer;
 begin
   HotKey := #255;
   P := Pos('~', S);
@@ -396,7 +397,7 @@ var
   Key: Word;
   B: TButton2;
 begin
-  Changed := False;
+  AddGroup := False;
   if Bar.Count > 15 then
     ErrorBox('Es sind maximal 15 Gruppen vorgesehen!', 'Mehr Eintr'#132'ge sind nicht m'#148'glich!')
   else if (Bar.Count > 2) and (Bar.Items[Bar.Count]^.X + Length(Bar.Items[Bar.Count]^.Text) > 65) then
@@ -441,7 +442,7 @@ begin
       begin
         Inc(Bar.Count);
         GetMem(Bar.Items[Bar.Count], SizeOf(TLabel));
-        Changed := True;
+        AddGroup := True;
         CurGroup := Bar.Count - 1;
         Inc(Menu^.Count);
         Menu^.Groups[CurGroup].Name := S;
@@ -455,7 +456,6 @@ begin
       end;
     end;
   end;
-  AddGroup := Changed;
 end;
 
 function EditItem(G, I: Byte): Boolean;
@@ -740,8 +740,8 @@ begin
     '  Fertig  ', B);
   RestoreWin(W);
   MouseShow;
+  Key := 0;
   repeat
-    Key := 0;
     List.Handle(Key);
     if Key = 13 then
     begin

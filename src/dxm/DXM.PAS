@@ -1,14 +1,18 @@
 {$F+,G+,S-,V-}
+{$M 24000,0,655360}
 program DXM;
 
-uses Dos, Crt, DXGlob, Mouse, Screen, ScrSave, Fonts, Dialogs, U118C, DXMenu;
+uses Crt, Dos, U129A, Screen, Palette, U118C, Mouse, ScrSave, Times, Windows, DXGlob, Dialogs,
+  Fonts, DXMenu;
 
 type
+  TColors = array[0..$40] of Byte;
+  PColors = ^TColors;
   TConfig = record
     Id: string[41];
     F1: array[$2A..$FF] of Byte;
-    Col1: array[0..$40] of Byte;
-    Col2: array[0..$40] of Byte;
+    Col1: TColors;
+    Col2: TColors;
     F2: array[$182..$283] of Byte;
     SaverDelay: Word;
     F3: array[$286..$5C4] of Byte;
@@ -19,12 +23,6 @@ type
     SaverProg: string[12];
     F6: array[$709..$711] of Byte;
   end;
-
-const
-  Col1: array[0..$40] of Byte = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-  Col2: array[0..$40] of Byte = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 var
   Prog: string;
@@ -74,8 +72,8 @@ begin
   begin
     Pos := Cfg.MenuPos;
     SaverDelay := Cfg.SaverDelay;
-    Move(Cfg.Col1, Col1, $41);
-    Move(Cfg.Col2, Col2, $41);
+    PColors(@Opt4DE)^ := Cfg.Col1;
+    PColors(@Opt520)^ := Cfg.Col2;
     SaverProg := Cfg.SaverProg;
     Password := Cfg.Password;
     for I := 1 to Length(Password) do
@@ -130,7 +128,7 @@ begin
     MouseReset
   else
     MouseSoftReset;
-  Mode28 := False;
+  BorderColor := 0;
   MouseMoved := 0;
   InitStack(DlgStack);
   PushScreen(DlgStack);
@@ -140,7 +138,7 @@ begin
   Pos := $101;
   LoadCfg;
   if (Lo(Pos) < 0) or (Lo(Pos) > 15) then Pos := $101;
-  CustomFont := False;
+  BigCursor := False;
   ScreenRows := 25;
   MouseYRange(0, ScreenRows - 1);
   InitFont;
