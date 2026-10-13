@@ -1,13 +1,18 @@
 //! `dx.ini`: the 1810-byte settings record shared by all DX programs. DXM only reads a few fields
 //! and writes back the last menu position; everything else is preserved byte for byte.
 //! Spec: src/dxm/DXM.PAS (TConfig, LoadCfg, SaveCfg).
+// Screen-saver and password fields are for the not-yet-ported saver (SAVER.PAS).
+#![cfg_attr(not(test), allow(dead_code))]
 
-use crate::cp437::{read_pstr, write_pstr};
+use crate::cp437::read_pstr;
+#[cfg(test)]
+use crate::cp437::write_pstr;
 use std::path::Path;
 use std::{fs, io};
 
 pub const ID: &str = "DOS-Expander 4.0 (C) 1994-1996 Hombergs";
 pub const SIZE: usize = 0x712;
+pub const INI_NAME: &str = "dx.ini";
 
 const OFS_SAVER_DELAY: usize = 0x284;
 const OFS_PASSWORD: usize = 0x5C5;

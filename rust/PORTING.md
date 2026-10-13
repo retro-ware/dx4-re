@@ -19,3 +19,14 @@ terminal app (ratatui + crossterm); no DOS/Crt/video-memory emulation.
   program's directory. Port: same (always changes directory), flag kept in the file.
 - New group: the original refuses or truncates a name when the menu bar (80 columns) would overflow.
   Port: keeps the 15-group limit; the bar scrolls instead of truncating.
+- Entry editor "Einfügen" (insert and shift down) left the inserted entry's `ChDir` flag at whatever the
+  shifted entry had; "Eintragen" used the checkbox. Port: both use the checkbox.
+
+## DXM status
+- Done: data files, main screen (group bar, 3×7 grid, F1–F7 / Alt / Strg shortcuts, cursor wrap into the
+  neighbour group, group hotkeys, mouse click = start, right click = entry menu), admin menu, entry menu
+  (new, edit, delete, swap, separator), group add/delete/rename/sort, entry sort, entry editor, file picker,
+  launching.
+- Not yet: help (F1, dxhelp.hlp viewer), clock/date in the bar, screen saver + password lock, double-click.
+- UI differences by design: dialogs are keyboard-driven popups (Tab/arrows/Return/Esc) instead of the
+  original mouse buttons; the menu bar shows as many groups as fit, PgUp/PgDn/Tab reach all of them.
