@@ -55,7 +55,10 @@
   - [x] o115f Browser, o18c6 Passwd+ (ChangePassword, SelectDrives), o18c9 Toggle (new TToggle object unit) match
   - [x] o115c AddProg matches; U129A: no DXMAIN segment found yet
   - [x] new own overlay units matched: o0fdb KeyMode (key-bar mode menu), o0325 DriveOps (label drive, sys disk),
-    o1156 DelTree, o0fd2 RmTree, o0fcf SearchBr (search bar + drive list), o0362 SaveCfg (dx.ini writer, TConfig layout)
+    o1156 DelTree, o0fd2 RmTree, o0fcf SearchBr (search bar + drive list), o0362 SaveCfg (dx.ini writer, TConfig layout),
+    o100a ExtProg (external viewer, edit sys files), o12c4 NumConv (hex/dec/bin), o032e MouseSpd (mouse speed dialog)
+  - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping
+    Cfg* / ViewerName (0x982) and CfgB809 / BorderColor (0x809) names to reconcile
   - [ ] decompile main + 0365 + remaining ~50 own overlay units
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
 
