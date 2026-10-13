@@ -65,6 +65,7 @@ const
   PackY1: Byte = 3;
   RunMode: Byte = 0;
   PackFull: Boolean = False;
+  ArcLoaded: Boolean = False;
   MarkSame: Boolean = True;
   CmpDirNames: Boolean = False;
 
@@ -102,9 +103,11 @@ type
     Time: Longint;
     Attr: Byte;
     Marked: Boolean;
+    Flag17: Boolean;
   end;
   PFileEntry = ^TFileEntry;
   TPanelData = array[0..$400] of PFileEntry;
+  PFileList = ^TPanelData;
   TPanel = record
     Data: TPanelData;
     Flag: Boolean;
@@ -118,7 +121,8 @@ type
     Fill11AE: array[0..79] of Byte;
     S11FE: string[79];
     W124E: Word;
-    W1250, W1252: Word;
+    W1250: Word;
+    W1252: Integer;
     S1254: string[12];
     B1261: Byte;
     Blk1262: array[0..9] of Byte;
@@ -130,12 +134,16 @@ type
 
 var
   Panels: array[1..2] of TPanel;
+  ArcInfo: Pointer;
   G7F1: Byte;
   GB90: Word;
   G562: Boolean;
 
 var
   GB44: Word;
+
+var
+  GA07: Boolean;
 
 implementation
 

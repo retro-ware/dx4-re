@@ -60,7 +60,8 @@
     o114d TextSrch (text search in marked files, asm matcher), o0fd8 CopyDlg (copy/move dialog),
     o0322 PanelIni (save setup as / swap panels), o107c Ports (COM/LPT info + UART setup), o0fd5 PanelFrm (panel frame),
     o0334 DirCmp (compare panels), o1153 Filters (filter masks), o1435 Pickers (date/time/size lists); resident 1d10 (hex/bin conv) real,
-    o1010 JoinFile (append files), o0328 RenFile (rename), o108f HistMenu (history list, exit/packer/note pickers)
+    o1010 JoinFile (append files), o0328 RenFile (rename), o108f HistMenu (history list, exit/packer/note pickers),
+    o1086 ArcDir (LZH/ZIP/ARJ directory readers)
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping
     Cfg* / ViewerName (0x982) and CfgB809 / BorderColor (0x809) names to reconcile
   - [ ] decompile main + 0365 + remaining ~50 own overlay units

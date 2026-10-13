@@ -39,3 +39,6 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
 - Overlay stub entries (int 3Fh table) list interface procs in declaration order, then implementation procs whose
   address is taken (@Handler for SetIntVec).
 - Buttons.MouseButton (function) shadows Mouse.MouseButton (var): put Buttons before Mouse in `uses`.
+- Dos.DirStr is string[67] in TP7; a local copied with limit 0x4f (80 bytes) is `string[79]`, not DirStr.
+- `var P: TRecord` params reuse es:di across field accesses; the original reloading `les di,[bp+x]` before every
+  access means the parameter is a pointer (`P: PRecord`, accessed as `P^.field`).
