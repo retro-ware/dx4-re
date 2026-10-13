@@ -10,7 +10,7 @@ procedure CDTray;
 
 implementation
 
-uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Toggle, U1546, U1F7B;
+uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Toggle, CDAudio, U1F7B;
 
 type
   TCDRequest = record
@@ -193,7 +193,8 @@ var
   Key: Word;
   Drive: Byte;
   Mode: Boolean;
-  W8: Word;
+  Fill: Byte;
+  W8: Byte;
   C1, C2, C3, C4, C5, C6, C7: Byte;
   I: Byte;
   M1, M2, M3: Longint;
@@ -206,7 +207,7 @@ begin
   ArrowCursor;
   if FindCDDrive(Drive) then
   begin
-    if not CDReady then
+    if not CDReadTOC then
     begin
       NormalCursor;
       Exit;
@@ -253,36 +254,36 @@ begin
     end;
     Mode := Tog.Checked;
     if V6 then
-      if CDPlaying then
+      if CDIsPaused then
       begin
-        CDPause;
-        if not CDPaused then
+        CDResume;
+        if not CDBusy then
         begin
-          Start := CDTrackStart(0);
+          Start := CDHeadPos(0);
           CDPlay(Start, CDLength - Start - 150);
         end;
       end
       else
-        CDResume;
+        CDPause;
     if V5 then
-      if CDDoorOpen then
+      if CDDiscIn then
         CDEject(True)
       else
       begin
         CDEject(False);
-        CDReady;
+        CDReadTOC;
       end;
     if V1 then
-      if CDReady then CDPrevTrack(True);
-    if V2 then CDNextTrack;
+      if CDReadTOC then CDPlayTrack(1);
+    if V2 then CDStop;
     if V3 then
     begin
-      CDRewind;
+      CDNextTrack;
       Delay(500);
     end;
     if V4 then
     begin
-      CDForward;
+      CDPrevTrack;
       Delay(500);
     end;
     Len := TrackStart[CurTrack + 1] - TrackStart[CurTrack];

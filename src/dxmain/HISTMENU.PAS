@@ -87,7 +87,7 @@ begin
   OpenDialog;
   Window(1, ScreenRows, 80, ScreenRows);
   SetColor(0, 7);
-  ClrEol;
+  ClrScr;
   WriteXYF(3, 1, 4, 'Return ');
   Write('Befehl ausf'#$81'hren  ');
   WriteF(4, 'Strg-Return ');

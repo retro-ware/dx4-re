@@ -10,7 +10,7 @@ function CopyDirTree(Src, Dst: string; Mode: Byte; Move: Boolean; var Canceled: 
 implementation
 
 uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, Dialogs, ScrSave, LongName, FileAsk,
-  U10F9, U12D5, U156B;
+  U10F9, U12D5, DirTree;
 
 type
   PDirList = ^TDirList;
@@ -317,7 +317,7 @@ begin
   if (UpCaseC(Dst[1]) = 'A') or (UpCaseC(Dst[1]) = 'B') then
   begin
     Tmp := Src;
-    if P156B_11DD(Tmp, Size, Dirs, Files) then
+    if ScanDirs(Tmp, Size, Dirs, Files) then
     begin
       MsgBox('Fehler beim Auslesen der Verzeichnisstruktur!', '');
       Abort := True;

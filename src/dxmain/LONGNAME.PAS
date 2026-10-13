@@ -135,7 +135,7 @@ begin
   P := 1;
   Window(1, ScreenRows, 80, ScreenRows);
   SetColor(0, 7);
-  ClrEol;
+  ClrScr;
   Write(#$1B);
   Mem[$B800:ScreenRows * 160 - 2] := $1A;
   Write(Copy(S, P, 78));

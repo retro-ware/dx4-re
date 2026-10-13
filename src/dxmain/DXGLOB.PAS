@@ -157,6 +157,14 @@ var
   SetupName: string[12];
   LastSearch: string[128];
 
+type
+  TBootHdr = array[0..4] of Byte;
+  TBootTail = array[0..$CF] of Byte;
+
+var
+  BootHdr: TBootHdr;
+  BootTail: TBootTail;
+
 implementation
 
 end.
