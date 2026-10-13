@@ -50,6 +50,12 @@ const
   SortAsc: Boolean = True;
   IniId: string[41] = 'DOS-Expander 4.0 (C) 1994-1996 Hombergs';
   IniName: string[12] = 'dx.ini';
+  PackY2: Byte = 20;
+  PackX2: Byte = 70;
+  PackX1: Byte = 10;
+  PackY1: Byte = 3;
+  RunMode: Byte = 0;
+  PackFull: Boolean = False;
 
 type
   THistory = array[0..25] of string[128];

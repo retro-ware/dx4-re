@@ -92,11 +92,19 @@ for k in d:
         i, j = xi.get(a), yi.get(a)
         if not i and j: i = next(CS.disasm(bytes(ocode[a:a + 16]), a), None)
     dk = [q for q in range(a, a + (i.size if i else 1)) if q < len(y) and x[q] != y[q]]
-    if i and j and i.size == j.size and i.mnemonic == j.mnemonic and x[a:a + 1] == y[a:a + 1] and i.op_str.split(",")[0].split("[")[0] == j.op_str.split(",")[0].split("[")[0] \
-            and dk and dk[-1] - dk[0] <= 1:
+    def same_shape(i, j, a):
+        dk = [q for q in range(a, a + (i.size if i else 1)) if q < len(y) and x[q] != y[q]]
+        return i and j and i.size == j.size and i.mnemonic == j.mnemonic and x[a:a + 1] == y[a:a + 1] \
+            and i.op_str.split(",")[0].split("[")[0] == j.op_str.split(",")[0].split("[")[0] and dk and dk[-1] - dk[0] <= 1
+    if same_shape(i, j, a):
         addr.append(k)
-    else:
-        real.append(k)
+    else:   # both linear disassemblies may be desynced here (literal pool): retry from nearby starts
+        for a2 in range(max(0, k - 5), k + 1):
+            i2 = next(CS.disasm(bytes(ocode[a2:a2 + 16]), a2), None); j2 = next(CS.disasm(bytes(y[a2:a2 + 16]), a2), None)
+            if i2 and j2 and a2 + i2.size > k and same_shape(i2, j2, a2):
+                xi[a2], yi[a2] = i2, j2; addr.append(k); break
+        else:
+            real.append(k)
 ok = not real and len(x) == len(y)
 print(f'{name}: orig={len(x):#x} built={len(y):#x} real diffs={len(real)} addr diffs={len(addr)}', 'MATCH' if ok and not addr else 'MATCH(addr)' if ok else '')
 pairs = {}

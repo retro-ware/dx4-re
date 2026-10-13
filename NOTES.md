@@ -34,3 +34,8 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
   U118C has no procedures, only an init section (main calls 118c:0000 in the unit-init list).
 - DXGlob.HomeDir is string[79] (StrStore len 0x4f in DXM main).
 - tryunit.py also accepts a `program` source (compiled as is, segment compared by program name).
+- A function that never assigns its result still ends with `mov al,[bp-1]`; a call followed by no store means the
+  original just called the function as a statement ({$X+}), e.g. DXMAIN Execute.RunPacker.
+- Overlay stub entries (int 3Fh table) list interface procs in declaration order, then implementation procs whose
+  address is taken (@Handler for SetIntVec).
+- Buttons.MouseButton (function) shadows Mouse.MouseButton (var): put Buttons before Mouse in `uses`.

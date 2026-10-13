@@ -50,7 +50,8 @@
   - [~] stock units by signature: 1fc8 Crt (0.56), 202a Dos (0.89), 208a Overlay (0.59), 20ff System; 12cd/12d1 = own LPT2/LPT1 units (not Printer); 2339 unknown — verify byte-exact in link
   - [x] resident shared units match (tryunit vs DXMAIN.EXE, src/dxmain/): DatStr, Sounds, Fonts, ScrSave, Times,
     Palette, Mouse, Lists, Status, Windows, Buttons, Screen, Dialogs
-  - [ ] overlaid shared units: [x] DXMenu (MATCH(addr)), [ ] UserMenu, [ ] Saver, [ ] Execute, [ ] Help
+  - [x] overlaid shared units: DXMenu, UserMenu, Saver, Execute (DXMAIN adds RunFull/RunWindow/RunPacker, int 29h capture,
+    MovePackWin, PackSettings), Help — all MATCH(addr)
   - [ ] decompile main + 0365 + remaining ~50 own overlay units
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
 

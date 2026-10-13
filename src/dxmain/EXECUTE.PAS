@@ -1,15 +1,33 @@
-{$O+,F+,G+,S-,I-}
+{$O+,F+,G+,S-,I-,X+}
 unit Execute;
 
 interface
 
 function RunProg(Prog, Params: string): Boolean;
+function RunWindow(Prog, Params, Title: string): Boolean;
+procedure ShowError(Prog: string; Err, Code: Byte);
+procedure MovePackWin;
+function RunPacker(Prog, Params, Title: string): Boolean;
+procedure PackSettings;
 
 implementation
 
-uses Dos, Crt, DXGlob, Mouse, Screen, Windows, ScrSave, Dialogs, U0DA0;
+uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, U0DA0;
 
-procedure ShowError(Prog: string; Err, Code: Byte); forward;
+type
+  TIniRec = record
+    Id: string[41];
+    Fill1: array[1..$132 - 42] of Byte;
+    PackFull: Boolean;
+    Fill2: array[1..$70C - $133] of Byte;
+    PackY2, PackX2, PackX1, PackY1: Byte;
+    Fill3: array[1..$712 - $710] of Byte;
+  end;
+
+procedure Int29Handler(Flags, CS, IP, AX, BX, CX, DX, SI, DI, DS, ES, BP: Word); interrupt;
+begin
+  Write(Chr(Lo(AX)));
+end;
 
 function RunProg(Prog, Params: string): Boolean;
 var
@@ -76,6 +94,142 @@ begin
       ShowError(Prog, Err, Code);
     RunProg := Err + Code = 0;
   end;
+end;
+
+
+function RunFull(Prog, Params, Title: string): Boolean;
+var
+  R: Registers;
+  SaveTop: Pointer;
+  Err, Code: Word;
+  Path, S2: string;
+  Key: Word;
+  OldMode: Byte;
+begin
+  Path := FSearch(Prog, GetEnv('PATH') + ';' + HomeDir);
+  if Path = '' then
+  begin
+    MsgBox('Programm ' + Prog + ' nicht gefunden!', 'Es mu'#$E1' im Pfad (Path) vorhanden sein!');
+    RunFull := False;
+  end
+  else
+  begin
+    Prog := Path;
+    OpenDialog;
+    Window(1, 1, 80, ScreenRows);
+    SetColor(7, 0);
+    ClrScr;
+    SetBorder(0);
+    OldMode := RunMode;
+    WriteCenterXYFB(1, 1, 80, 0, 5, Title);
+    RunMode := 5;
+    ClockHidden := False;
+    Idle;
+    SaveTop := HeapEnd;
+    SetMemTop(HeapPtr);
+    SwapVectors;
+    CheckBreak := True;
+    SetCBreak(True);
+    ShowCursor;
+    Exec(Prog, Params);
+    CheckBreak := False;
+    SetCBreak(False);
+    Err := DosError;
+    Code := DosExitCode;
+    SwapVectors;
+    SetMemTop(SaveTop);
+    Str(Err, Path);
+    Str(Code, S2);
+    HideCursor;
+    ResetMouse;
+    InstallHandler;
+    MouseYRange(0, ScreenRows - 1);
+    WriteLn('Weiter mit einer Taste...');
+    NormalCursor;
+    MouseShow;
+    if Err + Code <> 0 then
+      ShowError(Prog, Err, Code);
+    repeat
+      Idle;
+    until GetKey(Key) or (MouseButton <> 0);
+    WaitRelease;
+    RunFull := Err + Code = 0;
+    PopScreen(DlgStack);
+    RestoreBorder;
+    RunMode := OldMode;
+    ClockHidden := False;
+    Idle;
+  end;
+end;
+
+function RunWindow(Prog, Params, Title: string): Boolean;
+var
+  R: Registers;
+  SaveTop: Pointer;
+  Err, Code: Word;
+  Path, S2: string;
+  OldVec: Pointer;
+  Key: Word;
+begin
+  Path := FSearch(Prog, GetEnv('PATH') + ';' + HomeDir);
+  if Path = '' then
+  begin
+    MsgBox('Programm ' + Prog + ' nicht gefunden!', 'Es mu'#$E1' im Pfad (Path) vorhanden sein!');
+    RunWindow := False;
+  end
+  else
+  begin
+    Prog := Path;
+    OpenDialog;
+    GetIntVec($29, OldVec);
+    SetIntVec($29, @Int29Handler);
+    if PackY2 >= ScreenRows then PackY2 := ScreenRows - 1;
+    Frame(PackX1, PackY1, PackX2 - PackX1 - 1, 1, 11, 6, 0, 1);
+    WriteCenterXY(1, 1, PackX2 - PackX1 - 2, Title);
+    Frame(PackX1, PackY1 + 3, PackX2 - PackX1 - 1, PackY2 - PackY1 - 4, 11, 6, 0, 1);
+    Window(PackX1 + 2, PackY1 + 4, PackX2 - 2, PackY2 - 1);
+    SetColor(7, 0);
+    ClrScr;
+    SaveTop := HeapEnd;
+    SetMemTop(HeapPtr);
+    SwapVectors;
+    CheckBreak := True;
+    SetCBreak(True);
+    ShowCursor;
+    Exec(Prog, Params);
+    CheckBreak := False;
+    SetCBreak(False);
+    Err := DosError;
+    Code := DosExitCode;
+    SetIntVec($29, OldVec);
+    SwapVectors;
+    SetMemTop(SaveTop);
+    Str(Err, Path);
+    Str(Code, S2);
+    HideCursor;
+    ResetMouse;
+    InstallHandler;
+    MouseYRange(0, ScreenRows - 1);
+    WriteLn('Weiter mit einer Taste...');
+    NormalCursor;
+    MouseShow;
+    if Err + Code <> 0 then
+      ShowError(Prog, Err, Code);
+    repeat
+      Idle;
+    until GetKey(Key) or (MouseButton <> 0);
+    WaitRelease;
+    RunWindow := Err + Code = 0;
+    PopScreen(DlgStack);
+  end;
+end;
+
+function RunPacker(Prog, Params, Title: string): Boolean;
+begin
+  if PackFull then
+    RunFull(Prog, Params, Title)
+  else
+    RunWindow(Prog, Params, Title);
 end;
 
 procedure ShowError(Prog: string; Err, Code: Byte);
@@ -208,6 +362,280 @@ begin
   MouseShow;
   WaitInput;
   CloseDialog;
+end;
+
+
+procedure DrawPackWin(Full: Boolean);
+var
+  I: Byte;
+begin
+  MouseHide;
+  Frame(PackX1, PackY1, PackX2 - PackX1 - 1, 1, 11, 6, Ord(Full = False), Ord(Full));
+  if Full then
+    WriteCenterXY(1, 1, PackX2 - PackX1 - 4, ' Packer-Fenster:')
+  else
+    WriteCenterXY(1, 1, PackX2 - PackX1 - 2, ' Packer-Fenster:');
+  Frame(PackX1, PackY1 + 3, PackX2 - PackX1 - 1, PackY2 - PackY1 - 4, 11, 6, Ord(Full = False), Ord(Full));
+  Window(1, 1, 80, ScreenRows);
+  WriteXYFB(PackX1 - 1 + (PackX2 - PackX1) div 2, PackY2, 11, 6, #18);
+  for I := 1 to 2 do
+    WriteFB(11, 6, #18);
+  for I := 1 to 2 do
+    WriteXYFB(PackX2, PackY1 + I + (PackY2 - PackY1) div 2, 11, 6, #29);
+  WriteXYFB(PackX2, PackY2, 11, 6, '\');
+  Window(PackX1 + 2, PackY1 + 4, PackX2 - 2, PackY2 - 1);
+  SetColor(7, 0);
+  if Full then ClrScr;
+  MouseShow;
+end;
+
+procedure MovePackWin;
+label
+  Corner;
+var
+  Key: Word;
+  MX, MY: Byte;
+  OldSound: Boolean;
+
+procedure RestoreAround;
+begin
+  MouseHide;
+  RestoreLine(PackY2 + 1, DlgStack.Top);
+  RestoreColumn(PackX2 + 1, DlgStack.Top);
+  RestoreColumn(PackX2 + 2, DlgStack.Top);
+  MouseShow;
+end;
+
+begin
+  OpenDialog;
+  MouseShow;
+  OldSound := SoundOn;
+  SoundOn := False;
+  if PackY2 >= ScreenRows then PackY2 := ScreenRows - 1;
+  DrawPackWin(True);
+  MouseHide;
+  ClrScr;
+  Write('Positionieren Sie das Fenster mit der Maus ');
+  MouseShow;
+  repeat
+    GetKey(Key);
+    if MouseOn(PackY2, PackX1 + 1, PackX2 - 1) then
+    begin
+      RestoreAround;
+      DrawPackWin(False);
+      repeat
+        if (PackY2 <> MouseY) and (ScreenRows > MouseY) and (PackY1 + 4 < MouseY) then
+        begin
+          if PackY2 > MouseY then
+          begin
+            MouseHide;
+            RestoreLine(PackY2, DlgStack.Top);
+            MouseShow;
+            Dec(PackY2);
+          end
+          else
+            Inc(PackY2);
+          DrawPackWin(False);
+        end;
+        if PackX2 <= MouseX then goto Corner;
+      until MouseButton = 0;
+      DrawPackWin(True);
+    end;
+    if (MouseButton = 1) and (PackX2 = MouseX) and (PackY1 < MouseY) and (PackY2 > MouseY) then
+    begin
+      RestoreAround;
+      DrawPackWin(False);
+      repeat
+        if (PackX2 <> MouseX) and (MouseX <= 78) and (PackX1 + 17 < MouseX) then
+        begin
+          if PackX2 > MouseX then
+          begin
+            MouseHide;
+            RestoreColumn(PackX2, DlgStack.Top);
+            MouseShow;
+            Dec(PackX2);
+          end
+          else
+            Inc(PackX2);
+          DrawPackWin(False);
+        end;
+        if PackY2 <= MouseY then goto Corner;
+      until MouseButton = 0;
+      DrawPackWin(True);
+    end;
+    if MouseOn(PackY2, PackX2, PackX2) then
+    begin
+      RestoreAround;
+      DrawPackWin(False);
+Corner:
+      repeat
+        if (PackX2 <> MouseX) and (MouseX <= 78) and (PackX1 + 17 < MouseX) then
+        begin
+          if PackX2 > MouseX then
+          begin
+            MouseHide;
+            RestoreColumn(PackX2, DlgStack.Top);
+            MouseShow;
+            Dec(PackX2);
+          end
+          else
+            Inc(PackX2);
+          DrawPackWin(False);
+        end;
+        if (PackY2 <> MouseY) and (ScreenRows > MouseY) and (PackY1 + 4 < MouseY) then
+        begin
+          if PackY2 > MouseY then
+          begin
+            MouseHide;
+            RestoreLine(PackY2, DlgStack.Top);
+            MouseShow;
+            Dec(PackY2);
+          end
+          else
+            Inc(PackY2);
+          DrawPackWin(False);
+        end;
+      until MouseButton = 0;
+      DrawPackWin(True);
+    end;
+    if MouseOn(PackY1 + 1, PackX1 + 1, PackX2 - 1) then
+    begin
+      RestoreAround;
+      DrawPackWin(False);
+      MX := MouseX;
+      MY := MouseY;
+      repeat
+        if MX < MouseX then
+          if PackX2 < 78 then
+          begin
+            MouseHide;
+            RestoreColumn(PackX1, DlgStack.Top);
+            MouseShow;
+            Inc(MX);
+            Inc(PackX1);
+            Inc(PackX2);
+            DrawPackWin(False);
+          end
+          else
+            Inc(MX);
+        if MX > MouseX then
+          if PackX1 > 1 then
+          begin
+            MouseHide;
+            RestoreColumn(PackX2, DlgStack.Top);
+            MouseShow;
+            Dec(MX);
+            Dec(PackX1);
+            Dec(PackX2);
+            DrawPackWin(False);
+          end
+          else
+            Dec(MX);
+        if MY < MouseY then
+          if PackY2 < ScreenRows - 1 then
+          begin
+            MouseHide;
+            RestoreLine(PackY1, DlgStack.Top);
+            MouseShow;
+            Inc(MY);
+            Inc(PackY1);
+            Inc(PackY2);
+            DrawPackWin(False);
+          end
+          else
+            Inc(MY);
+        if MY > MouseY then
+          if PackY1 > 1 then
+          begin
+            MouseHide;
+            RestoreLine(PackY2, DlgStack.Top);
+            MouseShow;
+            Dec(MY);
+            Dec(PackY1);
+            Dec(PackY2);
+            DrawPackWin(False);
+          end
+          else
+            Dec(MY);
+      until MouseButton = 0;
+      DrawPackWin(True);
+    end;
+  until IsCancel(Key);
+  PopScreen(DlgStack);
+  SoundOn := OldSound;
+end;
+
+procedure PackSettings;
+var
+  Key: Word;
+  B: TButton2;
+  Ok, Cancel: Boolean;
+
+procedure DrawOptions;
+begin
+  MouseHide;
+  WriteXY(18, 3, '[ ] Fenster');
+  WriteXYF(22, 3, 14, 'F');
+  if not PackFull then WriteXY(19, 3, 'X');
+  WriteXY(18, 4, '[ ] Vollbild');
+  WriteXYF(22, 4, 14, 'V');
+  if PackFull then WriteXY(19, 4, 'X');
+  MouseShow;
+  WaitRelease;
+end;
+
+procedure SaveSettings;
+var
+  F: file of TIniRec;
+  Ini: TIniRec;
+  Err: Boolean;
+begin
+  Assign(F, HomeDir + IniName);
+  Reset(F);
+  Read(F, Ini);
+  Close(F);
+  Err := (IOResult <> 0) or (Ini.Id <> IniId);
+  if not Err then
+  begin
+    Ini.PackFull := PackFull;
+    Ini.PackX2 := PackX2;
+    Ini.PackY2 := PackY2;
+    Ini.PackX1 := PackX1;
+    Ini.PackY1 := PackY1;
+    Rewrite(F);
+    Write(F, Ini);
+    Close(F);
+    Err := IOResult <> 0;
+  end;
+  if Err then
+    MsgBox('Fehler beim Erstellen von ' + IniName + '!', 'Einstellungen konnten nicht gespeichert werden.');
+end;
+
+begin
+  OpenDialog;
+  Frame(17, 8, 44, 9, 15, 5, 0, 1);
+  WriteCenterXY(1, 1, 44, 'Packer-Fenster Einstellungen:');
+  WriteCenterXY(1, 6, 44, 'Die Fensterposition wird auch gespeichert!');
+  Frame(33, 10, 14, 2, 15, 5, 0, 0);
+  Window(18, 9, 80, 25);
+  InitButton2(True, 3, 7, 25, 7, 14, 0, 15, 5, '   Speichern   ', '      OK      ', B);
+  MouseShow;
+  DrawOptions;
+  repeat
+    HandleButton2(Ok, Cancel, Key, B);
+    if MouseOn(11, 35, 46) or (LoCaseW(Key) = 'f') or (Key = $430) then
+    begin
+      PackFull := False;
+      DrawOptions;
+    end;
+    if MouseOn(12, 35, 46) or (LoCaseW(Key) = 'v') or (Key = $438) then
+    begin
+      PackFull := True;
+      DrawOptions;
+    end;
+  until IsCancel(Key) or Cancel or Ok or MouseOutside(17, 62, 8, 18);
+  CloseDialog;
+  if Ok then SaveSettings;
 end;
 
 end.
