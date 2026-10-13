@@ -47,7 +47,7 @@
     o0353 DXMenu, o0356 UserMenu, 154f DatStr, 1579 Dialogs+, 1824 Sounds, 184a Status, o18bc Saver,
     o18bf Execute+, 18cd Fonts, o1915 Help, 1918 Lists, 1a18 Buttons+, 1c1b Windows+, 1ce7 Times, 1d66 ScrSave,
     1d9f Mouse, 1df3 Palette, 1e26 Screen+; AddProg/Browser/Passwd/U129A not found by shape
-  - [ ] identify stock units (System 20ff, Dos/Crt/Overlay among 1fc8/202a/208a)
+  - [~] stock units by signature: 1fc8 Crt (0.56), 202a Dos (0.89), 208a Overlay (0.59), 20ff System; 12cd/12d1 = own LPT2/LPT1 units (not Printer); 2339 unknown — verify byte-exact in link
   - [ ] port shared units (DXM sources, adapt to DXMAIN versions)
   - [ ] decompile main + 0365 + remaining ~50 own overlay units
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
