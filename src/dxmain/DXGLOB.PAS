@@ -42,12 +42,15 @@ const
   DigOnly: Boolean = False;
   BinOnly: Boolean = False;
   MinusOk: Boolean = False;
+  DelAbort: Boolean = False;
   HistCount: Byte = 0;
   InsMode: Boolean = True;
   ShowLabels: Boolean = False;
   BigCursor: Boolean = False;
   SoundOn: Boolean = True;
   SortAsc: Boolean = True;
+  ConfirmDel: Boolean = True;
+  LongNames: Boolean = False;
   IniId: string[41] = 'DOS-Expander 4.0 (C) 1994-1996 Hombergs';
   IniName: string[12] = 'dx.ini';
   PackY2: Byte = 20;
@@ -65,6 +68,7 @@ var
   HomeDir: string[79];
   History: PHistory;
   DriveFlag: array[1..26] of Boolean;
+  ViewerName: string[79];
 
 implementation
 
