@@ -47,13 +47,30 @@ def masked(m):
         if o >= 3 and m.image[o - 3] == 0x9a:   # far call: target offset depends on the other segment
             b[o - 2:o] = b'\xcc\xcc'
     return b
-x = masked(O.m)[seg * 16:O.segend[seg] * 16]
+# overlaid unit (seg is its int 3Fh stub): code and relocations come from the FBOV data appended to the EXE
+import struct
+from ovr import stubs
+OV = {st['seg']: st for st in stubs(O.m)}
+ovl = seg in OV
+if ovl:
+    st = OV[seg]
+    ocode = bytes(O.m.overlay[st['fofs']:st['fofs'] + st['csize']])
+    orel = struct.unpack_from(f"<{st['rsize'] // 2}H", O.m.overlay, st['fofs'] + st['csize'])
+    x = bytearray(ocode)
+    for r in orel:
+        x[r:r + 2] = b'\xee\xee'
+        if r >= 3 and ocode[r - 3] == 0x9a: x[r - 2:r] = b'\xcc\xcc'
+    x = x + bytes(-len(x) % 16)
+    ocode = ocode + bytes(-len(ocode) % 16)
+else:
+    ocode = bytes(O.seg_bytes(seg))
+    x = masked(O.m)[seg * 16:O.segend[seg] * 16]
 y = masked(B)[a:a + l]
 y = y + bytes(-len(y) % 16)
 from model import CS
 d = [k for k in range(min(len(x), len(y))) if x[k] != y[k]]
 # split: operand-only differences (same instruction shape, differing disp/imm: DS addresses) vs real ones
-xi = {i.address: i for i in CS.disasm(bytes(O.seg_bytes(seg)), 0)}
+xi = {i.address: i for i in CS.disasm(ocode, 0)}
 yi = {i.address: i for i in CS.disasm(bytes(y), 0)}
 starts = sorted(xi)
 import bisect
@@ -61,7 +78,9 @@ real, addr = [], []
 for k in d:
     a = starts[bisect.bisect_right(starts, k) - 1] if starts else 0
     i, j = xi.get(a), yi.get(a)
-    if i and j and i.size == j.size and i.mnemonic == j.mnemonic and x[a:a + 1] == y[a:a + 1] and i.op_str.split(",")[0].split("[")[0] == j.op_str.split(",")[0].split("[")[0]:
+    dk = [q for q in range(a, a + (i.size if i else 1)) if q < len(y) and x[q] != y[q]]
+    if i and j and i.size == j.size and i.mnemonic == j.mnemonic and x[a:a + 1] == y[a:a + 1] and i.op_str.split(",")[0].split("[")[0] == j.op_str.split(",")[0].split("[")[0] \
+            and dk and dk[-1] - dk[0] <= 1:
         addr.append(k)
     else:
         real.append(k)
@@ -92,10 +111,16 @@ pubs = {(int(a_, 16), int(o_, 16)): segname.get(int(a_, 16), '?') + '.' + n_
         for a_, o_, n_ in re.findall(r'^ ([0-9A-F]{4}):([0-9A-F]{4})\s+(\w+)$', mp, re.M)}
 bsys, brtl = rtlsig.name(W + '/T.EXE')
 calls, unknown = [], []
-for o in O.m.reloc_offsets():
-    k = o - seg * 16
-    if 3 <= k < len(x) and O.m.image[o - 3] == 0x9a:
-        ts = int.from_bytes(O.m.image[o:o + 2], 'little'); to = int.from_bytes(O.m.image[o - 2:o], 'little')
+def stubname(ts, to):   # far call into an overlaid unit goes to its stub entry: map to the real offset
+    if ts in OV and to >= 0x20 and (to - 0x20) % 5 == 0 and (to - 0x20) // 5 < len(OV[ts]['ents']):
+        return ts, OV[ts]['ents'][(to - 0x20) // 5]
+    return ts, to
+for k, cb in ([(r, ocode) for r in orel] if ovl else [(o - seg * 16, None) for o in O.m.reloc_offsets()]):
+    img = cb if ovl else O.m.image
+    o = k if ovl else k + seg * 16
+    if 3 <= k < len(x) and img[o - 3] == 0x9a:
+        ts = int.from_bytes(img[o:o + 2], 'little'); to = int.from_bytes(img[o - 2:o], 'little')
+        ts, to = stubname(ts, to)
         if ts == seg:
             continue
         bo = a0 + k
@@ -115,7 +140,11 @@ if ok and not calls:
         if segname.get(bs_, '').upper() == name.upper():
             names[f'{seg:04x}:{bo_:04x}'] = n_
     json.dump(names, open(NF, 'w'), indent=0, sort_keys=True)
-pstarts = sorted(k_[1] for k_ in O.procs if k_[0] == seg)
+if ovl:   # proc starts: enter / push bp; mov bp,sp (linear disassembly, resyncs after literals)
+    pstarts = sorted({0} | {a_ for a_, i_ in xi.items() if i_.mnemonic == 'enter' or (i_.mnemonic == 'push' and i_.op_str == 'bp'
+                                and a_ + 1 in xi and xi[a_ + 1].mnemonic == 'mov' and xi[a_ + 1].op_str == 'bp, sp')})
+else:
+    pstarts = sorted(k_[1] for k_ in O.procs if k_[0] == seg)
 if real and pstarts:
     per = {}
     for k in real:
