@@ -30,3 +30,4 @@ terminal app (ratatui + crossterm); no DOS/Crt/video-memory emulation.
 - Not yet: help (F1, dxhelp.hlp viewer), clock/date in the bar, screen saver + password lock, double-click.
 - UI differences by design: dialogs are keyboard-driven popups (Tab/arrows/Return/Esc) instead of the
   original mouse buttons; the menu bar shows as many groups as fit, PgUp/PgDn/Tab reach all of them.
+- `Times.TimeCount` multiplies hours by 2600 instead of 3600 (both DXM and DXMAIN), so timings that span an hour boundary are off. Port: use real elapsed time.
