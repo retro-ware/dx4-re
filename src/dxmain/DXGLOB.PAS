@@ -28,6 +28,8 @@ const
   NulName: array[0..3] of Char = 'NUL'#0;
   G96: Boolean = False;
   PasswordOn: Boolean = False;
+  G9E6: Boolean = False;
+  LastShift: Boolean = False;
   Password: string[12] = '';
   MouseSaver: Boolean = False;
   SaverExt: Boolean = False;

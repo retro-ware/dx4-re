@@ -7,6 +7,7 @@ uses Palette, ScrSave, Lists;
 
 type
   Str12 = string[12];
+  Str128 = string[128];
   TDrive = record
     Letter: Char;
     Lbl: Str12;
@@ -31,12 +32,17 @@ procedure NormalCursor;
 procedure SmallCursor;
 procedure LargeCursor;
 function IsCancel(Key: Word): Boolean;
+procedure SetMouseMap;
 procedure SetPal2;
 procedure SetPal1;
+procedure AddHistory(S: Str128);
+function SizeStr(N: Longint): Str12;
 procedure FormatName(var S: Str12);
 function CompressName(S: Str12): Str12;
 procedure WaitInput;
 function Shorten(S: string; N: Byte): string;
+function CutStr(S: string; N: Byte): string;
+procedure DrawKeyBar(Force: Boolean);
 procedure MsgBox(S1, S2: string);
 procedure ErrorBox(S1, S2: string);
 function InputLine(X, Y, LeftX, RightX: Byte; var S: string; Width, MaxLen: Byte; Ch: Char;
@@ -44,6 +50,8 @@ function InputLine(X, Y, LeftX, RightX: Byte; var S: string; Width, MaxLen: Byte
 function EditLine(X, Y: Byte; var S: string; Width, MaxLen, Attr, LeftX, RightX: Byte;
   Hist: Boolean; S1, S2: string; Flag: Boolean): Word;
 function SelectDrive(X, Y: Byte; Drive: Char): Char;
+function JoinPath(Dir, Name: string): string;
+procedure TrimBackslash(var S: string);
 
 implementation
 
@@ -142,6 +150,68 @@ begin
   end;
 end;
 
+procedure SetMouseMap;
+begin
+  InitMouse;
+  FillChar(MouseMap[3, 2], 38, 17);
+  FillChar(MouseMap[3, 42], 38, 16);
+  FillChar(MouseMap[2, 2], 38, 23);
+  FillChar(MouseMap[2, 42], 38, 23);
+  if G9E6 then
+  begin
+    FillChar(MouseMap[4, 2], 64, 24);
+    FillChar(MouseMap[5, 2], 64, 24);
+    FillChar(MouseMap[4, 68], 12, 24);
+    FillChar(MouseMap[5, 68], 12, 24);
+    FillChar(MouseMap[MenuRows + 4, 2], 64, 25);
+    FillChar(MouseMap[MenuRows + 5, 2], 64, 25);
+    FillChar(MouseMap[MenuRows + 6, 2], 64, 23);
+    FillChar(MouseMap[MenuRows + 4, 68], 12, 25);
+    FillChar(MouseMap[MenuRows + 5, 68], 12, 25);
+    FillChar(MouseMap[MenuRows + 6, 68], 12, 23);
+    MouseMap[5, 60] := 0;
+    MouseMap[5, 62] := 0;
+    MouseMap[5, 64] := 0;
+    MouseMap[5, 69] := 0;
+    MouseMap[5, 71] := 0;
+    MouseMap[5, 73] := 0;
+  end
+  else
+  begin
+    FillChar(MouseMap[4, 2], 38, 24);
+    FillChar(MouseMap[5, 2], 38, 24);
+    FillChar(MouseMap[4, 42], 38, 24);
+    FillChar(MouseMap[5, 42], 38, 24);
+    FillChar(MouseMap[MenuRows + 4, 2], 38, 25);
+    FillChar(MouseMap[MenuRows + 5, 2], 38, 25);
+    FillChar(MouseMap[MenuRows + 6, 2], 38, 23);
+    FillChar(MouseMap[MenuRows + 4, 42], 38, 25);
+    FillChar(MouseMap[MenuRows + 5, 42], 38, 25);
+    FillChar(MouseMap[MenuRows + 6, 42], 38, 23);
+    MouseMap[5, 34] := 0;
+    MouseMap[5, 36] := 0;
+    MouseMap[5, 38] := 0;
+    MouseMap[5, 43] := 0;
+    MouseMap[5, 45] := 0;
+    MouseMap[5, 47] := 0;
+  end;
+  MouseMap[1, 80] := 15;
+  MouseMap[5, 3] := 0;
+  MouseMap[5, 5] := 0;
+  MouseMap[5, 7] := 0;
+  MouseMap[5, 74] := 0;
+  MouseMap[5, 76] := 0;
+  MouseMap[5, 78] := 0;
+  if G507 then
+  begin
+    MouseMap[ScreenRows - 1, 1] := 27;
+    MouseMap[ScreenRows - 1, 40] := 26;
+    MouseMap[ScreenRows - 1, 41] := 27;
+    MouseMap[ScreenRows - 1, 80] := 26;
+  end;
+  MouseTextCursor;
+end;
+
 procedure SetPal2;
 var
   I: Byte;
@@ -169,6 +239,42 @@ begin
   RGB.G := 0;
   RGB.B := 0;
   SetRGB(6, RGB);
+end;
+
+procedure AddHistory(S: Str128);
+var
+  I: Byte;
+begin
+  if S = '' then Exit;
+  if HistCount <= 1 then HistCount := 1;
+  if History^[HistCount - 1] = S then Exit;
+  if HistCount > 25 then
+  begin
+    for I := 2 to 25 do History^[I - 1] := History^[I];
+    History^[HistCount - 1] := S;
+  end
+  else
+  begin
+    History^[HistCount] := S;
+    Inc(HistCount);
+  end;
+end;
+
+function SizeStr(N: Longint): Str12;
+var
+  I: Word;
+  S, T: Str12;
+begin
+  if N <= 0 then
+    SizeStr := '           0'
+  else
+  begin
+    Str(N:12, S);
+    T := S;
+    if N > 999 then T := Copy(S, 2, 8) + '.' + Copy(S, 10, 3);
+    if N > 999999 then T := Copy(T, 2, 4) + '.' + Copy(T, 6, 7);
+    SizeStr := T;
+  end;
 end;
 
 procedure FormatName(var S: Str12);
@@ -240,6 +346,93 @@ begin
     Shorten := Copy(S, 1, 3) + '...' + Copy(S, L - N + 7, N - 6)
   else
     Shorten := S;
+end;
+
+function CutStr(S: string; N: Byte): string;
+begin
+  if Length(S) > N then
+    CutStr := Copy(S, 1, N - 3) + '...'
+  else
+    CutStr := S;
+end;
+
+procedure DrawKeyBar(Force: Boolean);
+var
+  W: TWinState;
+  C: Byte;
+begin
+  if not Force and ((AltDown or ShiftDown or CtrlDown) = LastShift) then Exit;
+  SaveWin(W);
+  SetColor(0, 3);
+  MouseHide;
+  C := 4;
+  if AltDown then
+  begin
+    WriteXY(3, ScreenRows, 'Links ');
+    WriteXY(10, ScreenRows, 'Rechts ');
+    WriteXY(18, ScreenRows, 'ExtAnz ');
+    WriteXY(26, ScreenRows, 'DatNeu ');
+    WriteXY(34, ScreenRows, ' DBild ');
+    WriteXY(42, ScreenRows, 'Wieder ');
+    WriteXY(50, ScreenRows, ' DatSu ');
+    WriteXY(58, ScreenRows, ' TxtSu ');
+    WriteXY(66, ScreenRows, ' Vergl ');
+    WriteXY(75, ScreenRows, ' QCD ');
+  end
+  else if ShiftDown then
+  begin
+    WriteXY(3, ScreenRows, 'M'#$81'Ver ');
+    WriteXY(10, ScreenRows, 'PASVer ');
+    WriteXY(18, ScreenRows, 'SysEdi ');
+    WriteXY(26, ScreenRows, 'Hidden ');
+    WriteXY(34, ScreenRows, 'Gr'#$94#$E1'en ');
+    WriteXY(42, ScreenRows, 'CD-Auf ');
+    WriteXY(50, ScreenRows, 'Konfig ');
+    WriteXY(58, ScreenRows, 'BSchon ');
+    WriteXY(66, ScreenRows, 'ELaden ');
+    WriteXY(75, ScreenRows, 'ESich');
+  end
+  else if CtrlDown then
+  begin
+    WriteXY(3, ScreenRows, ' Attr ');
+    WriteXY(10, ScreenRows, ' DZeit ');
+    WriteXY(18, ScreenRows, ' Split ');
+    WriteXY(26, ScreenRows, ' Zus.  ');
+    WriteXY(34, ScreenRows, ' Komp  ');
+    WriteXY(42, ScreenRows, ' SFX   ');
+    WriteXY(50, ScreenRows, ' AExe  ');
+    WriteXY(58, ScreenRows, ' Test  ');
+    WriteXY(66, ScreenRows, ' AAnz  ');
+    WriteXY(75, ScreenRows, ' Deko');
+  end
+  else
+  begin
+    Mem[$B800:(ScreenRows - 1) * 160] := 7;
+    Mem[$B800:(ScreenRows - 1) * 160 + 1] := $3E;
+    WriteXYF(2, ScreenRows, C, '1');
+    WriteXY(3, ScreenRows, ' Hilf ');
+    WriteXYF(9, ScreenRows, C, '2');
+    WriteXY(10, ScreenRows, ' Start ');
+    WriteXYF(17, ScreenRows, C, '3');
+    WriteXY(18, ScreenRows, ' Anzge ');
+    WriteXYF(25, ScreenRows, C, '4');
+    WriteXY(26, ScreenRows, ' Bearb ');
+    WriteXYF(33, ScreenRows, C, '5');
+    WriteXY(34, ScreenRows, ' Kopie ');
+    WriteXYF(41, ScreenRows, C, '6');
+    WriteXY(42, ScreenRows, ' Umben ');
+    WriteXYF(49, ScreenRows, C, '7');
+    WriteXY(50, ScreenRows, ' MkDir ');
+    WriteXYF(57, ScreenRows, C, '8');
+    WriteXY(58, ScreenRows, ' L'#$94'sch ');
+    WriteXYF(65, ScreenRows, C, '9');
+    WriteXY(66, ScreenRows, ' HexEd ');
+    WriteXYF(73, ScreenRows, C, '10');
+    WriteXY(75, ScreenRows, ' Ende');
+  end;
+  MouseShow;
+  RestoreWin(W);
+  LastShift := AltDown or ShiftDown or CtrlDown;
 end;
 
 procedure MsgBox(S1, S2: string);
@@ -795,6 +988,19 @@ begin
     SelectDrive := ' ';
   FreeMem(Drives, SizeOf(TDrives));
   CloseDialog;
+end;
+
+function JoinPath(Dir, Name: string): string;
+var
+  S: string;
+begin
+  AddBackslash(Dir);
+  JoinPath := Dir + Name;
+end;
+
+procedure TrimBackslash(var S: string);
+begin
+  if Length(S) > 3 then DelBackslash(S);
 end;
 
 end.

@@ -48,7 +48,9 @@
     o18bf Execute+, 18cd Fonts, o1915 Help, 1918 Lists, 1a18 Buttons+, 1c1b Windows+, 1ce7 Times, 1d66 ScrSave,
     1d9f Mouse, 1df3 Palette, 1e26 Screen+; AddProg/Browser/Passwd/U129A not found by shape
   - [~] stock units by signature: 1fc8 Crt (0.56), 202a Dos (0.89), 208a Overlay (0.59), 20ff System; 12cd/12d1 = own LPT2/LPT1 units (not Printer); 2339 unknown — verify byte-exact in link
-  - [ ] port shared units (DXM sources, adapt to DXMAIN versions)
+  - [x] resident shared units match (tryunit vs DXMAIN.EXE, src/dxmain/): DatStr, Sounds, Fonts, ScrSave, Times,
+    Palette, Mouse, Lists, Status, Windows, Buttons, Screen, Dialogs
+  - [ ] overlaid shared units (DXMenu, UserMenu, Saver, Execute, Help) — tryunit needs FBOV overlay support
   - [ ] decompile main + 0365 + remaining ~50 own overlay units
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
 
