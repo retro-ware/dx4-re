@@ -29,7 +29,7 @@ type
     procedure LineDown;
     procedure LineUp;
     function Handle(var Key: Word): Integer;
-    procedure SetData(ACount: Integer; ARows: Byte; ACur: Integer; ATop: Integer);
+    procedure SetData(ACount: Integer; ARows: Integer; ACur: Integer; ATop: Integer);
     destructor Done;
   end;
 
@@ -356,7 +356,7 @@ begin
   Handle := Cur + Top;
 end;
 
-procedure TList.SetData(ACount: Integer; ARows: Byte; ACur: Integer; ATop: Integer);
+procedure TList.SetData(ACount: Integer; ARows: Integer; ACur: Integer; ATop: Integer);
 begin
   Count := ACount;
   Cur := ACur;
