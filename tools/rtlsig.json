@@ -1,0 +1,815 @@
+[
+ {
+  "off": 0,
+  "names": [
+   "ValReal#1"
+  ],
+  "sig": "baffff8eda8c06480033ede8ee22e8a0008bc4051300b104d3e88cd203c2a31a00a31c0003061400",
+  "name": "InitTurbo?"
+ },
+ {
+  "off": 271,
+  "names": [
+   "RunErrorP"
+  ],
+  "sig": "595beb07b8ff00",
+  "name": "RunError"
+ },
+ {
+  "off": 278,
+  "names": [
+   "HaltP",
+   "ValReal#2"
+  ],
+  "sig": "33c933dbbaffff8edafba342008bc10bc3743da120000bc0742f8ec026a110000bc0741b2bc37717",
+  "name": "Halt"
+ },
+ {
+  "off": 650,
+  "names": [
+   "GetMemP",
+   "NewP"
+  ],
+  "sig": "558bec8b4606e8c0005d7203ca0200b8cb00e970fe",
+  "name": "GetMem"
+ },
+ {
+  "off": 671,
+  "names": [
+   "DisposeP",
+   "FreeMemP"
+  ],
+  "sig": "558bec8b4606c44e088cc3e871015d7203ca0600b8cc00e956fe",
+  "name": "FreeMem"
+ },
+ {
+  "off": 697,
+  "names": [
+   "MarkRelease#0"
+  ],
+  "sig": "8bdc36c47f04fca12a00aba12c00abca0400",
+  "name": "Mark"
+ },
+ {
+  "off": 715,
+  "names": [
+   "MarkRelease#1"
+  ],
+  "sig": "8bdc36c47f0426c43d893e2a008c062c00893e32008c063400ca0400",
+  "name": "Release"
+ },
+ {
+  "off": 743,
+  "names": [
+   "MemAvailF"
+  ],
+  "sig": "bbfc02eb3781c20010eb0503440472f5035406c5348cdb3bdf75f0c3",
+  "name": "MemAvail"
+ },
+ {
+  "off": 771,
+  "names": [
+   "MaxAvailF"
+  ],
+  "sig": "bb1c03eb1b3b5406770d72053b440473068b44048b5406c5348cdb3bdf75e6c3a12e008b1630002b",
+  "name": "MaxAvail"
+ },
+ {
+  "off": 1261,
+  "names": [
+   "IOResultF"
+  ],
+  "sig": "33c087064c00cb",
+  "name": "IOResult"
+ },
+ {
+  "off": 1268,
+  "names": [
+   "IOChk#1"
+  ],
+  "sig": "833e4c00007501cba14c00e90dfc",
+  "name": "IOCheck"
+ },
+ {
+  "off": 1282,
+  "names": [
+   "RangeChk"
+  ],
+  "sig": "8bf4368e4402263b55027f077c14263b05720f263b55067c087f07263b45047701cbb8c900e9e5fb",
+  "name": "RangeError"
+ },
+ {
+  "off": 1322,
+  "names": [
+   "OverflowChk"
+  ],
+  "sig": "b8d700e9dffb",
+  "name": "OverflowError"
+ },
+ {
+  "off": 1328,
+  "names": [
+   "StackChk"
+  ],
+  "sig": "050002720d2bc47309f7d83b064a007201cbb8ca00e9c7fb8b760a83fe017211c45e068cc00bc374",
+  "name": "StackCheck"
+ },
+ {
+  "off": 1517,
+  "names": [
+   "AssignT"
+  ],
+  "sig": "33d28bdc1e36c47f0836c57704fc33c0abb8b0d7abb88000ab33c0ababab8d4574ab8cc0abb88c13",
+  "name": "AssignText"
+ },
+ {
+  "off": 1600,
+  "names": [
+   "SetTextBufT"
+  ],
+  "sig": "8bdc36c47f0a368b470426894504368b47062689450c368b47082689450e33c0268945082689450a",
+  "name": "SetTextBuf"
+ },
+ {
+  "off": 1643,
+  "names": [
+   "ResetT"
+  ],
+  "sig": "bab1d7eb08",
+  "name": "ResetText"
+ },
+ {
+  "off": 1648,
+  "names": [
+   "RewriteT"
+  ],
+  "sig": "bab2d7eb03",
+  "name": "RewriteText"
+ },
+ {
+  "off": 1653,
+  "names": [
+   "AppendT"
+  ],
+  "sig": "bab3d7558becc47e06268b45023db1d774123db2d7740d3db0d77410c7064c006600eb245206570e",
+  "name": "AppendText"
+ },
+ {
+  "off": 1729,
+  "names": [
+   "FlushT"
+  ],
+  "sig": "b000eb02",
+  "name": "FlushText"
+ },
+ {
+  "off": 1733,
+  "names": [
+   "CloseT"
+  ],
+  "sig": "b001558becc47e0626817d02b1d7741826817d02b2d77408c7064c006700eb1850bb1400e8150058",
+  "name": "CloseText"
+ },
+ {
+  "off": 2212,
+  "names": [
+   "ReadLnP",
+   "ReadLnStr#1"
+  ],
+  "sig": "558becc45e06b8c20833d2e8eefe750a26837f1a007403e870005dca0400ac3c0d740c3c1a74113b",
+  "name": "ReadLnEnd"
+ },
+ {
+  "off": 2276,
+  "names": [
+   "WriteLnP",
+   "WriteStrLn#1"
+  ],
+  "sig": "558becc45e06b80200be60008cdae858ff750a26837f1a007403e82d005dca0400",
+  "name": "WriteLnEnd"
+ },
+ {
+  "off": 2309,
+  "names": [
+   "ReadChar#1",
+   "ReadInt#1",
+   "ReadKeyLike#1",
+   "WriteBool#1",
+   "WriteChar#1",
+   "WriteInt#1",
+   "WriteLong#1",
+   "WriteStrW#1"
+  ],
+  "sig": "558becc45e0626837f1a00740a833e4c00007503e812005dca0400065326ff5f140bc07403a34c00",
+  "name": "ReadWriteEnd"
+ },
+ {
+  "off": 2364,
+  "names": [
+   "ReadChar#0"
+  ],
+  "sig": "558bec833e4c00007538c45e0626817f02b1d77527268b7f08263b7f0a7510e8c2ffc45e06268b7f",
+  "name": "ReadChar"
+ },
+ {
+  "off": 2434,
+  "names": [
+   "ReadKeyLike#0",
+   "WriteChar#0"
+  ],
+  "sig": "558becc45e0a8b56064a7e03e86dfe833e4c0000752926817f02b2d7752526ff4708268b7f08268b",
+  "name": "WriteChar"
+ },
+ {
+  "off": 2509,
+  "names": [
+   "ReadLnStr#0"
+  ],
+  "sig": "558becc45e0cb8f0098b4e068b7e088b560a47e8bdfd8bc7c47e082bc748aa5dca0600ac3c0d740f",
+  "name": "ReadStr"
+ },
+ {
+  "off": 2568,
+  "names": [
+   "WriteStrLn#0",
+   "WriteStrW#0"
+  ],
+  "sig": "558becc45e08268a0732e4c45e0c8b56062bd07e0550e8ddfd580bc0740a8b76088b560a46e81dfe",
+  "name": "WriteStr"
+ },
+ {
+  "off": 2612,
+  "names": [
+   "WriteBool#0"
+  ],
+  "sig": "558becff760cff760ab86200807e08007503b867001e50ff76060ee8b6ff83c4045dca0400",
+  "name": "WriteBool"
+ },
+ {
+  "off": 2649,
+  "names": [
+   "ReadInt#0"
+  ],
+  "sig": "558bec83ec20c45e06b8900ab920008d7ee08cd2e830fd8bcf8d7ee02bcf740f1607e8a7127202e3",
+  "name": "ReadInt"
+ },
+ {
+  "off": 2741,
+  "names": [
+   "WriteInt#0",
+   "WriteLong#0"
+  ],
+  "sig": "558bec83ec208b46088b560a8d7e001607e82012c45e0c8b56062bd17e075157e826fd5f598bc18b",
+  "name": "WriteInt"
+ },
+ {
+  "off": 2798,
+  "names": [
+   "SeekEofT"
+  ],
+  "sig": "b90102eb08",
+  "name": "SeekEof"
+ },
+ {
+  "off": 2803,
+  "names": [
+   "EolnT"
+  ],
+  "sig": "b90101eb03",
+  "name": "Eoln"
+ },
+ {
+  "off": 2808,
+  "names": [
+   "EofT"
+  ],
+  "sig": "b90100558becc45e06b80f0b33d2e897fc8ac15dca0400ac3c1a741bf6c50174043c0d7412f6c502",
+  "name": "EofText"
+ },
+ {
+  "off": 2868,
+  "names": [
+   "AssignF"
+  ],
+  "sig": "33d28bdc1e36c47f0836c57704fc33c0abb8b0d7ab33c0b91600f3abb94f000bd27509ac3ac87604",
+  "name": "AssignFile"
+ },
+ {
+  "off": 2927,
+  "names": [
+   "ResetF",
+   "ResetTyped"
+  ],
+  "sig": "a05e00b43d33d2eb06",
+  "name": "ResetFile"
+ },
+ {
+  "off": 2936,
+  "names": [
+   "RewriteF"
+  ],
+  "sig": "b8003cba0100558becc47e0826817d02b0d7741a26817d02b3d77408c7064c006600eb3450520657",
+  "name": "RewriteFile"
+ },
+ {
+  "off": 3028,
+  "names": [
+   "TruncateF"
+  ],
+  "sig": "8bdc36c47f04e83800750e33c9268b1db440cd217303a34c00ca0400",
+  "name": "Truncate"
+ },
+ {
+  "off": 3056,
+  "names": [
+   "CloseF",
+   "IOChk#0"
+  ],
+  "sig": "8bdc36c47f04e81c007517268b1d83fb047609b43ecd217303a34c0026c74502b0d7ca040026817d",
+  "name": "CloseFile"
+ },
+ {
+  "off": 3108,
+  "names": [
+   "ReadTyped"
+  ],
+  "sig": "b43fba6400eb05",
+  "name": "ReadTyped"
+ },
+ {
+  "off": 3115,
+  "names": [
+   "WriteTyped"
+  ],
+  "sig": "b440ba6500558becc47e0ae8dcff751b1e52c55606268b4d04268b1dcd215a1f72063bc174058bc2",
+  "name": "WriteTyped"
+ },
+ {
+  "off": 3162,
+  "names": [
+   "BlockReadF"
+  ],
+  "sig": "b33fb96400eb05",
+  "name": "BlockRead"
+ },
+ {
+  "off": 3169,
+  "names": [
+   "BlockWriteF"
+  ],
+  "sig": "b340b96500558becc47e10e8a6ff753f8b460a0bc0741c1e5126f765048bc8c5560c8ae3268b1dcd",
+  "name": "BlockWrite"
+ },
+ {
+  "off": 3266,
+  "names": [
+   "SeekF"
+  ],
+  "sig": "558becc47e0ae84aff75218b460826f765048bc88b460626f7650403ca8bd0268b1db80042cd2173",
+  "name": "Seek"
+ },
+ {
+  "off": 3314,
+  "names": [
+   "EraseF"
+  ],
+  "sig": "8bdc1e36c5570483c230b441cd211f7303a34c00ca0400ba",
+  "name": "Erase"
+ },
+ {
+  "off": 3338,
+  "names": [
+   "RenameF"
+  ],
+  "sig": "33d2558bec83ec501ec576068d7eb01607fcb94f000bd27509ac3ac876048ac8e308ac0ac07403aa",
+  "name": "Rename"
+ },
+ {
+  "off": 3430,
+  "names": [
+   "ParamStrF#0"
+  ],
+  "sig": "558bec8b56060bd27405e84900eb30b430cd213c03b8000072258e064800268e062c0033fffc263a",
+  "name": "ParamStr"
+ },
+ {
+  "off": 3509,
+  "names": [
+   "ParamCountF"
+  ],
+  "sig": "33d2e8020093cb8e064800bf8000268a0d32ed4733dbe30926803d20770347e2f78bf7e30926803d",
+  "name": "ParamCount"
+ },
+ {
+  "off": 3566,
+  "names": [
+   "GetDirP"
+  ],
+  "sig": "558bec81ec80001e8d7680161f8a460c0ac07506b419cd21fec08ad00440880446c7043a5c4646b4",
+  "name": "GetDir"
+ },
+ {
+  "off": 3647,
+  "names": [
+   "ChDirP"
+  ],
+  "sig": "558bec81ec8000e861008b46800ac0742a80fc3a752024df2c418ad0b40ecd21b419cd213ac27408",
+  "name": "ChDir"
+ },
+ {
+  "off": 3712,
+  "names": [
+   "MkDirP"
+  ],
+  "sig": "558bec81ec8000e82000b439e836008be55dca0400",
+  "name": "MkDir"
+ },
+ {
+  "off": 3733,
+  "names": [
+   "RmDirP"
+  ],
+  "sig": "558bec81ec8000e80b00b43ae821008be55dca04001ec576068d7e801607fcac3c7f7202b07f988b",
+  "name": "RmDir"
+ },
+ {
+  "off": 3796,
+  "names": [
+   "RecCopy"
+  ],
+  "sig": "8bdc8cda36c5770a36c47f06368b4f04fcf3a48edaca0a00",
+  "name": "BlockCopy"
+ },
+ {
+  "off": 3820,
+  "names": [
+   "IntSqr",
+   "LongMul"
+  ],
+  "sig": "803e5c0002721b66c1e010660facd01066c1e110660facd91066f7e9660fa4c210cb8bf08bfaf7e1",
+  "name": "LongMul"
+ },
+ {
+  "off": 3881,
+  "names": [
+   "LongDiv",
+   "LongMod"
+  ],
+  "sig": "803e5c0002722766c1e010660facd01066c1e110660facd910745e669966f7f9668bca660fa4c210",
+  "name": "LongDivMod"
+ },
+ {
+  "off": 4047,
+  "names": [
+   "LongShr"
+  ],
+  "sig": "803e5c0002721066c1e2108bd066d3ea8bc266c1ea10cb83e11f7406d1ead1d8e2facb",
+  "name": "LongShr"
+ },
+ {
+  "off": 4082,
+  "names": [
+   "LongShl"
+  ],
+  "sig": "803e5c0002721066c1e2108bd066d3e28bc266c1ea10cb83e11f7406d1e0d1d2e2facb",
+  "name": "LongShl"
+ },
+ {
+  "off": 4117,
+  "names": [
+   "ConcatF#0",
+   "StrLoadConcat#0",
+   "StrOfChar#0"
+  ],
+  "sig": "fc8bdc8cda36c47f0836c57704acaa8ac832edf3a48edaca0400",
+  "name": "StrLoad"
+ },
+ {
+  "off": 4143,
+  "names": [
+   "ConcatF#3",
+   "ParamStrF#1",
+   "StrAssign",
+   "StrChar#1",
+   "StrCopy#1",
+   "StrLoadConcat#2",
+   "StrOfChar#3"
+  ],
+  "sig": "fc8bdc8cda36c5770a36c47f06368b4f04ac3ac176028ac1aa8ac832edf3a48edaca0a00",
+  "name": "StrStore"
+ },
+ {
+  "off": 4179,
+  "names": [
+   "StrCopy#0"
+  ],
+  "sig": "fc8bdc8cda36c47f0c36c577088a0432e4368b4f060bc97f03b9010003f12bc1721340368b4f040b",
+  "name": "StrCopy"
+ },
+ {
+  "off": 4244,
+  "names": [
+   "ConcatF#1",
+   "ConcatF#2",
+   "StrLoadConcat#1",
+   "StrOfChar#2"
+  ],
+  "sig": "fc8bdc8cda36c47f0836c57704268a0d32edac260005730826c605ff8ac1f6d003f9478ac8f3a48e",
+  "name": "StrConcat"
+ },
+ {
+  "off": 4288,
+  "names": [
+   "StrPos"
+  ],
+  "sig": "558bec1ec5760afcac0ac0742c8ad032f6c47e06268a0d32ed2bca721c4147acf2ae75158bc78bd9",
+  "name": "StrPos"
+ },
+ {
+  "off": 4358,
+  "names": [
+   "StrCompare"
+  ],
+  "sig": "fc8bdc8cda36c5770836c47f04ac268a25478ac83acc76028acc0ac9740632edf3a675023ac48eda",
+  "name": "StrCompare"
+ },
+ {
+  "off": 4401,
+  "names": [
+   "StrChar#0",
+   "StrOfChar#1"
+  ],
+  "sig": "fc8bdc36c47f06b001aa368a4704aaca0200fc8bdc8cda36c47f0a36c57706368b4704aa8bc8f3a4",
+  "name": "StrChar"
+ },
+ {
+  "off": 4446,
+  "names": [
+   "StrInsert"
+  ],
+  "sig": "558bec81ec0002837e06017d05c7460601008dbe00ff1657c47e0a0657b80100508b460648500ee8",
+  "name": "StrInsert"
+ },
+ {
+  "off": 4541,
+  "names": [
+   "StrDelete"
+  ],
+  "sig": "558bec81ec0002837e06007e5c837e08007e56817e08ff007f4f817e06ff007e05c74606ff008dbe",
+  "name": "StrDelete"
+ },
+ {
+  "off": 4652,
+  "names": [
+   "SetDiff#0",
+   "SetUnion#0"
+  ],
+  "sig": "fc8bdc8cda36c47f0a36c57706368b5f048acf32ed32c0f3aa8acbf3a4b1202acb2acff3aa8edaca",
+  "name": "SetLoadA"
+ },
+ {
+  "off": 4694,
+  "names": [
+   "SetEq#0",
+   "SetLoad#0"
+  ],
+  "sig": "fc8bdc36c47f06368b4704abb90f0033c0f3abca02008bdc36c47f06368a47048ad832ffb103d3eb",
+  "name": "SetLoadEmpty"
+ },
+ {
+  "off": 4749,
+  "names": [
+   "SetLoad#1"
+  ],
+  "sig": "8bdc36c47f08368a4706368a57042ad0721ffec28ad832ffb103d3eb8ac880e107b001d2e0260801",
+  "name": "SetAddRange"
+ },
+ {
+  "off": 4801,
+  "names": [
+   "SetDiff#2",
+   "SetLoad#2",
+   "SetUnion#2"
+  ],
+  "sig": "fc8bdc8cda36c5770a36c47f06368b5f048acf32ed03f18acbf3a48edaca0a00",
+  "name": "SetStore"
+ },
+ {
+  "off": 4833,
+  "names": [
+   "SetIn2"
+  ],
+  "sig": "8ae8b103d2ed2aee72113aea730d8ad532f624078ac88ac4d2c0cb999233d2cb",
+  "name": "SetIn"
+ },
+ {
+  "off": 4865,
+  "names": [
+   "SetUnion#1"
+  ],
+  "sig": "fc8bdc8cda36c47f0836c57704b91000ad260b05abe2f98edaca0400",
+  "name": "SetUnion"
+ },
+ {
+  "off": 4893,
+  "names": [
+   "SetDiff#1"
+  ],
+  "sig": "fc8bdc8cda36c47f0836c57704b91000adf7d0262305abe2f78edaca0400fc8bdc8cda36c47f0836",
+  "name": "SetDiff"
+ },
+ {
+  "off": 4951,
+  "names": [
+   "SetEq#1"
+  ],
+  "sig": "fc8bdc8cda36c47f0836c57704b91000f3a78edaca0800fc8bdc8cda36c47f0836c57704b91000ad",
+  "name": "SetEqual"
+ },
+ {
+  "off": 6024,
+  "names": [
+   "RealAdd"
+  ],
+  "sig": "e8ecfc723bcb",
+  "name": "RealAdd"
+ },
+ {
+  "off": 6030,
+  "names": [
+   "RealSub"
+  ],
+  "sig": "e8e2fc7235cb8bc88bf38bfa",
+  "name": "RealSub"
+ },
+ {
+  "off": 6042,
+  "names": [
+   "RealMul"
+  ],
+  "sig": "e89dfd7229cb",
+  "name": "RealMul"
+ },
+ {
+  "off": 6048,
+  "names": [
+   "RealDiv"
+  ],
+  "sig": "0ac9742ae896fe721fcb",
+  "name": "RealDiv"
+ },
+ {
+  "off": 6058,
+  "names": [
+   "RealCmp"
+  ],
+  "sig": "e807ffcb",
+  "name": "RealCmp"
+ },
+ {
+  "off": 6062,
+  "names": [
+   "RealFromLong"
+  ],
+  "sig": "e82dffcb",
+  "name": "RealFromLong"
+ },
+ {
+  "off": 6066,
+  "names": [
+   "RealTrunc"
+  ],
+  "sig": "b500e863ff7209cb",
+  "name": "RealTrunc"
+ },
+ {
+  "off": 6074,
+  "names": [
+   "RealRound"
+  ],
+  "sig": "b501e85bff7201cbb8cf00e947e9b8cd00e941e9b8c800e93be9575651e89dfc595e5fc3575651e8",
+  "name": "RealRound"
+ },
+ {
+  "off": 6140,
+  "names": [
+   "FloatInt"
+  ],
+  "sig": "3ca873498bc88bf38bfa32e433db33d280e980763980f910720c8ae78bdabaffff80e910ebef80f9",
+  "name": "RealInt"
+ },
+ {
+  "off": 6221,
+  "names": [
+   "FloatFrac"
+  ],
+  "sig": "5253500ee8a8ff8bc88bf38bfa585b5ae813fccb",
+  "name": "RealFrac"
+ },
+ {
+  "off": 6241,
+  "names": [
+   "FloatSqrt"
+  ],
+  "sig": "558bec83ec088bc88bf38bfa0ac0743cf6c68075418946f8895efa8956fc80c180d0f980c1808ac1",
+  "name": "RealSqrt"
+ },
+ {
+  "off": 7239,
+  "names": [
+   "RandomF"
+  ],
+  "sig": "e85a008bdc8bca36f767048bc18bca36f7670403c183d2008bc2ca0200e83d0093b88000b92000f6",
+  "name": "Random"
+ },
+ {
+  "off": 7388,
+  "names": [
+   "RandomizeP"
+  ],
+  "sig": "b42ccd21890e4e0089165000cb8bcfbe0a008bda0bdb7911f7dbf7d883db00e807004f26c6052d41",
+  "name": "Randomize"
+ },
+ {
+  "off": 8467,
+  "names": [
+   "StrInt",
+   "StrLong"
+  ],
+  "sig": "558bec83ec208b460e8b56108d7e001607e8c2fb1e8bf7161fc47e088b56068b460c3bc27e028bc2",
+  "name": "StrLong"
+ },
+ {
+  "off": 8542,
+  "names": [
+   "ValInt",
+   "ValLong"
+  ],
+  "sig": "558becc47e0a268a0d32ed47e30926803d20750347e2f7e8adfb7202e3098bcf2b4e0a33c033d2c4",
+  "name": "ValLong"
+ },
+ {
+  "off": 8591,
+  "names": [
+   "RealStr"
+  ],
+  "sig": "558bec83ec408b46108b5e128b56148b4e0c0bc9790eb906002b4e0e83f9fe7e03b9feff8d7ec016",
+  "name": "StrReal"
+ },
+ {
+  "off": 8690,
+  "names": [
+   "ValReal#0"
+  ],
+  "sig": "558becc47e0a268a0d32ed47e30926803d20750347e2f7e843fd7202e30b8bcf2b4e0a33c033db33",
+  "name": "ValReal"
+ },
+ {
+  "off": 8741,
+  "names": [
+   "FilePosF"
+  ],
+  "sig": "e84400720f268b4d0483f901740633db0ee8f0ecca0400",
+  "name": "FilePos"
+ },
+ {
+  "off": 8764,
+  "names": [
+   "FileSizeF"
+  ],
+  "sig": "e82d0072138bc18bd3268b4d0483f901740633db0ee8d5ecca0400",
+  "name": "FileSize"
+ },
+ {
+  "off": 8791,
+  "names": [
+   "EofF"
+  ],
+  "sig": "e81200720b2bc11bd37205b001ca040032c0ca04008bdc36c47f0626817d02b3d7752b33c933d226",
+  "name": "EofFile"
+ },
+ {
+  "off": 8881,
+  "names": [
+   "MoveP"
+  ],
+  "sig": "8bdc8cda36c5770a36c47f06368b4f04fc3bf7730703f103f94e4ffdf3a4fc8edaca0a00",
+  "name": "Move"
+ },
+ {
+  "off": 8917,
+  "names": [
+   "FillCharP"
+  ],
+  "sig": "8bdc36c47f08368b4f06368a4704fcf3aaca0800",
+  "name": "FillChar"
+ },
+ {
+  "off": 8937,
+  "names": [
+   "UpCaseF"
+  ],
+  "sig": "8bdc368a47043c6172063c7a77022c20ca0200bf6e001e07b934082bcfd1e933c0fcf3abc3000000",
+  "name": "UpCase"
+ }
+]

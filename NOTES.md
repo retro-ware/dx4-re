@@ -22,3 +22,15 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
 
 ## Status
 - DX.EXE: byte-identical (src/dx/DX.PAS, tools/bdx.sh).
+
+## TP7 link layout (measured, work/exp1)
+- Code segments: program, then units in *reverse* uses order (P uses UA, UB → P, UB, UA, System).
+- DS: typed consts first (program, then units in uses order, System), then vars (program, UB, UA, units…, System).
+- **Typed constants are smart-linked** (unused ones vanish); **vars are not** (unused vars keep their space).
+
+- TPC codegen: a unit compiled with {$O+} copies every string-literal argument of a far call into a
+  stack temp (StrLoad, temp sized to the literal) instead of pushing cs:literal. Seen in DXM 0e05 (HELP).
+- DXM main: whole program is {$I-} (no IOCheck after Writeln in main block) and {$V-} (DirStr passed to var string).
+  U118C has no procedures, only an init section (main calls 118c:0000 in the unit-init list).
+- DXGlob.HomeDir is string[79] (StrStore len 0x4f in DXM main).
+- tryunit.py also accepts a `program` source (compiled as is, segment compared by program name).

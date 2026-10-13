@@ -1,0 +1,54 @@
+# DX4 byte-perfect rebuild — checklist
+
+## Setup
+- [x] Extract DX4.ZIP read-only to dist/DX4/
+- [x] Identify toolchain (BP 7.01 TPC) and get it running in DOSBox-X (tools/dosrun.sh)
+- [x] Ghidra export script (tools/ghidra/DumpAll.java)
+- [x] Segment / overlay listing tools (tpsegs.py, ovr.py), RTL signatures (rtlsig.py)
+
+## Programs (Borland Pascal 7.01 DOS unless noted)
+- [x] DX.EXE (3552 B) — src/dx/DX.PAS, byte-identical
+- [x] DX.COM (1077 B) — src/dxcom/DX.ASM (TASM 3.2, tools/bdxcom.sh), byte-identical
+- [ ] DXM.EXE (97 KB) — menu editor; {$F+,G+,S-}; own text-mode UI units (src/dxm/)
+  - per-unit check: `tools/tryunit.py dist/DX4/DXM.EXE SEG src/dxm/UNIT.PAS` (MATCH(addr) = only DS addresses differ)
+  - [x] 0000 program main (5f0) — src/dxm/DXM.PAS, {$I-,V-}
+  - [x] 005f (3300) DXMenu
+  - [x] 038f (1e0) ADDPROG: SelectProgram (TBrowser dialog)
+  - [x] 03ad (38e0) UserMenu
+  - [x] 073b (1520) BROWSER: TBrowser file selector, {$O+,V-}, Exit-form nested procs
+  - [x] 088d DATSTR (1c0)
+  - [x] 08a9 (1fd0) DIALOGS: dialogs, line editor, drive selector
+  - [x] 0aa6 SOUNDS (260)
+  - [x] 0acc (6e0) STATUS — clock/date status line, GetKey+macro replay
+  - [x] 0b3a (13a0) SAVER: screen savers + password, shared with DXCD, {$O+}
+  - [x] 0c74 (12c0) EXECUTE: RunProg + archiver error texts, {$O+}
+  - [x] 0da0 U0DA0 (20)
+  - [x] 0da2 (1b0) PASSWD
+  - [x] 0dbd (480) FONTS
+  - [x] 0e05 (b20) HELP: help pager, compiled {$O+} (literal args copied to temps)
+  - [x] 0eb7 (fa0) LISTS — TList object (scrolling list)
+  - [x] 0fb1 (f30) BUTTONS
+  - [x] 10a4 (510) WINDOWS
+  - [x] 10f5 TIMES (1e0)
+  - [x] 1113 (2d0) SCRSAVE
+  - [x] 1140 MOUSE (4c0)
+  - [x] 118c U118C (50) — init section only
+  - [x] 1191 PALETTE (2c0)
+  - [x] 11bd SCREEN (dd0)
+  - [x] 129a U129A (90)
+  - [ ] 12a3 Dos, 12e1 Crt, 1343 System — stock BP 7.01 (verify in full link)
+  - [ ] DS layout (typed consts 0..644, vars 6a0..12f8) and full-EXE link
+- [~] DXE.EXE (102 KB) — Turbo Vision program — SKIPPED (out of scope, decided 2026-10-13)
+- [~] DXCD.EXE (113 KB) — shares many units with DXM — SKIPPED (out of scope, decided 2026-10-13)
+- [ ] DXMAIN.EXE + DXMAIN.OVR (816 KB + 653 KB, 68 overlaid units)
+- [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
+
+## Per program steps
+- [ ] map segments → units (stock RTL/TV vs. own)
+- [ ] identify stock units byte-exact (System, Dos, Crt, Objects, Drivers, Views…)
+- [ ] reproduce DS layout (typed consts / vars) from -GD map
+- [ ] decompile own units, compile, compare per segment
+- [ ] full EXE compare = identical
+
+## Not in scope (third-party binaries shipped in the zip)
+- ARJ.EXE, RAR.EXE, LHA.EXE, PKZIP/PKUNZIP/PKZIPFIX/ZIP2EXE — not Hombergs' code

@@ -4,3 +4,4 @@ build/
 work/
 orig/
 __pycache__/
+.venv/
