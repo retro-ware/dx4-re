@@ -132,7 +132,7 @@ else:
 names.update(MANUAL.get(os.path.basename(orig).upper(), {}))
 segname = {int(s_[0], 16) >> 4: s_[3] for s_ in segs}
 pubs = {(int(a_, 16), int(o_, 16)): segname.get(int(a_, 16), '?') + '.' + n_
-        for a_, o_, n_ in re.findall(r'^ ([0-9A-F]{4}):([0-9A-F]{4})\s+(\w+)$', mp, re.M)}
+        for a_, o_, n_ in re.findall(r'^ ([0-9A-F]{4}):([0-9A-F]{4})\s+([\w.]+)$', mp, re.M)}
 bsys, brtl = rtlsig.name(W + '/T.EXE')
 calls, unknown = [], []
 def stubname(ts, to):   # far call into an overlaid unit goes to its stub entry: map to the real offset
