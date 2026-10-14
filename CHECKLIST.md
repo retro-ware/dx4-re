@@ -72,6 +72,8 @@
     o156b DirTree (dir tree sizes/browser), o033a Clocks (stopwatches), o1097 BootEdit (boot sector text editor),
     o1546 CDAudio (MSCDEX driver, replaces U1546), o1067 CmdMenu (dir command menu + macros), o100d TextView (text viewer)
   - [ ] o1013 DiskImg WIP: MakeImage matches, RestoreImage local layout still off (frame 0x2c10)
+  - [x] o032b ComXfer (serial file transfer) and o0331 PalEdit (palette editor) match strict (PalEdit: 1 [di+PalIdx] table false positive)
+  - [ ] o0340 TreeDlg WIP (agent B, size 0x2330 vs built 0x25c0, procs from 0x6e1 on diverge)
   - [ ] tryunit strict displacement check (2026-10-14) flags hidden local-layout diffs in: UserMenu, Dialogs, Status,
     Execute, Palette (false positive: [bx+const] typed-const table), Screen, Mouse, Passwd?, DelTree, SaveCfg, TextSrch,
     PanelIni, DirCmp (size!), U1D10, CDDlg, CDAudio, TextView — re-run work/recheck.sh and fix each

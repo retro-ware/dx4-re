@@ -165,6 +165,10 @@ var
   BootHdr: TBootHdr;
   BootTail: TBootTail;
 
+var
+  DefPal: array[0..47] of Byte;
+  PalIdx: array[0..15] of Byte;
+
 implementation
 
 end.

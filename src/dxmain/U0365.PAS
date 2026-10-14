@@ -14,6 +14,7 @@ procedure P0365_C28F(var S: string; A, B: Byte; W: Word; var P: TPanel);
 procedure P0365_602(var P: TPanel);
 procedure P0365_141E(var P: TPanel);
 function P0365_3C(I: Word; var P: TPanel): string;
+function P0365_BF(var P: TPanel): Boolean;
 
 implementation
 
@@ -46,6 +47,10 @@ begin
 end;
 
 function P0365_3C(I: Word; var P: TPanel): string;
+begin
+end;
+
+function P0365_BF(var P: TPanel): Boolean;
 begin
 end;
 
