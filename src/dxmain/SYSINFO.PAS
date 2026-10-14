@@ -30,7 +30,7 @@ procedure PortInfo;
 implementation
 
 uses Dos, Crt, DXGlob, Buttons, Mouse, Palette, Screen, Windows, ScrSave, Dialogs, Status, Help, U1D10, U0DA0,
-  U109E, U12C7, Ports, LongName;
+  U109E, FileView, Ports, LongName;
 
 const
   Blank = '                                                            ' +
@@ -104,7 +104,7 @@ begin
     SwapVectors;
     SetMemTop(SaveTop);
     NormalCursor;
-    P12C7_2832(TempDir + TmpName, '');
+    FileViewer(TempDir + TmpName, '');
     Assign(F, TempDir + TmpName);
     Erase(F);
     if IOResult <> 0 then;

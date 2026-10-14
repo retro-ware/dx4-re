@@ -68,7 +68,7 @@
     (tools/try1439.py: tryunit wrapper for the segment the table lumps into 1435),
     o156f LongName (Win95 LFN helpers, replaces U156F), o10f2 DirDisk (copy dir tree to disks), o142f AskDlgs (ask dialogs, replaces U142F),
     o1159 Pas (Point-And-Shoot file associations; Lists.SetData rows param is Integer),
-    o1077 SysInfo (interrupt list, XMS/EMS info, key test, ports); placeholders U109E (resident XMS), U12C7 (viewer),
+    o1077 SysInfo (interrupt list, XMS/EMS info, key test, ports); placeholders U109E (resident XMS),
     o156b DirTree (dir tree sizes/browser), o033a Clocks (stopwatches), o1097 BootEdit (boot sector text editor),
     o1546 CDAudio (MSCDEX driver, replaces U1546), o1067 CmdMenu (dir command menu + macros), o100d TextView (text viewer)
   - [x] o1013 DiskImg (floppy image make/restore) matches strict (RestoreImage: unused 512-byte Sector buffer + 3-byte gap before Res)
@@ -89,6 +89,9 @@
     writes Colors[2]+Blk562 of dx.ini via SaveColors; the earlier TreeDlg WIP under this segment was a misfiled 1146 attempt) matches strict
   - [x] o031f SBMixer (Sound Blaster mixer: BLASTER env parsing, DSP reset/version check in asm, Master/Wave/Midi/CD
     L+R sliders via mixer regs $22/$04/$26/$28; all helpers nested in procedure Mixer) matches strict
+  - [x] o12c7 FileView (F3 file viewer: 64 KB block reader shared in shape with TextView, text/hex offset line,
+    column cursor, F5/F7 search with asm matcher, block markers + CutFile, F2 print via U12CA, F9 Hex-Dez; replaces U12C7,
+    new placeholder U12CA for the print overlay) matches strict (1 classifier false positive at a pool-misaligned DS ref)
   - [x] strict tryunit recheck (2026-10-14): all matched units pass; remaining 'real diffs' are classifier false positives only:
     Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping

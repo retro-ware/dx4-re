@@ -77,8 +77,18 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
   layout step must declare them contiguously (TColors(CfgColors) casts).
 - tools/dd.py (orig/built disassembly of ranges), tools/bpoffs.py (bp-offset sets per proc), tools/mapline.py (code
   offset -> source line via T.MAP line table) are the quick strict-diff triage tools.
-- Binary-op operand order (SBMixer, verified): the compiler evaluates the operand needing more registers first and
-  keeps the other one in cx/dx. `(7 - CurY) + Y` compiles to cx := Y; ax := 7 - CurY; add ax,cx (left complex, right
-  simple -> right loaded into cx first), while `Y + (7 - CurY)` gives dx := 7 - CurY; ax := Y; add ax,dx. For `or`:
-  `(T and $F) or (V shl 4)` evaluates `V shl 4` first. So when the dump shows a simple operand loaded first into cx,
-  it is the RIGHT operand of a left-complex expression.
+- Binary-op operand order (SBMixer/FileView, verified): TP evaluates the RIGHT operand first whenever it needs code
+  (a load with extension, a call, an indexed access); a right operand that is a plain memory word is used directly.
+  `(7 - CurY) + Y` -> cx := Y; ax := 7 - CurY; add ax,cx.  `Y + (7 - CurY)` -> dx := 7 - CurY; ax := Y; add ax,dx.
+  `BlockPos^[Block] + LineIdx^[i]` -> LineIdx first (cx), then BlockPos.  `(A + B) + C` with a loaded C -> the sum
+  first into cx, then C into ax.  For compares the right side is evaluated/pushed first (see above).
+- Longint vs Word arithmetic in a mixed compare: `Line >= V.Lines - 12` (Integer vs Word) subtracts in Word and
+  extends; the original `sub ax,12; sbb dx,0` form needs `Longint(V.Lines) - 12`.
+- `C in [#13, #10, #8, #7]` is sorted and range-merged (cmp 7; jb; cmp 8; jbe; cmp 10; je; cmp 13). A compare chain
+  in the listed order with a single `mov al,C` is a `case C of #13, #10, #8, #7: ... else ...` (last label uses jne).
+  `(C = a) or (C = b)` reloads C from memory for every compare.
+- Video attribute poke `mov ax,0B800h; push ax; ...; pop es; mov es:[di],v` is `Mem[$B800: expr] := v`; an
+  `absolute $B800:0` array gives `mov si,0B800h; mov es,si; mov es:[di-1],v` instead (TextView/FileView DrawLine).
+- `while cond do;` compiles with a `jl exit; jmp loop` tail; `repeat until not-cond` (ORed negations) gives the
+  single `jge loop` seen in FileView.HotButton.
+- A `var` parameter named like an intrinsic (`Ofs`) breaks `Ofs(X)` inside the routine ("; expected").
