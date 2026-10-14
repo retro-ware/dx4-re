@@ -8,7 +8,7 @@ function CopyDialog(Name, Dir: string; var Target: string; Marked: Boolean; Coun
 
 implementation
 
-uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, Help, Toggle, U12D5, U1146, U1D10;
+uses Dos, Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, Help, Toggle, U12D5, TreeSel, U1D10;
 
 function CopyDialog(Name, Dir: string; var Target: string; Marked: Boolean; Count: Integer; Attr: Word; Auto: Boolean;
   var Compare, DoCopy, DoMove, Attrib: Boolean; Path: string; L1, L2: Longint): Boolean;
@@ -17,7 +17,7 @@ var
   B: TButton4;
   Focus, Cancel, TargetHit, Dummy: Boolean;
   Key: Word;
-  Flag: Byte;
+  Found: Boolean;
   Tg: TToggle;
   W: TWinState;
   I, J: Byte;
@@ -115,7 +115,7 @@ begin
     if LoCaseW(Key) = 'a' then Cancel := True;
     if TargetHit then
     begin
-      S := P1146_236D(Dir, Flag, 0);
+      S := SelectTree(Dir, Found, False);
       if S <> '' then
       begin
         DelBackslash(S);
