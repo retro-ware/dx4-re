@@ -14,5 +14,5 @@ CONF=$(mktemp /tmp/dosrun.XXXXXX)
   for c in "$@"; do printf "%s >> OUT.TXT\n" "$c"; done
   echo "exit"
 } > "$CONF"
-SDL_VIDEODRIVER=dummy timeout 300 dosbox-x -conf "$CONF" -nopromptfolder -silent >/dev/null 2>&1
+SDL_VIDEODRIVER=dummy timeout ${TIMEOUT:-300} dosbox-x -conf "$CONF" -nopromptfolder -silent >/dev/null 2>&1
 rm -f "$CONF"

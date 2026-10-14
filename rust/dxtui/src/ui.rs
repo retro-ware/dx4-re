@@ -22,6 +22,8 @@ pub struct Clock {
     pub date_hidden: bool,
     pub last_date: String,
     pub last_time: String,
+    /// Four-digit year in the date (DXMAIN).
+    pub long_year: bool,
     last_sec: u32,
     blink: bool,
 }
@@ -71,6 +73,7 @@ impl Ui {
                 date_hidden: false,
                 last_date: "x".into(),
                 last_time: "x".into(),
+                long_year: false,
                 last_sec: 99,
                 blink: true,
             },
@@ -231,7 +234,11 @@ impl Ui {
 
     fn date_str(&self) -> String {
         let (y, mo, d, wd) = crate::time::today();
-        format!("{} {d:2}.{mo:02}.{:02}", DAYS[wd as usize], y % 100)
+        if self.clock.long_year {
+            format!("{} {d:2}.{mo:02}.{y}", DAYS[wd as usize])
+        } else {
+            format!("{} {d:2}.{mo:02}.{:02}", DAYS[wd as usize], y % 100)
+        }
     }
 
     /// Status.UpdateClock.

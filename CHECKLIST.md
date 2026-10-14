@@ -5,6 +5,19 @@ Rust rewrite for modern terminals that clones DX4 behaviour. Byte-perfect matchi
 exact understanding; DXMAIN no longer needs a full link or DS layout. DOS memory machinery is out of scope
 (overlays, XMS/EMS swapping, dxtemp.tmp state across shell-outs, int 29h capture).
 
+## Rust rewrite (rust/, see rust/PORTING.md)
+- [x] dxtui toolkit: Crt cell emulation, dialogs, buttons, lists, line editor, help viewer, menu bar, saver
+- [x] dxm: program menu, screen tests against ref/dxm captures
+- [x] dx (DXMAIN): two panels, menus, F-key bar (Shift/Ctrl/Alt), command line + history, viewer, hex editor,
+  copy/move/mkdir/delete, marks, window menus 1-3, quick search, quickview, column views, mouse, resize;
+  screen tests against ref/dxmain/MAIN.SCR + PANEL.SCR
+- [x] dx tools: calculator, hex-dec-bin, ASCII table, calendar, stopwatches, clock, key test, env, status,
+  system info, find, grep, compare, QCD, duplicates, sync, split/join, dir sizes, drives, attributes,
+  touch, archives (zip/tar/7z/gz), configuration, saver, point-and-shoot, file colours, settings load/save
+- [x] English help pages for DXMAIN
+- [~] DOS-only features not ported: modem/telephone/address list, CD player, memory views, macro recorder,
+  disk operations, SFX, printing, palette and mouse speed, minesweeper
+
 ## Setup
 - [x] Extract DX4.ZIP read-only to dist/DX4/
 - [x] Identify toolchain (BP 7.01 TPC) and get it running in DOSBox-X (tools/dosrun.sh)

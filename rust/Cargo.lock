@@ -82,6 +82,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "dx"
+version = "0.1.0"
+dependencies = [
+ "dxtui",
+ "libc",
+]
+
+[[package]]
 name = "dxm"
 version = "0.1.0"
 dependencies = [

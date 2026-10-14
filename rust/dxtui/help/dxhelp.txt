@@ -81,18 +81,154 @@
  80. - The menu program dxm
  81. - All files of DOS-Expander
 === Keyboard 1
+   F1  Help
+   F2  User menu (starts dxm)
+   F3  View file
+   F4  Edit file ($EDITOR, or the editor set in the configuration)
+   F5  Copy files and directories
+   F6  Rename or move files and directories
+   F7  Make a directory
+   F8  Delete files and directories
+   F9  Hex editor
+   F10 Quit (also Alt-X)
+
+   Alt-F1  Place for the left panel     Alt-F2  Place for the right panel
+   Alt-F3  External viewer (less)       Alt-F4  Edit a new file
+   Alt-F5  Show the shell screen        Alt-F6  Repeat the last menu command
+   Alt-F7  Find files                   Alt-F8  Search text in marked files
+   Alt-F9  Compare directories          Alt-F10 Quick change directory
+
+   Ctrl-F1  Attributes (permissions)    Ctrl-F2  Time stamp
+   Ctrl-F3  Split a file                Ctrl-F4  Join files
+   Ctrl-F5  Pack (zip, tar, 7z)         Ctrl-F8  Test archive
+   Ctrl-F9  View archive                Ctrl-F10 Unpack archive
+
+   Shift-F1  Edit the user menu         Shift-F2  Point-and-shoot
+   Shift-F3  Edit system files          Shift-F4  Hidden files on/off
+   Shift-F5  Size of marked entries     Shift-F7  Configuration
+   Shift-F8  Screen saver               Shift-F9  Load settings
+   Shift-F10 Save settings
+
+   Alt-1  Long names         Alt-2  Quickview       Alt-3 / Alt-Q  3 columns
+   Alt-5 / Alt-W  5 columns  Alt-A  ASCII table     Alt-B  Command history
+   Alt-C  Quick menu         Alt-G  System info     Alt-H  Hex-dec-bin
+   Alt-K  Key test           Alt-L  Drive overview  Alt-N  Notes
+   Alt-R  Calculator         Alt-S  Drive statistics
+   Alt-T  Swap panels        Alt-V  Directory sizes Alt-X  Quit
+   Alt-Y  Screen saver now   Alt-Z  Time and date
+
+   Alt-I, Alt-M, Alt-F, Alt-O, Alt-P and Alt-E open the menus.
+
+   Ctrl-O       Full-screen shell
+   Ctrl-Q       Internal viewer
+   Ctrl-Return  on a file: command line with the cursor or marked files;
+                on a directory: its size
+   '1' '2' '3'  Window menus (sort and filter / marks / directories)
+   '\'          To the root directory
+   '/'          Reread the directory
+   '.'          One directory up
 === Keyboard 2
+   Alt-Space    opens window menu 1 'Sort' (also '1')
+   Ctrl-Space   opens window menu 2 'Marks' (also '2')
+   Shift-Space  opens window menu 3 'Directories' (also '3')
+   The three menus are also reached with the mouse through the small
+   yellow dots at the top left of each file window.
+
+   '#'  shows the full name, owner and permissions of the cursor file
+   '~'  removes all marks in the active panel
+
+   On the command line:
+
+   Ctrl-D       insert the cursor file name
+   Ctrl-P       insert the directory of the active panel
+   Ctrl-A       insert the directory of the other panel
+   Ctrl-End     delete to the end of the line
+   Up/Down      step through the command history
+   Shift-Down   list the command history
+   'cd DIR' changes the directory of the panel, 'exit' quits.
+   The history keeps the last 25 commands.
+
+   Further keys:
+
+   Esc       cancels a function (mostly also the right mouse button)
+   Space     quick search for a file name in the active panel
+   Backspace command line with the last command
+    +        mark files (with wildcards, e.g. *.sh;*.txt)
+    -        unmark files
+    *        invert the marks
+   Ins       mark the cursor file and move down
+   Del       unmark the cursor file and move down
+   Tab       switch panels (also Left/Right)
+   Shift-Up / Shift-Down mark while moving
+
+ Point-and-shoot entries use %f for the file name, e.g. 'mpv %f'.
 === Working with the mouse
+   Top of the screen:
+
+     - Click on the top right corner: screen saver
+       Right click there: shell screen (Alt-F5)
+     - Click on the top left corner: quick menu
+     - Click on a menu title: open the menu
+     - Click on a path box: choose a place for that panel
+       Right click on a path box: quick change directory
+
+   Bottom of the screen:
+
+     - Click on a function key label runs it.
+       A right click switches the labels to Alt, Ctrl and Shift.
+     - Click on the dot at the bottom left: quick menu
+     - Click on the places bar: choose a place
+
+   In the file windows:
+
+     - Right click marks or unmarks a file
+     - Double click starts a file or enters a directory
+     - Dragging with the left button moves the cursor; at the top or
+       bottom edge the list scrolls.
+     - The dots at the top left open the window menus 1, 2 and 3,
+       ▲ goes one directory up, ↨ rereads it and \ goes to the root.
+
+   In general: a right click or a click outside a box cancels it.
 === The main screen and how files are shown
+ The screen shows two file panels. The top line holds the menus and the
+ clock, below each panel's path box comes its file window with name, size,
+ date and time, the separator, and a status line for the cursor file or the
+ sum of the marked files. Below the panels the places bar shows the root,
+ the home directory and mounted volumes; the bottom line shows the function
+ keys.
+
+ The layout is that of the DOS version at 80x25 and grows with the
+ terminal: wider terminals get longer names, taller ones more lines.
+
+ Directories are listed first, files are sorted by extension (window
+ menu 1 changes this). Programs (.sh .bat .exe ...) are shown in red,
+ pictures in yellow; 'color.EXT = n' entries in dx.conf add colours,
+ 'file_colors = off' switches them off.
+
+ Alt-3 and Alt-5 show the names in 3 or 5 columns, Alt-1 shows long names
+ with their size, Alt-2 shows the start of the cursor file in the other
+ panel (quickview).
 === Program status
+ Shows the directories of both panels, the number and size of their
+ files, the marked files and the free space of the file systems.
 === Environment variables
+ Lists the environment variables of the DOS-Expander.
 === Calendar
+ Shows a month. PgUp/PgDn or Left/Right change the month, Up/Down the
+ year, Home returns to today. Any other key ends.
 === Stopwatches
+ Four stopwatches. The keys 1 to 4 start and stop them, R resets all,
+ Esc ends.
 === Address list
+ This function belonged to the DOS version and is not available here.
 === Telephone
+ This function belonged to the DOS version and is not available here.
 === Modem commands
+ This function belonged to the DOS version and is not available here.
 === Memory, interfaces
+ This function belonged to the DOS version and is not available here.
 === Memory dump
+ This function belonged to the DOS version and is not available here.
 === User menu                                                            (F2)
  Here you start programs 'in a hurry'. The programs entered with
  'Admin' are started with the cursor keys, the mouse or the function keys.
@@ -144,70 +280,201 @@
   The entries are stored in the file dxmenu.txt in the DX directory
   (~/.config/dx).
 === Self-defined entries
+ Shift-F1 starts the menu program dxm to edit the user menu.
 === Change attributes
+ Sets the permissions of the cursor or marked files, either as an octal
+ number (644, 755) or in chmod notation (u+x, go-w).
 === Change time and date
+ Sets the time stamp of the cursor or marked files. Enter the time as
+ YYYY-MM-DD hh:mm:ss; an empty field sets the current time.
 === Print
+ This function belonged to the DOS version and is not available here.
 === View
+ F3 shows the cursor file. The top line shows the keys and the size, the
+ bottom line the name, the line number and the offset of the cursor with
+ the byte under it.
+
+   F1  Help        F2  Print (not available)
+   F3  Copy the marked range to a file (NAME.cut by default)
+   F5  Find again  F7  Find (case is ignored)
+   F9  Offsets in hex or decimal
+   Return  sets the start and then the end of the marked range
+   Esc     ends
+ Long lines are wrapped at the screen width.
 === Edit
+ F4 edits the cursor file with the editor from the configuration, else
+ $VISUAL, $EDITOR or vi. Alt-F4 asks for a name and edits a new file.
 === Hex editor
+ F9 opens the cursor file in the hex editor: offset, 16 bytes in hex and
+ as characters per line. Hex digits overwrite the byte under the cursor,
+ Tab switches to the character column where typed characters are stored.
+ Changed bytes are shown in white. F2 saves, Esc ends and asks whether to
+ save the changes.
 === Synchronize directories
+ Copies the files of the active panel that are missing or older in the
+ other panel's directory there.
 === Find duplicate files
+ Looks for files with equal contents below the directory of the active
+ panel. Return on a file goes there.
 === Find files
+ Searches the directory tree of the active panel for names matching one
+ or more wildcards (*.txt;*.md). Return on a result goes to the file.
+ Esc stops a long search.
 === Find text in selected files
+ Searches the marked files (or all files of the panel) for a text,
+ ignoring case. The results show file, line number and line; Return
+ opens the file in the viewer.
 === Compare directories
+ Marks the files that are missing in the other panel, differ in size or
+ are newer, in both panels.
 === QCD quick directory change
+ Enter a part of a directory name; DX goes there, or lists the matches.
+ The directory tree of your home directory is read once and kept in
+ qcd.txt; enter '!' to read it again.
 === Split
+ Splits the cursor file into parts of a given size (k and m allowed),
+ written as NAME.001, NAME.002, ... to the other panel's directory.
 === Join
+ Joins the marked files (or NAME.001, NAME.002, ... when the cursor is
+ on the first part) into one file in the other panel's directory.
 === Send and receive files
+ This function belonged to the DOS version and is not available here.
 === Directory sizes
+ Adds up the sizes of all directories in the active panel and lists them,
+ largest first. Esc stops.
 === Drive overview
+ Lists the places (root, home, mounted volumes) with their free and
+ total space. Return goes there.
 === Drive statistics
+ Shows total, used and free space of the file system of the active
+ panel.
 === Disk operations
+ This function belonged to the DOS version and is not available here.
 === Calculator + hex-dec-bin converter
+ Calculator (Alt-R): + - * / % ^ and parentheses. Numbers may be written
+ decimal (123), hexadecimal ($7B, 7Bh, 0x7B), binary (1111011b) or as a
+ character ('A'). Whole results are shown in all bases.
+
+ Hex-dec-bin (Alt-H) shows a number in all bases.
 === ASCII table
+ Shows the 256 characters of code page 437. The arrows move, a typed
+ key jumps to its character; the bottom line shows the codes.
 === Quick menu
+ A list of the tools: calculator, ASCII table, calendar, stopwatches,
+ notes, history, find, and more.
 === Notes, time, date
+ Alt-N edits the notes file notes.txt in the settings directory.
+ Alt-Z shows the time and date.
 === Command line history
+ Alt-B lists the last 25 commands; Return puts the chosen one on the
+ command line.
 === CD player
+ This function belonged to the DOS version and is not available here.
 === Volume
+ This function belonged to the DOS version and is not available here.
 === Mini CD player
+ This function belonged to the DOS version and is not available here.
 === Open/close CD-ROM
+ This function belonged to the DOS version and is not available here.
 === Edit system files
+ Lists the shell start files of your home directory and dx.conf to edit.
 === Compress
+ Packs the cursor or marked files. The type follows the name of the
+ archive: .zip (zip), .tar.gz / .tar.xz / .tgz (tar), .7z (7z).
 === Create SFX
+ This function belonged to the DOS version and is not available here.
 === Archive to exe
+ This function belonged to the DOS version and is not available here.
 === Test archive
+ Tests the cursor archive (zip, tar, 7z, gz) and shows the result.
 === View archive
+ Lists the contents of the cursor archive.
 === Extract archive
+ Unpacks the cursor archive into a directory, by default the other
+ panel's.
 === Multi-volume backup and restore
+ This function belonged to the DOS version and is not available here.
 === Show the shell screen
+ Shows the terminal as it was before the DOS-Expander; Return comes
+ back.
 === Last shell command
+ Backspace opens the command line with the last command.
 === Full-screen shell input
+ Ctrl-O starts your shell; 'exit' returns to the DOS-Expander.
 === Packer window
+ This function belonged to the DOS version and is not available here.
 === Macro recorder
+ This function belonged to the DOS version and is not available here.
 === Configuration: display
+ Shift-F7 opens the configuration: confirmations for delete and quit,
+ hidden files, the editor and viewer commands, and the screen saver.
+ Return changes the chosen entry; the settings are saved in dx.conf.
 === Configuration: confirmations
+ See 'Configuration: display'.
 === Configuration: configuration
+ See 'Configuration: display'.
 === Configuration: editor
+ See 'Configuration: display'.
 === Configuration: options
+ See 'Configuration: display'.
 === Screen saver
+ Sets the seconds without input after which the screen saver starts
+ (0 = never) and an optional password to end it. Alt-Y starts it now.
 === Modem parameters
+ This function belonged to the DOS version and is not available here.
 === File colours
+ Files are coloured by extension. Add entries like 'color.txt = 10' to
+ dx.conf (colours 0-15); 'file_colors = off' switches the colours off.
 === Change colour palette
+ This function belonged to the DOS version and is not available here.
 === Load and save settings
+ Shift-F9 reloads dx.conf, Shift-F10 saves it. 'Load from' and 'Save as'
+ use another file.
 === Reset DX
+ Forgets all settings and starts with the defaults.
 === Mouse speed
+ This function belonged to the DOS version and is not available here.
 === Add to the menu
+ Opens the menu program dxm to edit the user menu.
 === Point-and-shoot
+ Return on a file with a registered extension runs its command, e.g.
+ 'pdf' -> 'open %f'. %f stands for the file name; without it the name is
+ appended. The list adds, changes and removes entries.
 === Quickview on/off
+ Alt-2 shows the start of the cursor file (or the contents of the
+ cursor directory) in the other panel.
 === Long names on/off
+ Alt-1 shows long names with their size in one column.
 === 1st window menu: sort + file filter
+ Sort by name, extension, size, time or not at all, reverse the order,
+ set a filter of wildcards (*.rs;*.toml) or show all files.
 === 2nd window menu: selection
+ Mark or unmark files by wildcards, invert the marks, unmark all, go to
+ the other panel's directory or to the home directory.
 === 3rd window menu: change directory
+ Up to 16 bookmarked directories; 'Add current directory' adds the
+ panel's directory, 'Remove' removes it, a letter goes there.
 === Tips and general notes
+ - Settings and data live in ~/.config/dx (or $DX_HOME): dx.conf,
+   dxhist.txt (command history), qcd.txt, notes.txt, dxmenu.txt.
+ - Commands run in the active panel's directory with your $SHELL.
+ - The screen follows the terminal size; 80x25 looks like the original.
 === Input screens
+ In all input fields:
+   Ins       switches between insert and overwrite
+   Return    ends the input
+   Esc, F10  cancel; the old contents stay
+   A right click cancels as well.
 === Copying with DX
+ F5 copies the cursor or marked files to the directory shown (by default
+ the other panel's). Directories are copied with everything in them,
+ time stamps and permissions are kept, links stay links. When a file
+ exists, DX asks: Yes, All, Skip, None or Cancel.
+ F6 renames or moves; across file systems it copies and deletes.
+ Esc stops a running copy.
 === External programs
+ The editor, the external viewer (less), zip/unzip, tar, 7z and touch
+ are started as needed.
 === The menu program dxm
   DXM stands for DX menu. It is the user menu as a program of its own;
   the main program shows the same menu on F2.

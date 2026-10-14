@@ -1,8 +1,9 @@
 #!/bin/bash
 # capture.sh OUTDIR SCRIPT "DOS command line"
 # Runs an original DX4 program in DOSBox-X with tools/keyharn feeding keys from SCRIPT and dumping screens
-# (D lines); files in $EXTRA (a directory) are copied over the install first.
-# (D lines) into OUTDIR as raw 80xRows char/attr dumps. Uses a fresh copy of dist/DX4 each run.
+# (D lines) into OUTDIR as raw 80xRows char/attr dumps. Uses a fresh copy of dist/DX4 each run; files in
+# $EXTRA (a directory) are copied over the install first. Programs that do not quit on the final Esc keys
+# are killed after $TIMEOUT seconds (default 300); the screens are kept.
 set -e
 cd "$(dirname "$0")/.."
 OUT=$(mkdir -p "$1" && cd "$1" && pwd); SCRIPT=$2; CMD=$3

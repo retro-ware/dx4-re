@@ -73,4 +73,26 @@ impl Settings {
     pub fn set(&mut self, k: &str, v: impl ToString) {
         self.map.insert(k.to_string(), v.to_string());
     }
+
+    pub fn remove(&mut self, k: &str) {
+        self.map.remove(k);
+    }
+
+    /// Forgets all values (the file is written on the next `save`).
+    pub fn clear(&mut self) {
+        self.map.clear();
+    }
+
+    /// Keys starting with `prefix`, with their values.
+    pub fn with_prefix(&self, prefix: &str) -> Vec<(String, String)> {
+        self.map.iter().filter(|(k, _)| k.starts_with(prefix)).map(|(k, v)| (k.clone(), v.clone())).collect()
+    }
+
+    pub fn path(&self) -> &Path {
+        &self.path
+    }
+
+    pub fn set_path(&mut self, p: &Path) {
+        self.path = p.to_path_buf();
+    }
 }

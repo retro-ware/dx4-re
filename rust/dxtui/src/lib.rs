@@ -15,6 +15,8 @@ pub mod glyph;
 pub mod help;
 pub mod keys;
 pub mod list;
+pub mod saver;
+pub mod menubar;
 pub mod settings;
 pub mod term;
 pub mod time;
@@ -312,12 +314,14 @@ impl Crt {
                 }
                 13 => self.cx = 1,
                 _ => {
-                    let a = self.text_attr as u16;
-                    self.poke(self.x1 + self.cx - 1, self.y1 + self.cy - 1, a << 8 | b as u16);
-                    self.cx += 1;
+                    // The wrap is deferred to the next character, so filling the last cell of a window does not
+                    // scroll it (DOS would; DX avoided that by poking the corner).
                     if self.x1 + self.cx - 1 > self.x2 {
                         self.newline();
                     }
+                    let a = self.text_attr as u16;
+                    self.poke(self.x1 + self.cx - 1, self.y1 + self.cy - 1, a << 8 | b as u16);
+                    self.cx += 1;
                 }
             }
         }
