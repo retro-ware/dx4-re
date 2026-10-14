@@ -1,11 +1,12 @@
 //! Main screen of DXM: group bar, 3x7 program buttons, admin menu, entry menu.
 //! Spec: src/dxm/DXMENU.PAS (MainMenu, AdminMenu, ItemMenu, FrameMenu, DeleteEntry, TBtn).
 
+use crate::layout::{caption, Layout};
 use crate::menu::{Item, Menu, ITEMS};
 use crate::Dxm;
 use dxtui::button::Buttons;
 use dxtui::keys::*;
-use dxtui::{center, Crt};
+use dxtui::Crt;
 
 /// The program buttons of the main screen (DXMenu.TBtn): the caption sits on its own background, and the
 /// focused button gets a blue surround.
@@ -13,6 +14,8 @@ use dxtui::{center, Crt};
 pub struct Btn {
     pub x: i32,
     pub y: i32,
+    /// Three-line button with a border, or a single `[Name]` line.
+    boxed: bool,
     foc_fg: u8,
     foc_bg: u8,
     fg: u8,
@@ -28,11 +31,12 @@ pub struct Btn {
 
 impl Btn {
     #[allow(clippy::too_many_arguments)]
-    pub fn init(&mut self, c: &mut Crt, focus: bool, x: i32, y: i32, foc_fg: u8, foc_bg: u8, fg: u8, bg: u8,
-        foc_shadow: u8, s: &str) {
+    pub fn init(&mut self, c: &mut Crt, focus: bool, boxed: bool, x: i32, y: i32, foc_fg: u8, foc_bg: u8, fg: u8,
+        bg: u8, foc_shadow: u8, s: &str) {
         *self = Btn {
             x,
             y,
+            boxed,
             foc_fg,
             foc_bg,
             fg,
@@ -65,6 +69,11 @@ impl Btn {
         }
         self.old_focused = self.focused;
         self.old_pressed = self.pressed;
+        if !self.boxed {
+            self.draw_line(c);
+            c.text_attr = a;
+            return;
+        }
         let (mut c2, mut c3) = (0, 0);
         let c4 = if self.focused { self.foc_fg } else { self.foc_bg };
         let c7 = if self.focused { 1 } else { self.bg };
@@ -98,12 +107,29 @@ impl Btn {
         c.text_attr = a;
     }
 
+    /// The one-line look for short terminals: `[Name]`, yellow on blue when focused, inverted while pressed.
+    fn draw_line(&self, c: &mut Crt) {
+        let (fg, bg) = if self.pressed {
+            (15, 0)
+        } else if self.focused {
+            (self.foc_fg, 1)
+        } else {
+            (self.foc_bg, self.bg)
+        };
+        let inner: String = self.text.chars().skip(1).take(self.len() as usize - 2).collect();
+        c.set_color(0, self.bg);
+        c.write_xy(self.x - 1, self.y, " ");
+        c.write_xy(self.x + self.len(), self.y, " ");
+        c.set_color(fg, bg);
+        c.write_xy(self.x, self.y, &format!("[{inner}]"));
+    }
+
     /// TBtn.Clicked: like Buttons.MouseButton (first poll arms, second presses until release).
     pub fn clicked(&mut self, ui: &mut dxtui::ui::Ui) -> bool {
         let (wx, wy, _, _) = ui.win();
-        let x1 = self.x + wx;
-        let x2 = x1 + self.len();
-        let y1 = self.y + wy;
+        // The caption of a boxed button is one cell in and one row down; a line button has no border.
+        let (x1, y1) = if self.boxed { (self.x + wx, self.y + wy) } else { (self.x + wx - 2, self.y + wy - 1) };
+        let x2 = x1 + self.len() + !self.boxed as i32;
         let m = ui.mouse;
         let mut hit = false;
         if m.button == 1 && y1 == m.y && x1 < m.x && x2 > m.x {
@@ -170,6 +196,8 @@ pub fn admin_key() -> u16 {
 #[derive(Clone, Default)]
 pub struct Bar {
     pub items: Vec<Label>,
+    /// Column of the admin label at the right end of the bar.
+    pub admin_x: i32,
 }
 
 impl Bar {
@@ -180,7 +208,7 @@ impl Bar {
         c.goto_xy(1, 1);
         c.clr_eol();
         c.text_attr = a;
-        self.items = vec![Label { text: ADMIN_LABEL.into(), x: 68, key: admin_key() }];
+        self.items = vec![Label { text: ADMIN_LABEL.into(), x: self.admin_x, key: admin_key() }];
         let mut x = 4;
         for g in &menu.groups {
             let l = Label { text: g.name.clone(), x, key: g.hotkey().map_or(255, |h| h as u16) };
@@ -388,14 +416,18 @@ impl Dxm {
         let cur = self.cur as usize;
         let name = self.item(self.cur).name.clone();
         let (x, y) = (self.xpos[cur], self.ypos[cur]);
-        self.btn[cur].init(&mut self.ui, true, x, y, 14, 0, 15, 7, 1, &center(&name, 18));
-        let p = (18 - name.chars().count() as i32) / 2 + 1;
-        self.ui.write_xyfb(x + p, y + 1, 14, 1, &format!(" {name} "));
+        let (boxed, nw) = (self.lay.boxed, self.lay.name_w);
+        self.btn[cur].init(&mut self.ui, true, boxed, x, y, 14, 0, 15, 7, 1, &caption(&name, nw));
+        if boxed {
+            let shown: String = name.chars().take(nw as usize).collect();
+            let p = (nw - shown.chars().count() as i32) / 2 + 1;
+            self.ui.write_xyfb(x + p, y + 1, 14, 1, &format!(" {shown} "));
+        }
         for i in 1..=ITEMS {
             if i != cur {
                 let n = self.item(i as i32).name.clone();
                 let (x, y) = (self.xpos[i], self.ypos[i]);
-                self.btn[i].init(&mut self.ui, false, x, y, 14, 0, 15, 7, 1, &center(&n, 18));
+                self.btn[i].init(&mut self.ui, false, boxed, x, y, 14, 0, 15, 7, 1, &caption(&n, nw));
             }
         }
         let (cg, lg) = (self.cur_group as usize, self.last_group as usize);
@@ -445,7 +477,8 @@ impl Dxm {
             return;
         }
         let q = format!("Delete {}?", self.item(self.cur).name);
-        if self.confirm_box(25, 10, 29, &q, true, 11, 6, true) {
+        let (x, y) = ((self.lay.w - 29) / 2, (self.lay.h - 4) / 2);
+        if self.confirm_box(x, y, 29, &q, true, 11, 6, true) {
             let (g, c) = (self.cur_group, self.cur);
             *self.item_mut(g, c) = Item::default();
             self.save_menu();
@@ -457,9 +490,10 @@ impl Dxm {
     /// AdminMenu: the pull-down under the admin label.
     fn admin_menu(&mut self) -> usize {
         self.ui.open_dialog();
-        self.ui.frame(62, 2, 15, 11, 11, 3, true, true);
+        let ax = self.lay.w - 18;
+        self.ui.frame(ax, 2, 15, 11, 11, 3, true, true);
         let mut sel = self.admin_sel;
-        let r = pull_down(self, 63, 3, 15, &ADMIN_ITEMS, &mut sel, &[1, 6, 10], &[]);
+        let r = pull_down(self, ax + 1, 3, 15, &ADMIN_ITEMS, &mut sel, &[1, 6, 10], &[]);
         self.admin_sel = sel;
         self.ui.pop_screen();
         r.unwrap_or(0)
@@ -473,6 +507,7 @@ impl Dxm {
         self.switch_label(0, cg);
         let sel = self.admin_menu();
         self.switch_label(cg, 0);
+        let sel = if matches!(sel, 2..=5 | 8 | 9) && !self.fits_dialogs() { 0 } else { sel };
         match sel {
             2 => {
                 if self.add_group() {
@@ -534,17 +569,13 @@ impl Dxm {
     /// ItemMenu: entry menu opened with the right mouse button or Ctrl-Enter at mouse/button (mx, my).
     /// Returns true for "Quit".
     fn item_menu(&mut self, g: i32, it: i32, mx: i32, my: i32) -> bool {
-        let x = match mx {
-            7..=26 => 10,
-            31..=50 => 34,
-            55..=74 => 58,
-            _ => mx,
+        let x = match self.lay.button_at(mx, my) {
+            Some(i) => self.lay.text_cols(i).0 + 3,
+            None => mx,
         };
-        let y = match my {
-            19 => 12,
-            22 => 15,
-            _ => my + 2,
-        };
+        let x = x.min(self.lay.w - 15).max(2);
+        // Below the button; above it when the menu (6 rows plus border) would not fit.
+        let y = if my + 8 > self.lay.h - 1 { my - 7 } else { my + 2 }.max(2);
         self.ui.open_dialog();
         self.ui.frame(x - 1, y - 1, 13, 6, 11, 3, true, true);
         let mut sel = self.item_sel;
@@ -552,6 +583,7 @@ impl Dxm {
         self.item_sel = sel;
         self.ui.close_dialog();
         match r {
+            Some(1 | 2 | 4) if !self.fits_dialogs() => {}
             Some(1) => {
                 if let Some(s) = self.select_program() {
                     *self.item_mut(g, it) = Item::for_program(&s);
@@ -568,7 +600,7 @@ impl Dxm {
             Some(4) => self.swap_entry(g, it),
             Some(5) => {
                 if let Some(ch) = self.frame_menu(x - 1, y) {
-                    *self.item_mut(g, it) = Item { name: ch.to_string().repeat(18), prog: String::new(), chdir: true };
+                    *self.item_mut(g, it) = Item { name: ch.to_string().repeat(18), prog: String::new(), chdir: true, wait: false };
                     self.save_menu();
                 }
             }
@@ -583,14 +615,15 @@ impl Dxm {
         self.ui.open_dialog();
         let (x, y) = (self.xpos[it as usize], self.ypos[it as usize]);
         let name = self.item(it).name.clone();
-        self.btn[it as usize].init(&mut self.ui, true, x, y, 14, 14, 2, 3, 1, &center(&name, 18));
+        let (boxed, nw) = (self.lay.boxed, self.lay.name_w);
+        self.btn[it as usize].init(&mut self.ui, true, boxed, x, y, 14, 14, 2, 3, 1, &caption(&name, nw));
         self.ui.window(1, 1, 80, 25);
         self.ui.goto_xy(1, 1);
         self.ui.set_color(14, 3);
         self.ui.clr_eol();
         self.ui.write(&format!("    Exchange entry '{name}': click the target button"));
         let r = self.ui.rows();
-        self.ui.window(5, 3, 80, r);
+        self.ui.window(5, 3, self.lay.w, r);
         let mut target = it;
         let mut ok = false;
         loop {
@@ -642,15 +675,84 @@ impl Dxm {
         self.ui.pop_screen();
     }
 
+    /// The editing dialogs are laid out for 80x25 and would be cut off in a smaller terminal: says so on the
+    /// bottom line and returns false until the terminal is big enough.
+    pub fn fits_dialogs(&mut self) -> bool {
+        let (tw, th) = self.term_size;
+        if tw >= 80 && th >= 25 {
+            return true;
+        }
+        let (w, r) = (self.lay.w, self.lay.h);
+        let win = self.ui.save_win();
+        self.ui.window(1, 1, w, r);
+        let line = self.ui.save_rect(1, r, w, r);
+        self.ui.write_center_xyfb(1, r, w, 14, 4, &format!("Needs an 80x25 terminal (now {tw}x{th})"));
+        self.ui.wait_release();
+        while self.ui.get_key() == 0 && self.ui.mouse.button == 0 {}
+        self.ui.wait_release();
+        self.ui.restore_rect(1, r, w, r, &line);
+        self.ui.restore_win(&win);
+        false
+    }
+
+    /// Matches the logical screen to the terminal and recomputes the button positions.
+    fn fit(&mut self) {
+        let (tw, th) = self.ui.term_size();
+        self.term_size = (tw, th);
+        self.lay = Layout::new(tw, th);
+        if (self.lay.w, self.lay.h) != (self.ui.cols(), self.ui.rows()) {
+            self.ui.resize(self.lay.w, self.lay.h);
+        }
+        self.bar.admin_x = self.lay.admin_x();
+        for i in 1..=ITEMS {
+            (self.xpos[i], self.ypos[i]) = self.lay.pos(i);
+        }
+    }
+
+    /// Draws the whole main screen: group bar, hint line, frame and the buttons of the current group.
+    fn draw_main(&mut self) {
+        let (w, r) = (self.lay.w, self.lay.h);
+        self.ui.window(1, 1, w, r);
+        self.ui.set_color(4, 7);
+        self.ui.clr_scr();
+        let m = self.menu.clone();
+        self.bar.redraw(&mut self.ui, &m);
+        let ui = &mut self.ui;
+        ui.goto_xy(1, r);
+        ui.set_color(0, 3);
+        ui.clr_eol();
+        ui.write_xy_b(3, r, b"\x11\x11 \x10\x10");
+        for (x, t) in self.lay.hints() {
+            ui.write_xy(x, r, t);
+        }
+        ui.write_xy_b(w - 6, r, b"F9 \x18\x18");
+        for i in 2..r {
+            ui.write_xy(1, i, "  ");
+            ui.write_xy(w - 1, i, "  ");
+        }
+        for i in 1..=7 {
+            ui.goto_xy(1, self.lay.text_row(i));
+            ui.write(&format!("F{i}"));
+        }
+        let (fw, fh) = self.lay.frame();
+        ui.frame(4, 2, fw, fh, 15, 7, true, false);
+        ui.window(5, 3, w, r);
+        if !(1..=21).contains(&self.cur) {
+            self.cur = 1;
+        }
+        self.show_group();
+    }
+
     /// MainMenu. Returns the command to start, or None to quit.
     pub fn main_menu(&mut self) -> Option<Item> {
         self.last_group = 0;
+        self.fit();
         self.ui.open_dialog();
         let mut click = false;
         self.ui.date_off();
         self.ui.clock_off();
-        let r = self.ui.rows();
-        self.ui.window(1, 1, 80, r);
+        let (w, r) = (self.lay.w, self.lay.h);
+        self.ui.window(1, 1, w, r);
         self.ui.set_color(4, 7);
         self.ui.clr_scr();
         let mut empty = false;
@@ -673,41 +775,17 @@ impl Dxm {
                 return None;
             }
         }
-        let ui = &mut self.ui;
-        ui.goto_xy(1, r);
-        ui.set_color(0, 3);
-        ui.clr_eol();
-        ui.write_xy_b(3, r, b"\x11\x11 \x10\x10");
-        ui.write_xy(15, r, "F1..F7");
-        ui.write_xy(36, r, "Alt-F1..F7");
-        ui.write_xy(58, r, "Ctrl-F1..F7");
-        ui.write_xy_b(74, r, b"F9 \x18\x18");
-        for i in 2..=24 {
-            ui.write_xy(1, i, "  ");
-            ui.write_xy(79, i, "  ");
-        }
-        for i in 1..=7 {
-            ui.goto_xy(1, i * 3 + 1);
-            ui.write(&format!("F{i}"));
-        }
-        ui.frame(4, 2, 72, 21, 15, 7, true, false);
-        ui.window(5, 3, 80, r);
-        for j in 0..3 {
-            for i in 0..7 {
-                let idx = (i + 1 + j * 7) as usize;
-                self.xpos[idx] = j * 24 + 2;
-                self.ypos[idx] = i * 3 + 1;
-            }
-        }
-        if !(1..=21).contains(&self.cur) {
-            self.cur = 1;
-        }
-        self.show_group();
+        self.draw_main();
         let result;
         loop {
             let mut key = self.ui.get_key();
             if self.ui.saver_due {
                 self.screen_saver();
+            }
+            if self.ui.term_size() != self.term_size {
+                self.fit();
+                self.last_group = self.cur_group;
+                self.draw_main();
             }
             let mut any = false;
             for i in 1..=ITEMS {
@@ -771,7 +849,7 @@ impl Dxm {
                 k if (F1..F1 + 7).contains(&k) => self.cur = (k - F1 + 1) as i32,
                 k if (ALT_F1..ALT_F1 + 7).contains(&k) => self.cur = (k - ALT_F1 + 8) as i32,
                 k if (CTRL_F1..CTRL_F1 + 7).contains(&k) => self.cur = (k - CTRL_F1 + 15) as i32,
-                INS => {
+                INS if self.fits_dialogs() => {
                     if let Some(s) = self.select_program() {
                         let (g, c) = (self.cur_group, self.cur);
                         *self.item_mut(g, c) = Item::for_program(&s);
@@ -809,21 +887,14 @@ impl Dxm {
             }
             let m = self.ui.mouse;
             let (mut mx, mut my) = (m.x, m.y);
-            let on_button = m.button == 2
-                && [4, 7, 10, 13, 16, 19, 22].contains(&my)
-                && (7..=26).contains(&mx) | (31..=50).contains(&mx) | (55..=74).contains(&mx);
+            let on_button = if m.button == 2 { self.lay.button_at(mx, my) } else { None };
             // Ctrl-Enter (the original: Ctrl-Return = key 10) opens the entry menu of the current button.
-            if key == 10 || on_button {
-                let mut new_cur = my / 3;
-                match mx {
-                    31..=50 => new_cur += 7,
-                    55..=74 => new_cur += 14,
-                    _ => {}
-                }
+            if key == 10 || on_button.is_some() {
+                let mut new_cur = on_button.map_or(self.cur, |i| i as i32);
                 if key == 10 {
                     new_cur = self.cur;
-                    my = (self.cur - 1) % 7 * 3 + 4;
-                    mx = (self.cur - 1) / 7 * 25 + 8;
+                    my = self.lay.text_row(new_cur as usize);
+                    mx = self.lay.text_cols(new_cur as usize).0 + 1;
                 }
                 self.cur = new_cur;
                 self.show_group();

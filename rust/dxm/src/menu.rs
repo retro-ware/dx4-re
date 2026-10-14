@@ -1,8 +1,8 @@
 //! The user menu: up to 15 groups of 21 program entries (UserMenu.TMenu).
 //!
 //! Stored as `dxmenu.txt` in the DX home directory, one line per group or entry, fields separated by tabs:
-//! `G<TAB>name` starts a group, `I<TAB>name<TAB>command<TAB>chdir` is an entry (21 per group, empty
-//! slots included). `chdir` is 1 or 0.
+//! `G<TAB>name` starts a group, `I<TAB>name<TAB>command<TAB>chdir<TAB>wait` is an entry (21 per group,
+//! empty slots included). `chdir` and `wait` are 1 or 0; `wait` is missing in older files (= 0).
 
 use std::path::Path;
 use std::{fs, io};
@@ -19,18 +19,20 @@ pub struct Item {
     pub prog: String,
     /// Start in the program's directory.
     pub chdir: bool,
+    /// Wait for a key after the program ends, before the menu comes back.
+    pub wait: bool,
 }
 
 impl Default for Item {
     fn default() -> Item {
-        Item { name: String::new(), prog: String::new(), chdir: true }
+        Item { name: String::new(), prog: String::new(), chdir: true, wait: false }
     }
 }
 
 impl Item {
     /// Entry for a newly chosen program: the file name without extension, first letter upper case.
     pub fn for_program(path: &str) -> Item {
-        Item { name: default_name(path), prog: path.to_string(), chdir: true }
+        Item { name: default_name(path), prog: path.to_string(), chdir: true, wait: false }
     }
 
     pub fn is_empty(&self) -> bool {
@@ -101,6 +103,7 @@ impl Menu {
                             name: f.get(1).copied().unwrap_or("").to_string(),
                             prog: f.get(2).copied().unwrap_or("").to_string(),
                             chdir: f.get(3).copied() != Some("0"),
+                            wait: f.get(4).copied() == Some("1"),
                         };
                         n += 1;
                     }
@@ -116,7 +119,7 @@ impl Menu {
         for g in &self.groups {
             s += &format!("G\t{}\n", clean(&g.name));
             for it in &g.items {
-                s += &format!("I\t{}\t{}\t{}\n", clean(&it.name), clean(&it.prog), it.chdir as u8);
+                s += &format!("I\t{}\t{}\t{}\t{}\n", clean(&it.name), clean(&it.prog), it.chdir as u8, it.wait as u8);
             }
         }
         s
@@ -139,10 +142,18 @@ mod tests {
         let mut m = Menu::default();
         m.groups.push(Group::new("~Games"));
         m.groups[0].items[3] = Item::for_program("/usr/games/tetris.sh");
-        m.groups[0].items[4] = Item { name: "─".repeat(18), prog: String::new(), chdir: false };
+        m.groups[0].items[4] = Item { name: "─".repeat(18), prog: String::new(), chdir: false, wait: false };
+        m.groups[0].items[5] = Item { name: "Keep".into(), prog: "/bin/ls -l".into(), chdir: false, wait: true };
         let t = m.to_text();
         assert_eq!(Menu::parse(&t), m);
         assert_eq!(m.groups[0].items[3].name, "Tetris");
         assert_eq!(m.groups[0].hotkey(), Some('g'));
+        assert!(Menu::parse(&t).groups[0].items[5].wait);
+    }
+
+    #[test]
+    fn old_files_have_no_wait_flag() {
+        let m = Menu::parse("G\tG\nI\tOld\t/bin/ls\t1\n");
+        assert_eq!(m.groups[0].items[0], Item { name: "Old".into(), prog: "/bin/ls".into(), chdir: true, wait: false });
     }
 }

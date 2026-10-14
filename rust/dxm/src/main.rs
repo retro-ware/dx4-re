@@ -5,6 +5,8 @@
 mod browser;
 mod dxmenu;
 mod help;
+mod launch;
+mod layout;
 mod menu;
 mod saver;
 mod usermenu;
@@ -13,9 +15,9 @@ use dxmenu::{Bar, Btn};
 use dxtui::settings::{home_dir, Settings};
 use dxtui::ui::Ui;
 use dxtui::Crt;
+use layout::Layout;
 use menu::{Menu, ITEMS};
 use std::path::{Path, PathBuf};
-use std::process::Command;
 
 pub struct Dxm {
     pub ui: Ui,
@@ -28,6 +30,10 @@ pub struct Dxm {
     pub cur: i32,
     pub last_group: i32,
     pub bar: Bar,
+    /// Geometry of the main screen for the current terminal size.
+    pub lay: Layout,
+    /// Terminal size the layout was made for.
+    pub term_size: (i32, i32),
     pub btn: [Btn; ITEMS + 1],
     pub xpos: [i32; ITEMS + 1],
     pub ypos: [i32; ITEMS + 1],
@@ -48,6 +54,8 @@ impl Dxm {
             cur: 1,
             last_group: 0,
             bar: Bar::default(),
+            lay: Layout::new(80, 25),
+            term_size: (80, 25),
             btn: Default::default(),
             xpos: [0; ITEMS + 1],
             ypos: [0; ITEMS + 1],
@@ -56,22 +64,6 @@ impl Dxm {
             frame_sel: 1,
             password: String::new(),
         }
-    }
-}
-
-/// Runs a menu entry through the shell, optionally in the program's directory (WriteStart / dxstart.bat).
-fn run(item: &menu::Item) {
-    let mut c = Command::new("sh");
-    c.arg("-c").arg(&item.prog);
-    if item.chdir {
-        let first = item.prog.split_whitespace().next().unwrap_or("");
-        if let Some(d) = Path::new(first).parent().filter(|d| d.is_dir()) {
-            c.current_dir(d);
-        }
-    }
-    println!("{}", item.prog);
-    if let Err(e) = c.status() {
-        eprintln!("dxm: {}: {e}", item.prog);
     }
 }
 
@@ -101,7 +93,7 @@ fn main() {
         let _ = conf.save();
         let Some(item) = chosen else { break };
         d.ui.suspend();
-        run(&item);
+        launch::run(&item);
         d.ui.resume();
         d.ui.reset_idle();
     }
@@ -125,9 +117,9 @@ mod tests {
             let mut grp = menu::Group::new(g);
             for (i, n) in items.iter().enumerate() {
                 grp.items[i] = if *n == "-" {
-                    menu::Item { name: "\u{2500}".repeat(18), prog: String::new(), chdir: false }
+                    menu::Item { name: "\u{2500}".repeat(18), prog: String::new(), chdir: false, wait: false }
                 } else {
-                    menu::Item { name: n.to_string(), prog: format!("/bin/{n}"), chdir: true }
+                    menu::Item { name: n.to_string(), prog: format!("/bin/{n}"), chdir: true, wait: false }
                 };
             }
             m.groups.push(grp);

@@ -280,7 +280,7 @@ impl Dxm {
     pub fn edit_item(&mut self, g: i32, i: i32) -> bool {
         self.ui.open_dialog();
         let it = self.item_mut(g, i).clone();
-        let (mut name, mut prog, mut flag) = (it.name, it.prog, it.chdir);
+        let (mut name, mut prog, mut flag, mut wait) = (it.name, it.prog, it.chdir, it.wait);
         self.ui.frame(21, 6, 50, 10, 11, 6, false, true);
         self.ui.write_xyf(4, 3, 14, "N");
         self.ui.write_f(11, "ame");
@@ -291,6 +291,10 @@ impl Dxm {
         self.ui.write_f(14, "D");
         self.ui.write_f(11, "irectory change");
         self.ui.write_xyf(48, 8, 11, if flag { "X" } else { " " });
+        self.ui.write_xyf(47, 9, 11, "[ ] ");
+        self.ui.write_f(14, "W");
+        self.ui.write_f(11, "ait before return");
+        self.ui.write_xyf(48, 9, 11, if wait { "X" } else { " " });
         let mut b = Buttons::new(&mut self.ui, true, &[(23, 14), (48, 14)], 14, 0, 11, 6,
             &["         OK         ", "      Cancel       "]);
         let mut key = k_name();
@@ -337,6 +341,11 @@ impl Dxm {
                     self.ui.write_xyf(48, 8, 11, if flag { "X" } else { " " });
                     self.ui.wait_release();
                 }
+                if key == alt_letter('w').unwrap() || c == Some('w') || self.ui.mouse_on(9, 47, 68) {
+                    wait = !wait;
+                    self.ui.write_xyf(48, 9, 11, if wait { "X" } else { " " });
+                    self.ui.wait_release();
+                }
                 if self.ui.is_cancel(key) || self.ui.mouse_outside(21, 73, 6, 17) {
                     r = Some(false);
                 }
@@ -351,7 +360,7 @@ impl Dxm {
             }
         };
         if ok {
-            *self.item_mut(g, i) = Item { name, prog, chdir: flag };
+            *self.item_mut(g, i) = Item { name, prog, chdir: flag, wait };
             self.ui.pop_screen();
         } else {
             self.ui.close_dialog();
@@ -476,6 +485,7 @@ impl Dxm {
     /// AddItems: browse for programs and set or insert them at entry `n`, repeatedly.
     fn add_items(&mut self, g: i32, n: i32, list: &mut List) -> bool {
         let mut toggle = true;
+        let mut wait = false;
         let mut chg = false;
         self.ui.open_dialog();
         let r = self.ui.rows();
@@ -515,6 +525,9 @@ impl Dxm {
             self.ui.write_xy(44, 14, if toggle { "[X] " } else { "[ ] " });
             self.ui.write_f(14, "D");
             self.ui.write("irectory change");
+            self.ui.write_xy(44, 15, if wait { "[X] " } else { "[ ] " });
+            self.ui.write_f(14, "W");
+            self.ui.write("ait before return");
             let mut key = UP;
             let act = loop {
                 if key == UP || key == SHIFT_TAB || key == TAB || key == k_name() || letter(key) == Some('n')
@@ -533,6 +546,11 @@ impl Dxm {
                     self.ui.write_xy(45, 14, if toggle { "X" } else { " " });
                     self.ui.wait_release();
                 }
+                if key == alt_letter('w').unwrap() || letter(key) == Some('w') || self.ui.mouse_on(15, 44, 65) {
+                    wait = !wait;
+                    self.ui.write_xy(45, 15, if wait { "X" } else { " " });
+                    self.ui.wait_release();
+                }
                 if self.ui.is_cancel(key) || self.ui.mouse_outside(13, 68, 7, 19) {
                     act = Some(2);
                 }
@@ -546,7 +564,7 @@ impl Dxm {
             };
             self.ui.close_dialog();
             b.restore(&mut self.ui);
-            let it = Item { name: name.clone(), prog: file.clone(), chdir: toggle };
+            let it = Item { name: name.clone(), prog: file.clone(), chdir: toggle, wait };
             match act {
                 1 => {
                     *self.item_mut(g, n) = it;

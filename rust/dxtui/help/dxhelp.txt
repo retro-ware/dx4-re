@@ -263,7 +263,12 @@
 
   [X] Directory change: when this option is on, the program is started
   in its own directory. Many programs need their home directory as the
-  current directory, so this option is on by default.
+  current directory, so this option is on by default. A program given
+  without a path, such as 'vim', has no directory of its own and is
+  started where you are.
+  [ ] Wait before return: when this option is on, the screen stays after
+  the program ends until you press a key, so its output can be read.
+  If a program cannot be started, the menu waits for a key anyway.
   'Drive' (or Alt-F1/Alt-F2) changes to another place, such as your
   home directory or a mounted volume.
 
@@ -279,6 +284,12 @@
 
   The entries are stored in the file dxmenu.txt in the DX directory
   (~/.config/dx).
+
+  The menu follows the size of the terminal: in a smaller terminal the
+  buttons get narrower and, with fewer than 25 rows, one line high. A
+  larger terminal shows the usual 80x25 screen in the middle. Changing
+  the menu (Insert, Change, Exchange and most of 'Admin') needs a
+  terminal of at least 80x25.
 === Self-defined entries
  Shift-F1 starts the menu program dxm to edit the user menu.
 === Change attributes
