@@ -240,7 +240,10 @@ label
 var
   TrackBuf: TTrackBuf;
   P: Pointer;
+  Sector: array[0..511] of Byte;
   Track, Side: Byte;
+  Dummy1: Word;
+  Dummy2: Byte;
   Res: Byte;
   F: file;
   Drv: Byte;
@@ -268,7 +271,7 @@ begin
   Assign(F, Name);
   Can144 := True;
   Can720 := Can144;
-  Can12 := Can720;
+  Can12 := Can144;
   Key := 0;
   RestoreImage := True;
   GetFAttr(F, Key);
