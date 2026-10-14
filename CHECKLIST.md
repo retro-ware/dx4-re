@@ -1,5 +1,10 @@
 # DX4 byte-perfect rebuild — checklist
 
+## Goal (2026-10-14)
+Rust rewrite for modern terminals that clones DX4 behaviour. Byte-perfect matching was the means to an
+exact understanding; DXMAIN no longer needs a full link or DS layout. DOS memory machinery is out of scope
+(overlays, XMS/EMS swapping, dxtemp.tmp state across shell-outs, int 29h capture).
+
 ## Setup
 - [x] Extract DX4.ZIP read-only to dist/DX4/
 - [x] Identify toolchain (BP 7.01 TPC) and get it running in DOSBox-X (tools/dosrun.sh)
@@ -96,7 +101,8 @@
     Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping
     Cfg* / ViewerName (0x982) and CfgB809 / BorderColor (0x809) names to reconcile
-  - [ ] decompile main + 0365 + remaining ~50 own overlay units
+  - [ ] decompile main + 0365 + 21 remaining overlay units — to readable Pascal for behaviour (byte-match optional)
+  - [~] full link / DS layout — DROPPED (Rust rewrite goal)
 - [~] HERTZ.EXE (26 KB) — Windows NE, Borland Pascal for Windows / OWL — SKIPPED (out of scope, decided 2026-10-13)
 
 ## Per program steps
