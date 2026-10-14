@@ -78,7 +78,7 @@ pub fn alt_letter(c: char) -> Option<u16> {
 
 /// The letter of an Alt+letter code.
 pub fn alt_letter_of(code: u16) -> Option<char> {
-    let s = code.checked_sub(1000)? as u8;
+    let s = u8::try_from(code.checked_sub(1000)?).ok()?;
     ALT_LETTERS.iter().position(|&x| x == s).map(|i| (b'a' + i as u8) as char)
 }
 

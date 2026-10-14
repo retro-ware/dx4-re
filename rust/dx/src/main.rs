@@ -41,6 +41,9 @@ pub struct App {
 
 const HIST_MAX: usize = 25;
 
+/// Returned by `App::mouse` for a double click on a file.
+const DOUBLE_CLICK: u16 = 0xFFFE;
+
 impl App {
     fn new(ui: Ui, conf: Settings, home: PathBuf) -> App {
         let cwd = std::env::current_dir().unwrap_or_else(|_| files::home());
@@ -880,7 +883,7 @@ impl App {
             }
             if self.ui.double_click(m.x, m.y) {
                 self.ui.wait_release();
-                return ENTER + 0x8000;
+                return DOUBLE_CLICK;
             }
             // dragging: scroll at the edges
             while self.ui.mouse.button == 1 {
@@ -972,7 +975,6 @@ impl App {
         }
         match key {
             ENTER => self.enter(),
-            k if k == ENTER + 0x8000 => self.enter(),
             10 => {
                 // Ctrl-Return: command line with the names, on a directory its size
                 if let Some(e) = self.p[a].current().cloned() {
@@ -1063,7 +1065,7 @@ impl App {
         self.redraw();
         let mut size = self.ui.term_size();
         while !self.quit {
-            let mut key = self.ui.get_key();
+            let key = self.ui.get_key();
             if self.ui.saver_due {
                 let pw = self.password.clone();
                 dxtui::saver::screen_saver(&mut self.ui, &pw);
@@ -1074,8 +1076,9 @@ impl App {
             }
             if key == 0 {
                 let c = self.mouse();
-                if c == ENTER + 0x8000 {
-                    key = c;
+                if c == DOUBLE_CLICK {
+                    self.enter();
+                    continue;
                 } else if c != 0 {
                     self.command(c);
                     continue;
