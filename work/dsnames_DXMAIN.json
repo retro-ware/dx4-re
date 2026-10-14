@@ -1,4 +1,7 @@
 {
+"0126": "QuickMnu.VMT(TQuickLst)",
+"0136": "QuickTop",
+"0137": "QuickRow",
 "020e": "ArcLoaded",
 "023e": "BootHdr",
 "0243": "BootTail",
@@ -215,6 +218,8 @@
 "38e8": "P+a8",
 "3b1e": "P+4",
 "3b20": "P+6",
+"3b22": "Entries",
+"3b24": "Entries+2",
 "3b26": "P+4",
 "3b28": "P+6",
 "3c76": "P+4",

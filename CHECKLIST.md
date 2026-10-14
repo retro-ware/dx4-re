@@ -81,6 +81,8 @@
     placeholders U13B0 (+P13B0_60D/6C0 button pair, $109-byte buttons) and new U13AD (help entry)
   - [x] o1150 FindDlg (extended file search dialog: masks/filters, attributes, date and size ranges, drive bar, load/save
     filter; typed consts DateTo/DateFrom/MinSizeStr/MaxSizeStr/Archive/ReadOnly/SysAttr/Hidden at DS $400..$43A) matches strict
+  - [x] o1071 QuickMnu (Quick menu: dxquick.dat list of 61 entries, entry editor with options sub-dialog, parameter prompt,
+    run via COMSPEC/RunWindow; TQuickLst = object(TList) with DrawLine override, function QuickMenu returns the command) matches strict
   - [ ] o0340 TreeDlg WIP (agent B, size 0x2330 vs built 0x25c0, procs from 0x6e1 on diverge)
   - [x] strict tryunit recheck (2026-10-14): all matched units pass; remaining 'real diffs' are classifier false positives only:
     Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)
