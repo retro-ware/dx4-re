@@ -20,7 +20,6 @@ var
   Key: Word;
   WithDirs: Boolean;
   Dot1, Dot2: Boolean;
-  Dummy: Byte;
 begin
   OpenDialog;
   Dot1 := False;

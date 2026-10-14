@@ -125,7 +125,7 @@ type
     S11FE: string[79];
     W124E: Word;
     W1250: Word;
-    W1252: Integer;
+    W1252: Word;
     S1254: string[12];
     B1261: Byte;
     Blk1262: array[0..9] of Byte;

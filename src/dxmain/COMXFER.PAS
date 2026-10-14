@@ -370,9 +370,9 @@ begin
       Inc(P^.W1252);
       TPanelFiles(P^.Data)[I]^.Sel := True;
     end;
-  if P^.W1252 > 0 then
+  if Integer(P^.W1252) > 0 then
   begin
-    Str(P^.W1252, Name);
+    Str(Integer(P^.W1252), Name);
     Name := Name + ' Dateien';
   end;
   WriteCenterXY(1, 1, 40, 'Senden von ' + Name + ' nach:');
