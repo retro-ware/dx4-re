@@ -24,7 +24,7 @@ uses Crt, DXGlob, Buttons, Mouse, Screen, Windows, ScrSave, Dialogs, Status, Ask
 function SearchFile(Name, Text: string; Flags: Byte; var Status: Byte): Boolean;
 var
   F: file;
-  Size, BufSize, Pos: Longint;
+  BufSize, Size, Pos: Longint;
   Buf: Pointer;
   N: Word;
   Err: Word;

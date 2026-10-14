@@ -170,6 +170,7 @@ var
   Path, S2: string;
   OldVec: Pointer;
   Key: Word;
+  Dummy: Byte;
 begin
   Path := FSearch(Prog, GetEnv('PATH') + ';' + HomeDir);
   if Path = '' then

@@ -51,3 +51,11 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
 - tryunit now treats differing displacements off a base register (locals [bp-x], fields [di+x]) as real diffs
   unless the (built - orig) delta also occurs among direct DS references; "MATCH(addr)" before this change did
   not verify local-variable layout.
+
+- Temp layout rule (Execute.RunWindow, verified): a string-literal temp is Length+1 bytes, NOT rounded; only the *next*
+  allocation is word-aligned. So a trailing 1-byte local (odd end) is invisible in a statement whose first temp is a
+  literal of even length ('PATH' -> 5 bytes at the same slot), but shifts every later statement's temps by 2.
+- Function results live at [bp-1]/[bp-2]/[bp-4] as the first local; locals declared before a string var that end at an odd
+  offset leave no gap (strings are byte-aligned): AddGroup = result(-1), two Bytes(-2,-3), S: string[40] at -0x2c.
+- Unreferenced locals are common (SizeStr/FormatNum: Byte at -1 + Word after T; DiskImg.RestoreImage: 512-byte buffer
+  + 3 bytes). The strict classifier catches them; MATCH(addr) under the old one did not.

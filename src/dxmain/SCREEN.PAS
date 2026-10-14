@@ -135,8 +135,9 @@ end;
 
 function FormatNum(N: Longint): Str12;
 var
-  I: Word;
+  I: Byte;
   S, T: Str12;
+  Dummy: Word;
 begin
   if N = 0 then
     FormatNum := '           0'

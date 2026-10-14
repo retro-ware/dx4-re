@@ -74,9 +74,8 @@
   - [x] o1013 DiskImg (floppy image make/restore) matches strict (RestoreImage: unused 512-byte Sector buffer + 3-byte gap before Res)
   - [x] o032b ComXfer (serial file transfer) and o0331 PalEdit (palette editor) match strict (PalEdit: 1 [di+PalIdx] table false positive)
   - [ ] o0340 TreeDlg WIP (agent B, size 0x2330 vs built 0x25c0, procs from 0x6e1 on diverge)
-  - [ ] tryunit strict displacement check (2026-10-14) flags hidden local-layout diffs in: UserMenu, Dialogs, Status,
-    Execute, Palette (false positive: [bx+const] typed-const table), Screen, Mouse, Passwd?, DelTree, SaveCfg, TextSrch,
-    PanelIni, DirCmp (size!), U1D10, CDDlg, CDAudio, TextView — re-run work/recheck.sh and fix each
+  - [x] strict tryunit recheck (2026-10-14): all matched units pass; remaining 'real diffs' are classifier false positives only:
+    Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping
     Cfg* / ViewerName (0x982) and CfgB809 / BorderColor (0x809) names to reconcile
   - [ ] decompile main + 0365 + remaining ~50 own overlay units

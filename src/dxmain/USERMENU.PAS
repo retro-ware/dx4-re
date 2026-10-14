@@ -391,11 +391,11 @@ end;
 
 function AddGroup(var Bar: TMenuBar): Boolean;
 var
+  D1, D2: Byte;
   S: string[40];
   Ok, Cancel: Boolean;
   Key: Word;
   B: TButton2;
-  I: Integer;
 begin
   AddGroup := False;
   if Bar.Count > 15 then
