@@ -1,0 +1,2582 @@
+=== Inhalt
+ 1. Tastaturbelegung 1
+ 2. Tastaturbelegung 2
+ 3. Arbeiten mit der Maus
+ 4. Bedienung des Hauptbildschirms und Darstellung der Dateien
+ 5. Info     Programmstatus
+ 6. ▌▌▌▌     Umgebungs-Variablen
+ 7.          Kalender
+ 8.          Stoppuhren
+ 9.          Adressliste
+10.          Telefonieren
+11.          Modembefehle
+12.          Mem /c, mem /d, XMS+EMS, Schnittstellen
+13.          Speicherauszug
+14. Menü     Benutzermenü                                              (F2)
+15. ▌▌▌▌     Selbstdefinierte Einträge                           (Shift-F1)
+16. Datei    Attribute ändern                                     (Strg-F1)
+17. ▌▌▌▌▌    Zeit und Datum ändern                                (Strg-F2)
+18.          Drucken
+19.          Anzeigen                                                  (F3)
+20.          Editieren                                                 (F4)
+21.          Hex-Editor                                                (F9)
+22.          Verzeichnis angleichen
+23.          Suche doppelte Dateien
+24.          Dateisuche (incl. Text)                               (Alt-F7)
+25.          Textsuche in ausgewählten Dateien                     (Alt-F8)
+26.          Verzeichnisse vergleichen                             (Alt-F9)
+27.          QCD Schneller Verzeichniswechsel                     (Alt-F10)
+28.          Splitten                                             (Strg-F3)
+29.          Zusammenfügen                                        (Strg-F4)
+30.          Senden und Empfangen von Dateien
+31. Optionen Verzeichnisgrößen                                      (Alt-V)
+32. ▌▌▌▌▌▌▌▌ Laufwerksübersicht                                     (Alt-L)
+33.          Laufwerksstatistik                                     (Alt-S)
+34.          Datenträgeroperationen
+35.          Rechner + Hex-Dez-Bin-Konverter                  (Alt-R Alt-H)
+36.          Asciitabelle                                           (Alt-A)
+37.          Quickmenü                                              (Alt-C)
+38.          Notizen, Zeit, Datum                            (Alt-N)(Alt-Z)
+39.          Befehlszeilenstapel                                    (Alt-B)
+40.          CD-Player
+41.          Lautstärke
+42.          Mini CD-Player
+43.          Öffne/schließe CD-ROM                               (Shift-F6)
+44.          Systemdateien editieren                             (Shift-F3)
+45. Packen   Komprimieren                                         (Strg-F5)
+46. ▌▌▌▌▌▌   SFX-Erstellen                                        (Strg-F6)
+47.          Archiv nach Exe                                      (Strg-F7)
+48.          Archiv-Testen                                        (Strg-F8)
+49.          Archiv-Betrachten                                    (Strg-F9)
+50.          Archiv-Dekomprimieren                               (Strg-F10)
+51.          Arj-Multi-Volume Backup und Restore
+52.          DOS-Bild ansehen                                      (Alt-F5)
+53.          Letzter DOS-Befehl                                 (Backspace)
+54.          DOS-Eingabe im Vollbild                               (Strg-O)
+55.          Packerfenster
+56. Einstellungen Macrorecorder                                     (Alt-F)
+57. ▌▌▌▌▌▌▌▌▌▌▌▌▌ Konfiguration-Anzeige
+58.               Konfiguration-Bestätigungen
+59.               Konfiguration-Konfig.
+60.               Konfiguration-Editor
+61.               Konfiguration-Optionen
+62.               Bildschirmschoner                              (Shift-F8)
+63.               Modem-Parameter
+64.               Dateifarben
+65.               Farbpalette ändern
+66.               Laden und Speichern (dx.ini;*.ini)
+67.               Reset des DX
+68.               Mausgeschwindigkeit
+69.               Eintragen ins Menü                             (Shift-F1)
+70.               Point-And-Shoot-Verwaltung (Verknüpfungen)     (Shift-F2)
+71.               Quickview Ein-/Ausschalten
+72.               Lange Namen Ein-/Ausschalten                      (Alt-1)
+73. 1. Fenstermenü Sortieren + Dateifilter             ('1' oder Strg-Leer)
+74. 2. Fenstermenü Auswahl                              ('2' oder Alt-Leer)
+75. 3. Fenstermenü Verzeichniswechsel                 ('3' oder Shift-Leer)
+76. - Tips und allgemeine Hinweise
+77. - Eingabe-Bildschirme
+78. - Das Kopieren mit dem DX
+79. - Externe Programme qcd.exe usw.
+80. - Das Menüprogramm dxm.exe
+81. - Alle Dateien des DOS-Expander 4.0
+=== Tastaturbelegung 1
+   F1  Hilfe
+   F2  Benutzermenü
+   F3  Anzeige von Dateien
+   F4  Editieren von Dateien
+   F5  Kopieren und Bewegen von Dateien und Verzeichnissen
+   F6  Umbenennen von Dateien und Verzeichnissen
+   F7  Erzeugen eines Verzeichnisses
+   F8  Löschen von Dateien und Verzeichnissen
+   F9  Hex-Editor
+   F10 Ende des DX (auch Alt-X)
+
+   Alt-F1  Laufwerkswahl linkes Fenster
+   Alt-F2  Laufwerkswahl rechtes Fenster
+   Alt-F3  Externer Viewer
+   Alt-F4  Neue Datei editieren
+   Alt-F5  DOS-Bildschirm ansehen (Rechts-Mausklick, rechte obere Ecke)
+   Alt-F6  Wiederholung des letzten Menübefehls
+   Alt-F7  Dateien suchen
+   Alt-F8  Textpassagen in markierten Dateien suchen
+   Alt-F9  Verzeichnisse vergleichen
+   Alt-F10 QCD Schneller Verzeichniswechsel
+
+   Strg-F1   Dateiattribute ansehen und ändern
+   Strg-F2   Dateizeit und Datum
+   Strg-F3   Splitten einer großen Datei auf Disketten
+   Strg-F4   Zusammenfügen einer gesplitteten Datei (Return auf inf-Datei)
+   Strg-F5   Archiv erstellen (komprimieren)
+   Strg-F6   SFX erstellen (selbstentpackende exe-Datei)
+   Strg-F7   Archiv nach SFX kopieren (erzeugt exe-Datei)
+   Strg-F8   Archiv testen (auf CRC Fehler)
+   Strg-F9   Archiv betrachten
+   Strg-F10  Archiv dekomprimieren (auch Arj-Multi-Volume)
+
+   Shift-F1  Hauptmenüverwaltung
+   Shift-F2  Point and Shoot Verwaltung
+   Shift-F3  Systemdateien editieren (Dateien, die in dxsysdat.ini stehen)
+   Shift-F4  Versteckte Dateien anzeigen/nicht anzeigen
+   Shift-F5  Größen von markierten Verzeichnissen anzeigen/nicht anzeigen
+   Shift-F6  CD-Schublade öffnen und schließen
+   Shift-F7  Konfiguration
+   Shift-F8  Bildschirmschoner-Einstellung
+   Shift-F9  Alle DX-Einstellungen aus aktueller ini-Datei laden
+   Shift-F10 Alle DX-Einstellungen in aktuelle ini-Datei speichern
+
+   Alt-1     Lange Dateinamen anzeigen (einspaltig)
+   Alt-2     Quickview ein- und ausschalten
+   Alt-3     Dreispaltige Datei-Anzeige ein/ausschalten
+   Alt-5     Fünfspaltige Datei-Anzeige ein/ausschalten
+   Alt-A     Asciitabelle
+   Alt-B     Befehlszeilenstapel (auch speichern des Stapels)
+   Alt-C     Quickmenü (auch Mausklick links unten, gelber Punkt)
+   Alt-F     Macrorecorder (Mausklick oben links, rechte Maustaste)
+   Alt-G     Extended Memory anzeigen
+   Alt-H     Hex-Dez-Bin-Konverter
+   Alt-J     Interruptliste (Adressen der Interruptvektoren)
+   Alt-K     Tastentest
+   Alt-L     Laufwerksübersicht (incl. Laufwerkswechsel)
+   Alt-N     Notizdateien dx0.ntz bis dx9.ntz editieren
+   Alt-Q     Dreispaltige Datei-Anzeige ein/ausschalten
+   Alt-R     Rechner
+   Alt-S     Laufwerksstatstik des aktuellen Laufwerks
+   Alt-T     Dateifenster tauschen
+   Alt-U     Minesweeper
+   Alt-V     Verzeichnisgrößen (alle Verzeichnisse im aktuellen Fenster)
+   Alt-W     Fünfspaltige Datei-Anzeige ein/ausschalten
+   Alt-X     Programmende
+   Alt-Y     Bildschirmschoner einschalten (Mausklick rechts oben)
+   Alt-Z     Systemzeit und Datum ansehen und ändern
+
+   Alt-I, Alt-D, Alt-O, Alt-P ,Alt-M und Alt-E öffnen die Menüs
+
+   Strg-O    Vollbild-DOS-Eingabe
+   Strg-Q    Interner Datei-Betrachter (der nicht auf F3 liegt)
+   Strg-Return auf Datei: Eingabezeile mit aktueller Datei und
+                          markierten Dateien wird geöffnet
+   Strg-Return auf Verzeichnis: Dirinfo
+   '1'  1. Fenstermenü 'Sortierung und Filter' öffnen (auch Alt-Leer)
+   '2'  2. Fenstermenü 'Markieren' öffnen (auch Strg-Leer)
+   '3'  3. Fenstermenü 'Verzeichniswechsel' öffnen (auch Shift-Leer)
+   '\' oder 'ß' = Wechsel ins Root-Verzeichnis (X:\) entspricht einem
+                  Mausklick auf '\' oben im Fenster
+   '/' =  Verzeichnis neu einlesen = Mausklick auf '''
+   '.' =  Ein Verzeichnis höher = Mausklick auf ''
+=== Tastaturbelegung 2
+   Alt-Leer   öffnet das Fenstermenü 'Sortieren' (auch '1')
+   Strg-Leer  öffnet das Fenstermenü 'Markieren' (auch '2')
+   Shift-Leer öffnet das Fenstermenü 'Verzeichniswechsel' (auch '3')
+   Diese drei Fenster sind mit der Maus über kleine gelbe Punkte am
+   oberen linken Rand des jeweiligen Fensters zu erreichen.
+
+   Taste '#' : Anzeige des langen Namens einer Datei (Windows 95).
+   Taste '~' : Alle Dateimarkierungen im aktuellen Fenster aufheben.
+
+   In der DOS-Eingabe:
+
+   Strg-D Aktuellen Dateinamen (Cursorbalken) in die Eingabezeile einfügen
+   Strg-P Verzeichnis des aktuellen Fensters einfügen (P=Pfad)
+   Strg-A Verzeichnis des anderen Fensters einfügen (A=Anderes)
+
+   Shift-Cursor unten  Befehlszeilenstapel
+   Cursor oben/unten   Im Befehlszeilenstapel vor/zurück
+   Befehlszeilenstapel =  die letzten 25 im DX eingegebenen DOS-Befehle
+
+   Die Statuszeile ist mit den Tasten Shift, Alt oder Strg umzuschalten.
+   Rechte Maustaste in der Statuszeile aktiviert den Strg-Modus.
+   Hierbei zuerst die rechte, dann (bei gedrückter rechten Maustaste) die
+   linke Maustaste betätigen.
+
+
+   In allen Eingabefeldern:
+
+   Strg-Ende : Zeile bis zum Ende löschen
+   Einfg     : Wechsel zwischen Überschreibmodus und Einfügemodus
+   Tab,Return: Beendet die Eingabe
+   Esc,F10   : Bricht die Eingabe ab, d.h. der alte Inhalt bleibt bestehen
+   Linke Maustaste : entspricht Return
+   Rechte Maustaste: entspricht Esc
+
+
+   Weitere Tastenfunktionen:
+
+   Esc    Abbruch einer Funktion (meist auch rechte Maustaste -
+          außer beim Kopieren + Löschen, dies ist einstellbar)
+   F10    Ende des Programms
+   Leer   Suche nach Dateien im aktuellen Verzeichnis (auch rechte
+          Maustaste auf unteren Fensterrand)
+   Rück   (Backspace) DOS-Befehlseingabe mit letztem Befehl
+    +     Markieren von Dateien (mit Wildcards z.B.: *.bat)
+    -     Markierung rückgängig machen
+    *     Markierung invertieren
+   Einfg  Einzelne Dateien markieren
+   Entf   Einzelne Dateien demarkieren
+   TAB    Fenster wechseln (auch Cursor rechts/links -
+          wenn die Anzeige einspaltig ist!)
+   '5'    Taste 5 auf dem Ziffernblock ermöglicht ein schnelles Hineinsehen
+          in eine Datei (ohne den Quickview-Modus einzuschalten)
+
+ Das Markieren von Dateien kann auch mit den Tasten Shift-Cursor-oben und
+ Shift-Cursor-unten geschehen.
+
+ Viele Funktionen des DX sind auch mit der Maus über mehrere Schalter-
+ Fenster (das sind fünf Fenster mit je 10 Schaltern) zu erreichen.
+ Diese Fenster werden mit einem Mausklick in der oberen linken Ecke des
+ Bildschirms geöffnet (alternativ über die Tastatur mit der Tasten-
+ kombination Strg-Alt).
+ Die letzte Seite (Nr. 5) beinhaltet die selbst vorgenommenen Einträge
+ im Hauptmenü (Menüpunkt 'Menü' im DX).
+
+ Weitere selbstdefinierte Strg-Buchstaben-Hotkeys für selbst eingetragene
+ Programme können über Shift-F1 (Hauptmenüverwaltung) eingerichtet werden.
+ Damit können Sie über die Strg-Taste und eine Buchstabentaste die
+ eingetragenen Programme sofort starten.
+
+ Erklärung der Platzhalter die in den verschiedenen Menüverwaltungen
+ benutzt werden:
+
+      !.! = Dateiname+Extension
+      !:\ = Laufwerk+Verzeichnis
+      !.- = Dateiname ohne Extension
+      !!  = Das "!" selbst.
+
+ Bsp.:
+       Dateiname = c:\test\unter\datei.tx
+       Der Platzhalter !.-  wird aufgelöst in 'datei'
+       !:\!.-  entspricht  'c:\test\unter\datei'
+       !.!!!   entspricht  'data.tx!' (zwar sinnlos aber wer's will!?)
+=== Arbeiten mit der Maus:
+   Oberer Teil des Bildschirms:
+
+     - Klick in die rechte obere Ecke = Bildschirmschoner
+     - Rechte Maustaste auf Verzeichnisse = Dirinfo (STRG-Return)
+       bzw. Markieren von Verzeichnissen (einstellbar in der Konfiguration)
+     - Klick auf das Verzeichnisfenster oben: Laufwerkswahl
+     - Rechts-Klick auf das Verzeichnisfenster oben: Quick Change Directory
+     - Mausklick links oben = Macrorecorder
+     - Rechts-Klick links oben = Button-Panel - Auswahl verschiedener
+       DX-Funktionen über Schalter
+
+   Unterer Teil des Bildschirms:
+
+     - Die Statuszeile unten ist mit der Maus bedienbar, hier aktiviert
+       die rechte Maustaste die Strg-Statusleiste
+     - Mausklick links unten: Quickmenü
+     - Rechts-Klick links unten oder links oben= Macrorecorder
+
+
+   Im Dateifenster:
+
+     - Rechte Maustaste markiert Dateien oder Verzeichnisse
+     - Doppelklick auf Datei startet diese
+     - Linke Maustaste auf Datei siehe Drag and Drop
+      im Mauscursor oben = Pos1   unten = Ende
+      im Mauscursor = nach oben scrollen
+      im Mauscursor = nach unten scrollen
+
+   Allgemein:
+
+     - Mausklick außerhalb eines Fensters = Abbruch der Funktion
+     - Rechte Maustaste gilt meist als Abbruch einer Funktion
+     ! Rechte Maustaste gilt beim Kopieren und Löschen nicht als
+     ! Abbruch sondern als Bestätigung (besonders schnell) wenn dies
+     ! in der Konfiguration eingeschaltet wurde.
+
+
+  Die Statuszeile (unten) ist mit der Maus bedienbar:
+  Wird eine der Steuerungstasten gedrückt (Strg/Alt/Shift), so werden
+  andere Funktionen auf die Funktionstasten gelegt.
+  Dementsprechend reagiert auch ein Mausklick auf die Statuszeile in
+  Abhängigkeit der Steuerungstasten.
+  Wird in der Statuszeile die rechte Maustaste betätigt, so wird zuerst
+  die Strg-Taste simuliert, dann Alt und danach Shift. Es kann also durch
+  'die Statuszeile gescrollt' werden.
+
+  Drag and Drop mit der Maus:
+
+  Dateien können mit der Maus kopiert, bewegt, gelöscht, gepackt,
+  zur Anzeige gebracht und in Datum, Attribut und Namen geändert
+  werden.
+  Zum Kopieren oder Bewegen müssen Sie eine oder mehrere Dateien
+  (diese vorher markieren) mit der Maus anklicken, ins andere Fenster
+  ziehen (mit gedrückter linker Maustaste) und dort ablegen (d.h. die
+  Maustaste loslassen). Dateien oder Verzeichnisse können auch im
+  gleichen Fenster in ein anderes Verzeichnis kopiert oder verschoben
+  werden.
+
+  Ansehen können Sie sich eine Datei, indem Sie sie auf die
+  Statuszeile unten in die linke Hälfte ziehen (in die Nähe des
+  Wortes 'Anzge').
+
+  Das Löschen geschieht analog dazu durch Ziehen in die rechte
+  untere Statuszeile ('Lösch') usw.
+
+  Die jeweilige Aktion wird im Text am Mauscursor angezeigt.
+
+  Ziehen Sie eine Datei in die linke untere Ecke (dort wo sich der gelbe
+  Punkt befindet), so kann unter Windows 95 der lange Dateiname dieser
+  Datei angezeigt werden. Mit der Tastatur können Sie diese Funktion
+  mit der Taste '#' erreichen.
+
+  Weiterhin ist es möglich eine Datei in das Menü (auf das Wort 'Menü'
+  in der oberen Zeile ziehen) oder in das Start-Menü (F2) einzutragen.
+=== Bedienung des Hauptbildschirms und Darstellung der Dateien
+In der folgenden Darstellung finden Sie die 'Klickpunkte', die mit der
+Maus angeklickt werden können, in eckigen Klammern [] wieder:
+
+   [0]≡ Info  Menü  Datei  Packen  Optionen  Einstellungen           [12]
+     ┌─────────────────────────────┐┌─────────────────────────────┐
+     │        C:\TOOLS\DX   [13]   ││     D:\SPRACHEN\BP\DX  [13] │
+     └─────────────────────────────┘└─────────────────────────────┘
+      [1 2 3]               [4 5 6]  [1 2 3]               [4 5 6]
+     ┌─∙─∙─∙──────┬─────────┬──\─┐┌─∙─∙─∙──────┬─────────┬──\─┐
+     │..          │UP--DIR│ 17:34││..          │UP--DIR│ 17:52│
+     │dxstart  bat│      114│ 20:01││BOOT_SEK    │SUB-DIR│ 17:53│
+     │menu     bat│      170│ 19:59││_dialog  pas│    14592│ 18:52│
+     │dxdacdp  bin│    97760│  7:04││_dirinfo pas│     6810│ 21:49│
+     │balken   bss│     4064│ 20:56││_dviewin pas│    13027│  0:16│
+     │sterne   bss│     4096│ 20:59││_dxbpane pas│    20290│  9:32│
+     │dxadress dat│    62394│ 20:38││_dxbuttn pas│    27943│  8:00│
+     │dxcdidx  dat│    46092│  0:23││_dxcdlib pas│    31350│  6:55│
+     │dxcdlib  dat│   268432│  0:23││_dxcolor pas│    16655│  9:21│
+     │dxcom    dat│     3484│ 22:21││_dxdcopy pas│    25373│ 14:30│
+     │dxctree  dat│      570│  1:33││_dxdfind pas│    40909│ 14:21│
+     ├────────────┴─────────┴──────│├────────────┴─────────┴──────│
+     │..           UP--DIR  17:34││..           UP--DIR  17:52│
+     └─────────────────────────────┘└─────────────────────────────┘
+      .A..B..C..D..E..F..G..H..I.  .A..B..C..D..E..F..G..H..I.
+     [7]                         [8 9]                           [10]
+     ∙1 Hilf 2 Menü 3 Anzge 4 Bearb 5 Kopie 6 Umb 7 MKDir 8 Lösch..
+   [11]
+
+   Die einzelnen Maus-Klickpunkte:
+
+   0: Mausklick = Button-Panel
+      Rechts-Klick = Macrorecorder
+
+   1: Fenstermenü 1: Filterfunktionen und Sortierung
+   2: Fenstermenü 2: Markieren mit der Maus und Verzeichniswechsel auf ein
+      eingetragenes Verzeichnis oder das Verzeichnis des anderen Fensters.
+   3: Fenstermenü 3: Wechsel in eines von 16 eingetragenen Verzeichnissen.
+
+   4: Wechselt ein Verzeichnis höher (cd ..), mit der Tastatur: '.'
+   5: Verzeichnis neu einlesen. Sinnvoll beim Diskettenwechsel oder in
+      Multitasking-Umgebungen (z.B. OS/2, Windows).
+      Tastatur: Taste '/' (am besten die '÷'-Taste auf dem Num-Block)
+   6: Wechsel ins Haupt-Verzeichnis (z.B. C:\).
+      Tastatur: Taste '\' oder 'ß'
+
+   7: Laufwerkszeile nach rechts scrollen.
+   8: Laufwerkszeile nach links scrollen.
+   9: Laufwerkszeile springt ans Ende (Laufwerk Z).
+  10: Laufwerkszeile springt an den Anfang (Laufwerk A).
+      Rechte Maustaste auf die Laufwerksbuchstaben in dieser Zeile
+      ergibt die Laufwerksstatistik dieses Laufwerkes (freie+belegte Bytes)
+
+  11: Mausklick = Quickmenü.
+      Mausklick mit rechter Taste = Macrorecorder.
+  12: Mausklick = Bildschirmschoner.
+      Rechts-Klick = Dosbild ansehen (entspricht der Taste Alt-F5)
+  13: Verzeichnisfenster: Mausklick = Laufwerkswahl.
+      Mausklick mit rechter Taste = Verzeichnisbaum zum schnellen
+      Verzeichniswechsel (QCD = Quick Change Directory ).
+
+ Darstellung der Dateien:
+
+ Es gibt mehrere Anzeigemöglichkeiten für Dateien und Verzeichnisse.
+ Nach der Installation des DX sehen Sie die 'normale' Darstellungsart
+ mit Größe, Erstellungszeit und Datum der Dateien.
+ Über die Tasten Alt-3 und Alt-5 haben Sie die Möglichkeit eine 3- oder 5-
+ spaltige Anzeige ein- oder auszuschalten.
+ Eine dritte Darstellungsart (nur Windsows 95 Über das Menü 'Einstellungen/
+ Lange Dateinamen' oder mit Alt-1) bietet die Anzeige der langen Dateinamen.
+
+ Ist eine Datei mit einem Kreis markiert (°), so ist sie Read-Only.
+ Eine versteckte Datei (Attribut 'Hidden') wird mit (░) markiert.
+ Die genaue Anzeige der Attribute einer Datei geschieht mit der
+ Tastenkombination Strg-F1.
+=== Programmstatus
+ Ein Überblick über die gerade aktuelle Situation des DX.
+
+ ┌───────────────────────────────────────────────────────────────────────┐
+ │ Pfad für temporäre Dateien    : E:\TMP\                               │
+ │ Stammverzeichnis des Programms: E:\TOOLS\DX\                          │
+ │ Befehlsinterpreter            : C:\DOS\COMMAND.COM                    │
+ │ Konfiguration (DOS6.x [menu]) : DX                                    │
+ │ Größe der residenten dx.exe   : 5504 Bytes   dx.com: 992 Bytes        │
+ ├───────────────────────────────────────────────────────────────────────┤
+ │ Installierter Speicher        : 4 MB (640 KB Hauptspeicher + 3072 KB) │
+ │ Zur Zeit freier Hauptspeicher : 343136 Bytes  Größter Block: 343136   │
+ │ Freier Extended-Speicher (XMS):   2616 KB     Größter Block: 2000 KB  │
+ │ XMS-Version/Revision          : 03.00/03.10                           │
+ │ Vom DX benutzter XMS-Speicher :     32 KB   Handle: 43302             │
+ ├───────────────────────────────────────────────────────────────────────┤
+ │ Betriebssystem/DOS-Version    : 6.20                                  │
+ │ Windows                       : Aktiv                                 │
+ │ Lange Dateinamen (Win95)      : nicht Aktiv (im DX abgeschaltet)      │
+ ├───────────────────────────────────────────────────────────────────────┤
+ │ CD-ROM Laufwerk               : K:\  498520 KB ≈ 486 MB               │
+ │ MSCDEX-Version                : 2.23                                  │
+ ├───────────────────────────────────────────────────────────────────────┤
+ │ Maustreiber                   : 2 Knöpfe Serielle-Maus Version 6.24   │
+ ├───────────────────────────────────────────────────────────────────────┤
+ │ Status der Overlay-Datei-Verwaltung:                                  │
+ │ EMS-Treiber nicht installiert.                                        │
+ └───────────────────────────────────────────────────────────────────────┘
+
+ Im 28-Zeilenmodus erscheint hier noch z.B.:
+
+ Zugriffe auf Overlay-Datei    : 46
+ Größe des Overlaypuffers      : 22976 Bytes
+
+ Der Pfad für temporäre Dateien wird der Umgebungsvariablen TMP entnommen.
+ Ist TMP nicht vorhanden, so wird TEMP benutzt. Wurde auch diese Variable
+ nicht definiert (in der autoexec.bat mit z.B.: set tmp=c:\dos\tmp), dann
+ wird das DX-Verzeichnis (hier Stammverzeichnis genannt) als temporärer
+ Datenspeicher verwendet.
+
+ Das Stammverzeichnis ist das Directory, in welches der DX installiert
+ wurde.
+
+ Der Befehlsinterpreter ist üblicherweise der command.com. Diese Angabe
+ wird der Umgebungsvariablen COMSPEC entnommen.
+
+ 'Konfiguration' meint die Umgebungsvariable CONFIG, die eingerichtet wird,
+ wenn ab MS-DOS 6 ein Menü in der config.sys vorhanden ist. Damit kann
+ festgestellt werden, welche Konfiguration gerade aktuell ist.
+
+ Größe der residenten dx.exe: Wenn Programme aus dem DX gestartet werden,
+ bleibt dieser Teil des Programmes im Speicher. Neu: starten Sie den DX
+ über die Datei dx.com, so haben Sie nur die 992 Bytes + Größe des
+ Environment-Bereichs + Größe des command.com im Speicher.
+
+ Der freie Hauptspeicher gibt den gerade aktuellen Zustand des konventio-
+ nellen Speichers unter 640KB an, wobei dx.exe und dxmain.exe natürlich
+ im Speicher sind.
+ Die Datei dxmain.exe wird aber bei einem Programmstart aus dem Speicher
+ entfernt!
+ Wenn Sie wissen möchten, wieviel Speicher zu startenden Programmen zur
+ Verfügung steht, geben Sie einfach mem ein.
+
+ Die Größe des installierten Speichers wird dem C-MOS RAM-Baustein Ihres
+ Rechners entnommen. Hier steht zuerst die Hauptspeichergröße (640 KB)
+ dann die Größe des Erweiterungsspeichers ab 1 MB (hier 3072 KB).
+ Werden hierzu noch die 384 KB (Adapterbereich zwischen 640 KB und 1MB)
+ addiert, so ergibt sich die angegebene Gesamtspeichergröße in MB.
+
+ Lange Dateinamen unter Windows 95 sind nur aktiv, wenn auch Windows 95
+ läuft. Das reine DOS 7.0 (mit Win 95 mitgeliefert) kann nicht mit langen
+ Namen umgehen.
+ Nach dieser Angabe steht (in Klammern), ob innerhalb des DX die langen
+ Namen eventuell ausgeschaltet wurden.
+
+ Die Angaben über die Overlay-Datei (in dxmain.exe) waren eigentlich nur
+ während der Entwicklungsphase des Programmes für mich von Bedeutung, doch
+ habe ich mich dazu entschieden diese Werte hier zu belassen. Da der DX oft
+ auf die Overlay-Datei zugreift ist es anzuraten, ein Software-Cache zu
+ installieren (Smartdrive o.ä.) oder die Overlay-Datei in den EMS kopieren
+ zu lassen (unter 'Einstellungen/ Konfiguration').
+ Die Overlay-Datei ist ein Teil der Datei dxmain.exe.
+=== Umgebungs-Variablen
+  Es wird eine Liste aller Umgebungsvariablen erzeugt und im Betrachter
+  angezeigt.
+
+  Umgebungs- oder Environment-Variablen sind die Strings, die über den SET
+  Befehl (im DOS) gesetzt werden (z.B.: SET TMP=C:\DOS\TMP).
+
+  Die Größe des Speicherbereichs für diese Variablen wird in der config.sys
+  im Shell-Befehl mit dem Parameter /E=... angegeben (E für Environment).
+
+  Die Anzahl der benötigten Bytes wird im Betrachter angezeigt und wurde
+  wie folgt berechnet:
+
+  Summe aller Bytes für die Strings (+1 pro String= 0 als Endekennung)
+  + 2 (2 * 0 = Endekennung des Environment-Speichers.
+
+  Anm.:  Im DX können keine Variablen neu gesetzt werden.
+         Der Set-Befehl setzt diese Variablen im Umgebungsbereich des
+         jeweiligen Programmes, d.h. sie werden in der temporären
+         DOS-Shell (die immer vom DX aus gestartet wird wenn ein Befehl
+         auszuführen ist) gespeichert und nach Befehlsbeendigung wieder
+         entfernt.
+=== Kalender
+  Der Kalender gilt ab dem Jahr 1900 (da lebte ich noch nicht) bis zum
+  Jahr 2399 (da werde ich nicht mehr leben, oder?).
+  Es werden nur bundeseinheitliche Feiertage angezeigt.
+
+  Heilige drei Könige, Mariä Himmelfahrt und der Reformationstag fehlen.
+
+  Die Bedienung geschieht über die Cursortasten oder mit der Maus:
+
+        Cursor rechts: Monat erhöhen    (Mausklick rechter Rand)
+        Cursor  links: Monat verringern (Mausklick linker Rand)
+
+   Strg-Cursor rechts: Tag erhöhen
+   Strg-Cursor  links: Tag verringern
+
+          Cursor oben: Jahr erhöhen
+          (auch Bild oben oder Mausklick am oberen Bildschirmrand)
+
+         Cursor unten: Jahr verringern
+         (auch Bild unten oder Mausklick am unteren Bildschirmrand)
+
+  Zusammen mit der Shift-Taste wird das zweite untere Datum eingestellt.
+=== Stoppuhren
+
+  Zwei von der Systemzeit abhängige Stoppuhren.
+
+  Die oberste Zeile gibt die Start-Uhrzeit an, darauf folgt die Endzeit,
+  die laufende Zeit und eine Zwischenzeit.
+
+  Angegeben sind jeweils Stunden:Minuten:Sekunden:1/100 Sekunden.
+
+  Die Zeiten werden automatisch in der aktuellen dx.ini abgespeichert,
+  so daß die Uhren auch nach Beendigung des DX weiterlaufen.
+
+  Die Buttonleisten für Uhr1 und Uhr2 können über Cursor-oben und -unten
+  gewechselt werden.
+
+  Abbruch der Funktion wie üblich über Esc, F10 oder rechte Maustaste.
+=== Adressliste
+  Hier hat man die Möglichkeit, Adressen einzutragen und über ein Modem
+  eine Telefonnummer wählen zu lassen. Eine Telefonliste (dxadress.dat)
+  wird angelegt, wenn sie noch nicht vorhanden ist. Sie bekommen dann
+  einmal den Hinweis, daß diese Datei angelegt wurde. Bei der nächsten
+  Anwahl dieses Menüpunktes erscheint die Meldung nicht mehr, da
+  dxadress.dat dann existiert.
+  Es können maximal 400 Adressen gespeichert werden.
+
+ Bevor Sie mit F8 wählen:
+
+ !Es muß einmal über 'Einstellungen/Modemparameter' die richtige
+ !Schnittstelle eingestellt werden! Ist das Modem z.B. an COM4
+ !angeschlossen, so müssen Sie mit der Taste 4 (oder über die Maus) COM4
+ !anwählen. Die Nummer im Eintrag 'Vorwahl' wird vor jeder Telefonnummer
+ !gewählt (falls eine 0 o.ä. zuerst gewählt werden muß).
+ !Bei Nebenstellenanlagen: nach der ersten '0' muß ein wenig gewartet
+ !werden um ein Amt zu bekommen. Tragen Sie dann unter 'Vorwahl' die 0
+ !gefolgt von einem oder mehreren Kommata ein. Das Komma ist üblicherweise
+ !das Zeichen das eine Pause einlegt. Falls es nicht das Komma sein sollte
+ !müssen Sie das jeweilige Zeichen Ihrem Modem-Handbuch entnehmen.
+
+  Die Funktionstasten:
+
+    F1:  Diese Hilfe.
+    F2:  Die aktuelle Adresse kann editiert werden.
+    F3:  Eine Adresse wird hinzugefügt.
+    F4:  Die aktuelle Adresse wird gelöscht.
+    F5:  Die Adressen können nach Vornamen, Nachnamen oder Wohnort
+         sortiert werden.
+    F6:  Im- und Export der Adressen (z.B. alle Adressen als Ascii-Datei
+         speichern).
+    F8:  Wählen der aktuellen Nummer.
+
+  Nach dem Wählvorgang kann der Telefonhörer aufgenommen werden (nicht
+  während des Wählvorganges, dies ist abhängig vom Modem).
+  Eventuell muß noch eine Taste ('Voice/Data' oder 'V/D') am Modem
+  betätigt werden, oder das Modem muß mit dem Schalter 'Auflegen'  von
+  der Leitung getrennt werden, damit das Gespräch an das Telefon weiter-
+  gegeben wird. Ihr Gesprächspartner möchte schließlich mit Ihnen
+  telefonieren und nicht mit Ihrem Modem!
+
+  Die folgende Tabelle erläutert die Ausgabeformate der Adressen beim
+  Im- und Export in oder aus einer Datei:
+
+                                             Ausgabeformat:
+
+  [ ] Export als Etiketten:                  Vorname Nachname
+                                             Strasse
+                                             Ort
+
+                                             Vorname2 Nachname2
+                                             ...
+
+  [ ] Export im Ascii-Format:                Vorname
+                                             Nachname
+                                             Strasse
+                                             Ort
+                                             Telefonnummer
+                                             ...
+
+  [ ] Import im Ascii-Format erwartet die Daten wie oben.
+
+  [ ] Import Semikolon als Trenner:
+      Nachname1;Vorname1;Strasse1;Ort1;Telefonnummer1
+      Nachname2;Vorname2;Strasse2;Ort2;Telefonnummer2
+      ...
+
+  Bei einem Import von Adressen aus einer Datei werden die neuen Adressen
+  den schon vorhandenen hinzugefügt.
+
+  Da die Anzeigebreite bei 80 Spalten zu klein ist, um eine komplette
+  Adresse in einer Zeile darzustellen, können die Spalten 'Ort' und
+  'Telefonnummer' in der Breite variiert werden (nur mit der Maus).
+=== Telefonieren
+ Das DX-Komforttelefon: Sie sehen eine Telefontastatur und daneben eine
+ Schalterreihe mit Namen aus der Adressliste. Dies sind die Schnellwahl-
+ tasten.
+ Sie können direkt über diese Tasten wählen, eine Nummer über das
+ Ziffernfeld eingeben oder mit dem Schalter '->' (entspricht auf der
+ Tastatur dem '-') aus der Adressliste auswählen.
+
+ Der linke untere Schalter mit dem Telefonsymbol dient zum Wählen der
+ eingegebenen Nummer und zum Unterbrechen (Auflegen) der Leitung.
+
+ Eine Wahlwiederholung ist mit der Taste '#' möglich.
+
+ Nachdem das Modem die gewünschte Nummer gewählt hat, muß die Leitung dem
+ Telefon zugeschaltet werden. Dazu heben Sie den Hörer ab und trennen das
+ Modem von der Leitung (über den Telefon-Schalter links unten oder über
+ eine Taste an Ihrem Modem).
+=== Modembefehle
+  Dieser Punkt dient der Möglichkeit, Befehle an Ihr Modem zu senden oder
+  Einstellungen des Modems auszulesen und zu ändern.
+
+  Dies ist kein Terminalprogramm!
+
+  Als erstes wird der String 'ATZ'=Reset ans Modem gesendet.
+  Danach erhält das Modem den Init-String der unter 'Einstellungen/Modem-
+  parameter' eingestellt wurde.
+  Das Modem sollte jetzt mit 'OK' antworten. Ist dies nicht der
+  Fall, so ist eventuell eine falsche Schnittstelle eingestellt.
+
+  Die Funktionstasten:
+
+  F1: Diese Hilfe
+  F2: Der String 'Info1', der unter 'Einstellungen/Modemparameter'
+      eingetragen wurde wird an das Modem gesandt.
+  F3: Der String 'Info2', der unter 'Einstellungen/Modemparameter'
+      eingetragen wurde, wird an das Modem gesandt.
+      Welcher String Infos vom Modem abfragt, ist abhängig vom jeweiligen
+      Gerät. Sehen Sie in Ihrem Handbuch zum Modem nach.
+  F4: Wahlwiederholung.
+  F5: Auflegen.
+  F6: Lokales Echo ein- und ausschalten. Falls alle Zeichen doppelt auf
+      dem Bildschirm erscheinen, so schalten Sie das lokale Echo aus.
+  F7: Der Initialisierungsstring wird an das Modem gesendet.
+  F8: Auswahl und Wählen einer Telefonnummer aus der Adressliste.
+=== Systeminformationen (Mem, XMS, Schnittstellen)
+  Der Speicherüberblick mit mem/c oder mem/d ist die Ausgabe des DOS-
+  Dienstprogrammes mem.exe. D.h. das Programm mem.exe muß verfügbar sein,
+  es sollte im Suchpfad zu finden sein (Path= ... in der autoexec.bat).
+
+  Es stehen zwei Ausgaben zur Verfügung:
+                 1. mem/c
+                 2. mem/d.
+
+  Die Ausgabe wird in eine Datei dxmem.tmp umgeleitet, die im temporären
+  Verzeichnis angelegt, in den internen Viewer geladen und somit
+  angezeigt wird.
+
+  Nach der Anzeige wird die temporäre Datei wieder gelöscht.
+
+
+  XMS und EMS:
+  Die Ermittlung des zur Verfügung stehenden freien und belegten Speichers
+  im XMS setzt den Speicherverwalter himem.sys (o.ä.) voraus.
+  EMS steht zur Verfügung, wenn emm386.exe (o.ä.) aktiv ist.
+  Falls hier ein Speicherbereich größer ist als Ihr physikalisch
+  vorhandener Speicher, so haben Sie wahrscheinlich den DX unter Windows
+  gestartet.
+  Hier kann die Auslagerungsdatei einen Teil des XMS oder EMS darstellen.
+
+
+  XMS-Details:
+  Es werden die Handles, Größen, Locks und linearen Adressen der
+  belegten Speicherblöcke angezeigt.
+  Die 32KB, die der DX benötigt, werden mit den Buchstaben'DX'
+  gekennzeichnet.
+
+  Anm.: Wenn ein EMB (Extended Memory Block) gesperrt ist (Lock>0)
+        kann er von der Speicherverwaltung nicht verschoben werden.
+        Wurde er z.B. 3 mal gesperrt, so muß er auch wieder 3 mal
+        'entsperrt' werden, um der Speicherverwaltung anzuzeigen,
+        daß er wieder verschiebbar ist.
+
+  Schnittstellen:
+  Angezeigt werden die Adressen der seriellen und parallelen Schnittstellen
+  in Ihrem PC. Diese Informationen werden dem BIOS - Variablenbereich
+  entnommen.
+  Drucker können hier vertauscht werden.
+  Damit wird der Drucker an LPT2 zum Drucker an LPT1 und umgekehrt.
+  Dies ist nicht unter Windows möglich.
+  (Das würde Windows überhaupt nicht gefallen!)
+=== Speicherauszug                                                     (Alt-F)
+ Es wird der aktuelle Inhalt des Hauptspeichers und der HMA dargestellt.
+ Das sind die Speicherstellen von 00000h bis 10FFEFh.
+ Die HMA (High-Memory-Area) beginnt ab 100000h.
+ Die Adresse 10FFEFh ist die maximal mögliche zu adressierende Speicher-
+ stelle im Real-Modus. Diese ergibt sich aus der Segment und Offset-Adresse
+ FFFF:FFFF = FFFF0 + FFFF = 10FFEF.
+
+ Die Funktionen entsprechen weitestgehend den Funktionen im Hex-Editor,
+ nur daß hier natürlich nicht editiert werden darf (der Rechner würde
+ eventuell sofort abstürzen).
+
+        Funktionen während der Anzeige:
+
+               F1 : Diese Hilfe.
+               F2 : Ständiger Refresh des Bildschirminhaltes.
+               F5 : Weiter suchen (RFIND).
+               F7 : Suchen        (FIND).
+               F8 : Goto - Geht an die einzugebende Stelle (Offset).
+               F9 : Umschalten der Anzeige des Offsets rechts unten
+                    Hexadezimal oder Dezimal.
+           Return : Detaillierte Infos über die nächsten 4 Byte.
+
+ ESC/F10/Maus rechts : Ende
+ Cursor rechts/links : Offset und ASCII-Code des aktuellen
+                       Zeichens werden rechts unten angezeigt.
+     Strg-Bild auf/ab: Scrollt um jeweils 64K.
+
+  Anmerkung zur Suche: Wenn man von Anfang des Speichers an sucht, wird
+                       der zu suchende String auf jeden Fall gefunden,
+                       da er eingegeben wurde und somit im Speicher
+                       mindestens einmal im Bereich des DX vorhanden ist.
+
+ Die Funktion F2=Refresh erneuert den Bildschirm ständig, so daß auch
+ aktuelle Änderungen im Speicher erkannt werden können.
+ Interessant ist z.B. die Speicherstelle 417h (Tastaturstatusbyte) oder
+ der Bildschirmbereich bei Color-VGA ab B8000h = B800:0000.
+
+ Wenn Sie z.B. den Bereich, in den der DX geladen wurde, sehen möchten,
+ so wählen Sie zuerst die Funktion 'mem /d' und suchen das Programm DX.
+ Oder Sie geben direkt ein: mem/m dx. Hier werden nun zwei Adressen
+ angegeben. 1. Adresse der Umgebung und 2. Adresse der dx.exe oder dx.com.
+ Da die Angaben Segmentadressen sind, müssen Sie die Werte mit 16
+ multiplizieren, um die physikalische Adresse zu errechnen. Im HEX-System
+ bedeutet dies, daß eine Null angehängt werden muß.
+ Bsp: Angegebene Adresse der Umgebung: 0500. Im Speicherauszug wählen
+ Sie nun F8 und geben unter HEX 5000 an. Nun sehen Sie die ersten 16 Bytes
+ (beginnend mit einem 'M'), dies ist der MCB (Memory-Control-Block), der
+ jedem Speicherbereich vorangeht. Danach folgen die Umgebungsvariablen
+ in Klartext.
+=== Benutzermenü                                                          (F2)
+ Hier kann man 'auf die Schnelle' Programme starten. Ganz ohne PI-PA-PO
+ (Präfixe und so) werden die über den Punkt 'Verwaltung' eingetragenen
+ Programme leicht über Cursortasten, Maus oder Funktionstasten gestartet.
+ Mit der rechten Maustaste auf einen der Schalter haben Sie die Möglichkeit
+ diesen Eintrag zu ändern bzw. neu einzutragen oder zu verschieben.
+ Der Menüpunkt 'Trenner' trägt einfach eines der auszuwählenden Zeichen
+ (Strich - oder Sternchen * ...) als Name ein. Hiermit kann man die
+ Schalter optisch besser anordnen.
+
+  Steuerung: Cursor-Tasten, Bild oben- unten, TAB und mit der Maus.
+  Start    : Return bzw. über Funktionstasten oder Maus.
+  F9       : Die Menüleiste 'Verwaltung' wird geöffnet.
+  Esc      : Beendet das Benutzermenü
+  Strg-Return oder rechter Mausklick auf einen der Schalter öffnet das
+  lokale Menü dieses Buttons. Die Funktionen in diesem Menü sind selbst-
+  erklärend (Neu, Ändern, Löschen, Trenner einfügen, Verschieben und
+  Beenden).
+
+  Die eingetragenen Programme sind in Gruppen aufgeteilt. Eine Gruppe
+  ist ein Menüpunkt oben am Bildschirm. Die Gruppen kann man selbst
+  einrichten (Bsp.: ~Tools ~Spiele ~Anwendungen usw.). Eine Gruppe
+  entspricht auch gleichzeitig einem Satz von 21 Buttons.
+  Die Sortierung der Programme innerhalb einer Gruppe geschieht
+  mit Hilfe des Menüpunktes 'Einträge sortieren' unter 'Verwaltung'.
+  Hier kann man das zu verschiebende Programm mit der Maus doppel-
+  klicken oder mit Return 'highlighten', dann verschieben und wieder
+  durch Doppelklicken ablegen.
+
+
+  Einträge bearbeiten:
+  ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌
+  Einträge einfügen, umbenennen und löschen.
+  Wählt man 'Einfügen', so hat man die Möglichkeit, über einen
+  'kleinen DX' sich ein Programm (es werden nur *.com, *.bat und
+  *.exe Programme angezeigt) auszusuchen und mit Return zu benennen.
+  Der eingegebene Name wird dann der aktuellen Gruppe hinzugefügt oder
+  an der aktuellen Position eingetragen.
+
+  [X] Verzeichniswechsel: Ist diese Option aktiviert, so wird in das
+  Verzeichnis des Programmes gewechselt, das gestartet werden soll.
+  Viele Programme benötigen ihr Stammverzeichnis als aktuelles
+  Verzeichnis, so daß diese Option voreingestellt eingeschaltet ist.
+  Ein Laufwerkswechsel geschieht auch hier über Alt-F1 oder Alt-F2.
+
+
+  Gruppe einfügen:
+  ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌
+  Alle Gruppen bekommen einen Hotkey, so daß man diesen beim
+  Benennen der Guppe angeben muß. Die jeweilige Taste wird mit einer
+  Tilde (~) gekennzeichnet. ~Spiele ergibt den Hotkey S für diese
+  Gruppe. D.h. wenn Sie 's' drücken wird diese Gruppe von Programmen
+  angezeigt.
+
+  Die Programme werden nicht direkt über die Exec-Funktion des DOS geladen,
+  sondern über den command.com (command /c, aus Kompatibilitätsgründen).
+  So bleiben die ca. 1 KB der dx.com und ca. 3 KB des residenten Teils des
+  command.com im Speicher. Startet man das Benutzermenü extern über die
+  Batch-Datei menu.bat (also nicht vom DX aus), so verbleibt kein Programm
+  im Speicher! (siehe dxm.exe).
+
+  Die hier eingetragenen Daten werden in der Datei dxmenu.dat abgelegt.
+=== Selbstdefinierte Einträge
+Die Einträge in diesem Menü können selbst vorgenommen werden, indem Sie
+den Cursorbalken im DX auf eine startbare Datei (*.exe;*.bat und *.com)
+stellen und Shift-F1 drücken.
+
+Dies entspricht dem Menüpunkt 'Einstellungen/Eintragen ins Menü'.
+
+Noch einfacher geht's mit der Maus: Ziehen Sie eine Datei auf das Wort
+'Menü' in der obersten Zeile des Bildschirms, und diese Datei kann
+eingetragen werden.
+
+Weitere Details unter 'Einstellungen Eintragen ins Menü'.
+=== Attribute ändern                                                 (Strg-F1)
+  Hier können die Attribute einer oder auch mehrerer Dateien
+  verändert werden. Bei nur einer Datei wird das Attribut der
+  Datei in den Schaltflächen [X] und in der Titelzeile als
+  Dezimalzahl, so wie DOS sie abspeichert, angezeigt.
+  Bei mehreren Dateien hat man die Möglichkeit, gezielt einzelne
+  Attribute zu setzen oder zu löschen, wobei die anderen Attribute,
+  die nicht verändert werden, beibehalten bleiben.
+
+  Tip: Sie können auch Verzeichnissen andere Attribute geben.
+       So kann man auch Directories verstecken und mit Shift-F4
+       unsichtbar machen.
+
+  Die Attribute Volume-ID und Directory werden nur aus Gründen der
+  Vollständigkeit aufgeführt. Natürlich kann man keine Datei in ein
+  Verzeichnis umwandeln.
+=== Dateizeit und Datum ändern
+  Ähnlich wie bei den Attributen wird bei nur einer Datei
+  die Dateizeit und das Dateidatum angezeigt und kann nun
+  verändert werden.
+
+  Bei mehreren Dateien wird die aktuelle Systemzeit und
+  das aktuelle Datum angezeigt.
+
+  Zur Modifikation wählen Sie die Zeit über Alt-Z oder
+  das Datum über Alt-D aus. Alternativ können die Eingabe-
+  felder mit der Maus angeklickt werden.
+
+  Im Eingabefeld 'Datum' kann 'heute' eingegeben werden.
+=== Drucken
+ Der Cursorbalken muß sich auf einer Datei befinden die gedruckt werden
+ soll. Nach Auswahl des Druckers und der einzelnen Parameter wird diese
+ Datei in der gewählten Schriftart gedruckt.
+
+ Für jede der angegebenen Schnittstellen (LPT1 und LPT2) kann ein anderer
+ Drucker gewählt und abgespeichert werden.
+ Wählen Sie LPT1 oder LPT2, so wird der dazu ausgewählte Drucker angezeigt.
+ Der Drucker bzw. die Schnittstelle kann mit der Space-Taste geändert
+ werden.
+
+ Wird für Zeilen/Seite der Wert 0 angegeben, so ist der Button Seiten-
+ vorschub/Seitenende gesperrt. Andernfalls wird nach der eingegebenen
+ Anzahl von Zeilen ein Seitenvorschub ausgeführt und eine neue Seite
+ angefangen.
+
+ Die Werte für 'Rand oben' und 'Rand links' stellen einzelne Zeichen dar.
+ Wird für 'Rand links' der Wert 5 eingegeben, so werden auf jeder Zeile
+ 5 Leerzeichen und danach die jeweilige Zeile gedruckt.
+
+ Über den Button 'Treibereinstellung' lassen sich einzelne Druck-Befehle
+ erstellen oder ändern. Hierzu müssen Sie das Druckerhandbuch Ihres
+ Druckers vorliegen haben.
+
+ Links sehen Sie eine Scroll-Box mit den Namen der Schriftarten. Die
+ letzte Zeile (in Gelb) dient als Zwischenablage in die man eine
+ Schriftart kopieren (bzw. ausschneiden) kann, um diese Zeile dann an
+ einer anderen Stelle wieder in die Liste einzufügen.
+
+ Die Bedeutung der einzelnen Buttons:
+
+ Test-Druck: Es wird ein englischer Satz in der gerade aktuellen
+             Schriftart gedruckt. Dieser Satz wurde gewählt, weil er
+             alle Buchstaben (ohne Umlaute) enthält.
+
+ Druck-Alle: Test-Druck mehrerer Schriftarten. Es können mehrere
+             Schriftarten über ihre Nummer angegeben und in Form des
+             Test-Satzes ausgedruckt werden.
+
+ Befehl drucken: Der Befehl der aktuellen Schriftart wird an den Drucker
+                 geschickt. Dies stellt den Drucker auf diese Schriftart
+                 ein, bis der Drucker einen Reset erhält oder eine andere
+                 Schriftart ausgewählt wird.
+
+ Form-Feed:  Sendet ein Seitenvorschubzeichen an den Drucker, so daß dieser
+             das Papier auswirft.
+
+ Um einen Druckertreiber für den eigenen Drucker zu erstellen, benutzt man
+ am besten einen der schon vorhandenen Treiber und modifiziert diesen.
+=== Dateien anzeigen                                                      (F3)
+ Mit F3 wird die gerade aktuelle Datei in einen der internen Datei-
+ betrachter geladen. Diese einfachen Viewer dienen dazu, mal eben schnell
+ in eine Datei hineinzusehen.
+ Eine andere Möglichkeit in Dateien hineinzusehen bietet die Funktion
+ 'Quickview' unter 'Einstellungen'. Im jeweils anderen Fenster wird
+ der Inhalt der aktuellen Datei angezeigt.
+ Noch schneller geht es mit der Taste '5' auf der Nummerntastatur.
+ Dabei wird die aktuelle Datei im anderen Fenster angezeigt, aber die
+ Quickview-Funktion wird nicht eingeschaltet.
+
+  Funktionen während der Anzeige (auch Mausbedienbar):
+                   F2 : Datei drucken
+                   F3 : Teile herauskopieren
+                   F5 : Weiter suchen (RFIND)
+                   F7 : Suchen        (FIND)
+                   F9 : Anzeige des Offsets rechts unten Hex/Dez
+  Return (Doppelklick): Blockmarker für F3 setzen
+  ESC/F10/Maus rechts : Ende
+  Cursor rechts/links : Offset und ASCII-Code des aktuellen
+                        Zeichens werden rechts unten angezeigt.
+                        (oder mit der Maus das Zeichen anklicken)
+
+  Einfacher Betrachter:
+                  Pos1: geht an den Anfang der Datei
+                  Ende: geht ans Ende der Datei
+             Strg-Pos1: geht an den Anfang der Zeilen
+             Strg-Ende: geht ans Ende der Zeilen
+
+
+  Die Ascii-Zeichen #10 und #13 (LF/CR) wurden in Blanks (#32) umgesetzt
+  (bessere Lesbarkeit eines Textes)!
+  Tabulatoren (Ascii-#9) sind sichtbar und werden nicht in Blanks geändert.
+  Dadurch wird ein Text mit Tabulatoren zwar schlechter lesbar (sie sehen
+  das Ascii-Zeichen für 'Tab'), doch habe ich Wert darauf gelegt, die Datei
+  so anzuzeigen, wie sie abgespeichert ist.
+  Wollen Sie auch die Tabulatoren in Leerzeichen umgewandelt haben, so
+  benutzen Sie den einfachen Viewer, den Sie unter 'Einstellungen/
+  Konfiguration' auf der Seite 'Editor' auf die Taste F3 legen können.
+  Hierbei sind allerdings Funktionen wie die Suche nicht möglich.
+
+  Die Suche ist besonders schnell (in Assembler geschrieben) und beginnt ab
+  der aktuellen Zeile.
+
+  Mit der Maus kann in der oberen Zeile (Pfeil nach oben im Mauscursor)
+  nach oben und in der unteren Zeile nach unten gescrollt werden.
+  Die linke obere und rechte untere Ecke des Bildschirms dienen
+  dazu, mit der Maus die Pos1(oben) und Ende(unten)-Funktion auszuführen.
+
+  Ein externes View-Programm kann über den Menüpunkt 'Einstellungen/
+  Konfiguration' auf der Seite 'Editor' auf die Funktionstaste ALT-F3
+  gelegt werden.
+=== Dateien editieren                                                     (F4)
+  Dateien können über einen externen Editor bearbeitet werden.
+  Dem DX liegt ein Mehr-Dateien-Editor für mehrere jeweils max. 64 KB
+  große Dateien bei (dxe.exe).
+  Es muß vorher (nur einmal) der Editor über den Menüpunkt
+  'Einstellungen/Konfiguration' auf der Seite 'Editor' eingetragen werden.
+  Danach müssen die Einstellungen abgespeichert werden, damit der
+  eingetragene Editor beibehalten bleibt.
+
+  Geben Sie zum Beispiel hier den DOS-Editor an (C:\DOS\edit.com)
+  und ist der Cursorbalken im Hauptprogramm auf der Datei readme.doc,
+  so wird folgender Befehl abgesetzt wenn Sie F4 drücken:
+
+       C:\DOS\edit.com readme.doc
+
+  Somit kann die Datei editiert werden.
+
+ Der mitgelieferte Editor dxe.exe:
+
+ Der Editor wurde in Turbo-Vision programmiert (was ich beim DX extra
+ vermieden habe, um dem Programm ein individuelles Aussehen zu geben).
+ Diese Oberfläche kennen Sie wahrscheinlich von diversen anderen
+ Programmen.
+ Man kann mehrere max. 64 KB große Dateien editieren und über die
+ Zwischenablage Daten zwischen den Dateien hin- und herkopieren.
+ Voreingestellt erzeugt der Editor keine Backup-Dateien. Wenn aber eine
+ Datei dxe.ini erzeugt und in das Verzeichnis des Editors kopiert wird, so
+ werden Backup-Dateien (*.bak) der Original-Dateien erzeugt.
+ Dxe.ini muß nur vorhanden sein, der Inhalt ist nicht wichtig.
+ Sie können diese Einstellung im Copyright-Hinweis des Editors überprüfen.
+ Dies ist der Menüpunkt ganz links oben (drei Striche).
+ Der Editor unterstützt keine langen Dateinamen (Win 95). Dafür benutzen
+ Sie besser den von Microsoft mitgelieferten EDIT (der ist sowieso besser,
+ da er auch Dateien >64KB bearbeiten kann). DXE.EXE ist hauptsächlich
+ für den Menüpunkt 'Systemdateien editieren' gedacht.
+ (Wenn Sie Dateien mit langen Namen editieren, so bleiben die langen Namen
+ zwar erhalten, doch funktioniert 'Speichern unter' und die Anzeige der
+ Namen im Fenster nicht.)
+=== Hex-Editor                                                            (F9)
+ Über F9 wird die gerade aktuelle Datei in den internen
+ Hex-Editor geladen.
+
+      Funktionen während der Anzeige:
+
+                   F1 : Diese Hilfe
+                   F3 : Teile herauskopieren
+                   F5 : Weiter suchen (RFIND)
+                   F7 : Suchen        (FIND)
+                   F8 : Goto - Geht an den einzugebenden Offset
+                   F9 : Anzeige des Offsets rechts unten Hex/Dez
+               Return : Blockmarker für F3 setzen
+          Strg-Return : Detaillierte Infos über die nächsten 4 Byte
+  ESC/F10/Maus rechts : Ende
+  Cursor rechts/links : Offset und ASCII-Code des aktuellen
+                        Zeichens werden rechts unten angezeigt.
+
+  Die Menüzeile oben ist jetzt mit der Maus bedienbar.
+  Es werden alle Zeichen so dargestellt, wie sie in der Datei vorhanden
+  sind.
+  Links sehen Sie die Zeichen in Hex-Darstellung, auf der rechten Seite
+  werden die Ascii-Zeichen (Text) angezeigt.
+  Wechseln von einer Seite zur anderen geschieht mit der Tab-Taste oder
+  mit der Maus.
+  Wurden Änderungen in der Datei vorgenommen, so wird vor dem Beenden des
+  Editors oder beim Wechsel von einem Segment ins andere (jeweils nach
+  64 KB) nachgefragt, ob die Änderungen auch wirklich vorgenommen werden
+  sollen.
+
+  Die Angaben in der untersten Zeile bedeuten:
+    1. Zeilenzahl
+    2. Offset vom Beginn der Datei (z.B. das 3. Zeichen hat den Offset 2!)
+    3. Das aktuelle Zeichen (Ascii)
+    4. Aktuelles Zeichen, hexadezimal
+    5. Aktuelles Zeichen, dezimal
+=== Verzeichnis angleichen
+ Über diesen Menüpunkt lassen sich Backup-Verzeichnisse synchronisieren,
+ d.h. ein Zielverzeichnis dem Quellverzeichnis angleichen.
+ Nach dem Vorgang sind dann im Zielverzeichnis dieselben Dateien wie im
+ Quellverzeichnis.
+
+ Zuerst wählen Sie die gewünschten Verzeichnisse und stellen sie in den
+ Dateifenstern im DX dar.
+
+ Das aktive Fenster muß das Quellverzeichnis sein, aus dem die Dateien ins
+ andere Fenster (Verzeichnis) kopiert werden sollen.
+
+ Nach Auswahl des Menüpunktes 'Datei/Verzeichnis angleichen' kann noch
+ gewählt werden, ob alle Unterverzeichnisse mit berücksichtigt werden
+ sollen.
+ Wählen Sie nun 'Liste erzeugen...' und es werden die Dateien angezeigt,
+ die im Zielverzeichnis nicht vorhanden oder nicht gleich den Quelldateien
+ sind.
+
+ Das Quellverzeichnis wird immer auf der linken Seite angezeigt.
+ Es werden also immer nur Dateien von links nach rechts kopiert.
+ In der Liste können noch einzelne Dateien entfernt werden (Taste Entf),
+ die evt. nicht kopiert werden sollen.
+ Mit F5 wird nun der Kopiervorgang gestartet.
+=== Suche nach doppelten Dateien
+  Es wird nach Dateien gesucht, die den gleichen Namen haben.
+  Wird '[ ] Exakte Gleichheit' angekreuzt, so werden auch Datum, Zeit
+  und Größe der Dateien miteinander verglichen (nicht deren Inhalt!).
+
+  Es muß maximal ca. 1MB Plattenspeicher für temporäre Dateien
+  vorhanden sein (abhängig von der Anzahl der doppelten Dateien)!
+
+  Die Suche erfolgt auf dem aktuellen, auf mehreren oder auf allen
+  Laufwerken. Dies kann in der untersten Zeile mit der Maus oder über
+  Eingabe des jeweiligen Laufwerksbuchstaben erfolgen.
+
+  In der Liste der gefundenen doppelten (oder mehrfach vorhandenen
+  Dateien) haben Sie die Möglichkeit, Dateien zu markieren, anzusehen
+  und zu löschen.
+
+  Die Markierung erfolgt mit der Taste 'Einfg' oder mit der rechten
+  Maustaste. Die Taste '+' markiert alle, '-' demarkiert alle Dateien.
+  Die Taste '*' invertiert den Markierungszustand der Dateien.
+
+  Die Liste kann mit F9 in eine Datei geschrieben werden.
+=== Dateisuche                                                        (Alt-F7)
+  Dateien werden auf dem aktuellen Laufwerk, auf mehreren Laufwerken,
+  auf allen Laufwerken oder ab dem aktuellen Verzeichnis gesucht.
+  In der Eingabe sind Wildcards (?,*) und bis zu 20 Dateifilter erlaubt.
+  Bsp.: *.bat;*.exe;*.com findet alle ausführbaren Dateien. Diese Filter
+  können gespeichert und geladen werden (auch wieder bis zu 20 Stück).
+  Es sind dieselben Filter, die auch in den Dateifenstern im DX benutzt
+  werden können.
+  Die Laufwerkswahl geschieht durch Eingabe des Laufwerksbuchstabens oder
+  mit einem Mausklick auf die Laufwerkszeile und mit Alt-F1.
+  Es können Dateien getrennt nach Größe, Zeit und Attribut gesucht werden.
+  Die Eingabefelder erreichen Sie mit Alt-Tastenkombinationen und mit der
+  Maus. Die einzelnen Eingaben werden über UND verknüpft, d.h. sie gelten
+  alle gemeinsam.
+
+  Bsp.: Eingabe:   vor dem:  01.01.95  Dateiname: ??a*.*
+  ▌▌▌▌▌           nach dem:  01.01.95  Attribute: Archiv+Versteckt
+                größer als:      4096
+               kleiner als:      8192
+          findet alle Dateien, die am 1.1.95 erstellt wurden,
+          größer gleich 4096, kleiner gleich 8192 Bytes sind und an
+          dritter Stelle ein a haben. Außerdem müssen diese Dateien
+          das Archiv und das Versteckt-Attribut besitzen.
+
+  Sind ein oder mehr Attribute angekreuzt, so werden alle Dateien
+  (und/oder Verzeichnisse) gefunden, die mindestens alle angekreutzten
+  Attribute besitzen.
+
+  In der Anzeige der Liste hat man folgende Möglichkeiten:
+
+          F1: Diese Hilfe
+          F2: Zurück zur Eingabemaske
+          F3: Aktuelle Datei anzeigen
+          F4: Zurück in den DX und den Cursor auf diese Datei positionieren
+          F7: Suche nach Texten in den markierten Dateien
+          F8: Markierte Dateien löschen
+          F9: Ausgabe der Liste in eine Datei
+         F10: Ende
+          + : Markiert alle Dateien
+          - : Demarkiert alle Dateien
+          * : Markierungen invertieren
+        Entf: Entfernt den aktuellen Eintrag oder alle markierten
+              Einträge aus der Liste (es wird nicht gelöscht!)
+
+   Ausgabe der Liste in eine (Batch-) Datei:
+        - Eingabe des Dateinamens für die Batch-Datei.
+        - Eingabe des Befehls, der dem jeweiligen gefundenen Dateinamen
+          vorangestellt oder nachgestellt wird.
+          Hier gilt '*' als Platzhalter für den kompletten Dateinamen aus
+          der Liste. Es ist nur ein '*' erlaubt.
+          Bsp.: In der Liste existiert die Datei c:\dos\command.com
+          Eingabe des Befehls: del * >nul
+          Ergebnis in der Batch-Datei:
+
+                          del c:\dos\command.com >nul
+                          ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌
+                    (Würd' ich lieber nicht ausprobieren!)
+
+        - Zuerst muß die Datei erzeugt werden, dann kann sie über den
+          entsprechenden Button angesehen oder ausgeführt werden.
+        - Wird sie nicht neu erzeugt, so wird eine eventuell schon
+          vorhandene Datei mit diesem Namen gestartet!
+=== Textsuche in ausgewählten Dateien                                 (Alt-F8)
+  Suche nach Text in einer oder mehreren markierten Dateien.
+  Der Cursorbalken muß auf einer Datei und nicht auf einem
+  Verzeichnis stehen. In dieser Datei wird nach dem eingegebenen
+  Text gesucht.
+  Alternativ kann die Datei oder die Dateien, in denen gesucht wird,
+  auch gelb markiert werden (rechte Maustaste oder Einfg/Entf).
+
+  Die Dateien werden nun nacheinander nach dem eingegebenen Text
+  durchsucht.
+  Wird der Begriff gefunden, so wird diese Datei markiert (bzw. sie bleibt
+  markiert).
+
+  Nachdem alle Dateien durchsucht wurden, sind diejenigen gelb markiert,
+  in denen der Suchtext gefunden wurde.
+
+  Wollen Sie in mehreren Verzeichnissen oder auf dem ganzen Laufwerk nach
+  Texten suchen, so benutzen Sie die Dateisuche und geben als Dateinamen
+  (Suchmaske) '*.*' an und darunter im Feld 'Text:' den zu suchenden Text.
+=== Verzeichnisse vergleichen                                         (Alt-F9)
+  Verglichen werden die Verzeichnisse der beiden Fenster nach
+  Dateiname, Attribut, Größe, Datum und Zeit.
+  Wenn Unterschiede gefunden wurden, werden diejenigen Dateien
+  gelb markiert, die in den Verzeichnissen gleich oder nicht gleich
+  sind (je nach Auswahl).
+
+  Gibt es Dateien, die im anderen Verzeichnis nicht vorhanden
+  sind, so werden diese im Fall der nicht gleichen Dateien auch
+  gelb markiert.
+
+  Die Option '[X] Mit Verzeichnisnamen' vergleicht auch die Namen evt.
+  vorhandener Verzeichnisse.
+
+  ! Es wird nicht nur die im DX sichtbare Zeit (Stunden und Minuten)
+  ! verglichen, sondern auch Sekunden. So kann es vorkommen, daß
+  ! zwei Dateien gleich aussehen, es jedoch nicht sind (falls
+  ! man in einer Minute die gleiche Datei zweimal erzeugt)!
+=== QCD Quick Change Directory                                       (Alt-F10)
+  Diese Funktion dient zum schnellen Verzeichniswechsel auf allen
+  Laufwerken und ist auch getrennt vom Hauptprogramm als Datei qcd.exe
+  vorhanden (Hilfe mit qcd /?).
+  Die Laufwerkswahl geschieht über Alt-F1 oder alternativ über
+  die Maus (dazu muß das Wort 'Laufwerk' unten rechts angeklickt
+  werden).
+  Es wird der Verzeichnisbaum des aktuellen Laufwerks angezeigt,
+  der Cursorbalken steht auf dem aktuellen Verzeichnis.
+  Jetzt kann man über die Cursortasten oder die Maus ein anderes
+  Verzeichnis wählen und mit Return oder Doppelklick in dieses
+  wechseln.
+
+  Das Suchen nach Verzeichnissen geschieht über die Eingabe des ersten
+  oder der ersten Buchstaben des Namens.
+  Mit der Taste F5 ist es dann möglich das nächste Verzeichnis anzuzeigen,
+  dessen Name mit den schon eingegebenen Buchstaben übereinstimmt.
+  Über F6 gelangt man wieder zum aktuell gesetzten Verzeichnis.
+
+  In der linken Spalte wird die Größe des jeweiligen Verzeichnisses in
+  Bytes angezeigt. Diese Größe ist die Größe der Dateien in diesem
+  Verzeichnis ohne Unterverzeichnisse (zum Zeitpunkt der Erstellung der
+  Datei dx?tree.dat, also nach F7=Neu einlesen).
+  Die Größe eines Verzeichnisses incl. aller Unterverzeichnisse wird
+  mit Strg-Return angezeigt.
+
+  ! Werden Directories umbenannt, gelöscht oder neu erzeugt, so sollte
+  ! die Verzeichnisstruktur mit F7 neu eingelesen werden.
+  ! Dies geschieht nicht automatisch! So hat man die Möglichkeit,
+  ! nach Änderung der Struktur sich die alten Verhältnisse anzusehen,
+  ! um diese, falls nötig, wieder zu restaurieren...
+
+  Wählt man ein Laufwerk, dessen Struktur noch nicht eingelesen wurde,
+  so wird dies automatisch vorgenommen.
+
+  Die Verzeichnisbäume der einzelnen Laufwerke werden in den Dateien
+  dxCtree.dat dxEtree.dat usw. abgespeichert, wobei der dritte Buch-
+  stabe des Dateinamens das jeweilige Laufwerk benennt.
+
+  Die Dateien werden im Stammverzeichnis des Programms abgelegt (also z.B.
+  im Verzeichnis C:\DX4).
+
+  ! Bei der Benutzung des externen Programms qcd.exe ist daran
+  ! zu denken, daß hier immer das Verzeichnis für die Speicherung
+  ! der Dateien benutzt wird, in dem das Programm qcd.exe steht.
+  ! Befindet es sich im DX-Verzeichnis, so benutzt es dieselben
+  ! Dateien dx?tree.dat wie auch DX selbst.
+
+  Am besten beläßt man qcd.exe im DX-Verzeichnis und schreibt
+  eine kleine Batch-Datei (z.B.: @echo off / c:\dx4\qcd),
+  die in einem Verzeichnis steht, das im Pfad enthalten ist (Path-
+  Anweisung in der autoexec.bat).
+
+  Falls es beim Gebrauch dieser Funktion (Alt-F10) zu unerklärlichen
+  Fehlern kommt, kann es sein, daß eine der Dateien dx?tree.dat
+  beschädigt wurde.
+
+  Abhilfe: Löschen Sie die Datei oder die Dateien dx?tree.dat oder
+  lesen Sie sie neu ein (innerhalb der Funktion QCD mit F7).
+=== Splitten einer Datei                                             (Strg-F3)
+  Dateien - größer als eine Diskette - lassen sich mit diesem Menü-
+  punkt auf mehrere Disketten bzw. mehrere Dateien verteilen.
+  Bei mehreren Dateien oder Verzeichnissen werden Sie automatisch durch
+  folgenden Vorgang geleitet:
+
+     1. Die Dateien werden in das temporäre Verzeichnis gepackt.
+        Der Packer und der Name der gepackten Datei können geändert werden.
+     2. Diese gepackte Datei wird gesplittet.
+     3. Es wird gefragt, ob die vorhin erzeugte temporäre Datei gelöscht
+        werden soll.
+
+  Die Zieldateien erhalten denselben Namen wie die Quelldatei - mit
+  durchnummerierten Extensionen, beginnend bei .000.
+  Bsp.: Quelle: xyz.exe  Ziel: xyz.000, xyz.001, ... + xyz.inf.
+
+  Als Zielpfad ist das Verzeichnis des anderen Fensters voreingestellt.
+  Es kann über Alt-Z oder mit der Maus verändert werden.
+
+  Die Dateigröße der einzelnen Dateien ist so gehalten, daß sie ohne
+  weiteres auf leere Disketten passen.
+
+  Die Ursprungsdatei kann wieder über den Menüpunkt 'Zusammenführen'
+  hergestellt werden, wobei das Dateiattribut und Datum + Zeit der
+  Quelldatei erhalten bleiben (einfach 'Return' auf die .inf-Datei).
+  Eine andere Möglichkeit, die Dateien zusammenzuführen, bietet der DOS-
+  Befehl copy: copy /b xyz.001+xyz.002 ...  xyz.exe, wobei allerdings
+  das Dateiattribut und Datum + Zeit verloren gehen. Beachten Sie den
+  Schalter /b, der auf Binärdateien hinweist.
+
+  Achtung: Wie allgemein üblich muß der Schreibcache auf
+           Diskettenlaufwerke abgeschaltet sein!
+
+  Also z.B.: smartdrv A B C+
+
+  Hier wurde auf Laufwerk A und B ein Lesecache und auf Laufwerk C
+  ein Schreib- und Lesecache eingerichtet.
+
+  Wird auf ein Diskettenlaufwerk ein Schreibcache eingerichtet, so ist der
+  Schreibvorgang zwar sehr schnell, doch durch das verzögerte Schreiben
+  und einen eventuellen Diskettenwechsel zwischendurch kann es schnell zu
+  einem Chaos kommen.
+
+  Die *.inf-Datei enthält Informationen über die Quelldatei wie
+  Dateiname, Größe, Attribut, Zeit und Datum.
+=== Zusammenfügen einer Datei                                        (Strg-F4)
+  Eine Datei, die unter dem Menüpunkt 'Splitten' auf mehrere Dateien
+  aufgeteilt wurde, kann hier wieder zusammengefügt werden.
+  Der Cursorbalken muß auf die Datei *.inf gesetzt werden. Diese Datei
+  wurde mit 'Split' erzeugt und befindet sich auf der ersten Diskette,
+  falls auf Disketten gesplittet wurde.
+
+  Das Zielverzeichnis ist voreingestellt auf das Verzeichnis des anderen
+  Fensters und kann über Alt-Z oder einen Mausklick auf die Eingabezeile
+  geändert werden.
+
+  Falls ein Verzeichnis oder mehrere Dateien gesplittet wurden, erhalten
+  Sie zuerst eine gepackte Datei, die nun über 'Archiv dekomprimieren'
+  oder Strg-F10 entpackt werden kann.
+
+  Eine andere Möglichkeit, die Dateien zusammenzuführen, bietet der DOS-
+  Befehl copy: copy /b xyz.001+xyz.002 ...  xyz.exe, wobei allerdings
+  das Dateiattribut und Datum + Zeit verloren gehen. Beachten Sie den
+  Schalter /b, der auf Binärdateien hinweist.
+=== Senden und Empfangen von Dateien
+ Eine Übertragung von Dateien von PC zu PC mit Hilfe eines Kabels über
+ eine serielle Schnittstelle.
+
+ Das benötigte Kabel ist ein handelsübliches Nullmodem-Kabel.
+
+ Auf beiden PC's muß der DX laufen, wobei einer als Sender und der andere
+ als Empfänger agiert.
+
+ Nachdem Dateien und Schnittstelle ausgewählt wurden, beginnt die
+ Synchronisation beider Rechner. Falls diese nicht sofort funktioniert,
+ sollte der Vorgang abgebrochen (mit Esc) und wiederholt werden, wobei
+ der Empfänger zuerst gestartet werden sollte.
+
+ Die Schnittstellen arbeiten mit der höchsten Übertragungsrate von
+ 115200 Baud (Bit/sek).
+=== Verzeichnisgrößen                                                  (Alt-V)
+  Dies ist eine Übersicht über alle Verzeichnisgrößen auf der gerade
+  aktuellen Festplatte, ab dem aktuellen Verzeichnis.
+
+  Zuerst sehen Sie eine Liste der Unterverzeichnisse des aktiven Fensters.
+  Die Größe der Verzeichnisse wird incl. der Unterverzeichnisse angegeben.
+
+  Über 'Details' gelangen Sie in eine weitere Liste.
+  Die Liste beginnt mit dem gerade aktuell gesetzten Verzeichnis.
+  Wenn Sie die Größen aller Verzeichnisse auf der Platte haben möchten,
+  so müssen Sie vorher ins Root-Verzeichnis (Bsp.: C:\) wechseln oder
+  innerhalb dieser Funktion das Laufwerk (mit Alt-F1 oder mit einem
+  Mausklick in den Titelrahmen) wechseln.
+  Wechseln Sie in das aktuelle Laufwerk, so werden alle Verzeichnisse
+  dieses Laufwerkes angezeigt.
+
+  Angezeigt werden die Dateigrößen der jeweiligen Verzeichnisse und
+  die Anzahl der Unterverzeichnisse in diesem Verzeichnis.
+  Die Größen der Unterverzeichnisse werden danach separat aufgeführt.
+  Über ^Return (Strg-Return) werden die Dateigrößen incl. Unter-
+  verzeichnisse angezeigt.
+
+  Mit Return wird in das jeweilige Verzeichnis gewechselt.
+=== Laufwerksübersicht                                                 (Alt-L)
+  Eine Anzeige aller Laufwerke mit Belegungsstatistik.
+  Die letzte Zeile enthält die Summe der belegten und freien Bytes aller
+  angezeigten Laufwerke.
+
+  Um zu verhindern, daß z.B. Doublespace oder Stacker-Host-
+  Laufwerke in der Summe mitgezählt werden, besteht die Möglich-
+  keit, einzelne Laufwerke aus der Addition herauszunehmen. Dazu gibt
+  man über die Tastatur oder mit einem Mausklick in die Statuszeile
+  den entsprechenden Laufwerksbuchstaben ein.
+
+  Nur die in der Statuszeile rot dargestellten Laufwerke werden in der
+  Summe mitgezählt und angezeigt.
+
+  Die Einstellungen, d.h. die anzuzeigenden Laufwerke, werden automatisch
+  in der aktuellen Datei dx.ini gespeichert.
+
+  Die Schalter am oberen Rand des Bildschirms bieten noch die Funktion des
+  Laufwerkswechsels für beide Fenster des DX.
+=== Laufwerksstatistik                                                 (Alt-S)
+
+  ╥──────────────────────────────────────╙
+  ╬        Laufwerksstatistik A:\        ╨
+  ╬        ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌        ╨
+  ╬  Gesamt:   1.457.664 Bytes (1 Mb)    ╨ Gesamt-Bytes auf dem Laufwerk.
+  ╬    Frei:     723.456 Bytes (0 Mb)    ╨ Freie Bytes auf dem Laufwerk.
+  ╬  Belegt:     734.208 Bytes (0 Mb)    ╨ Tatsächlich belegte Bytes.
+  ╬                                      ╨
+  ╬      11.568 Bytes in A:\             ╨ Dateigrößen im aktuellen
+  ╬                                      ╨ Verzeichnis ohne Unterverz.
+  ╬    Dateigrößen incl. Unterverz.:     ╨
+  ╬    ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌     ╨ Dateigrößen
+  ╬     718.328 Bytes in A:\             ╨ incl. Unterverzeichnisse.
+  ╬     706.760 Bytes in BACKUP          ╨ Dateigrößen im Verzeichnis,
+  ╬                                      ╨ auf dem der Cursorbalken ist.
+  ╬     Laufwerksname: DX-BACKUP         ╨ Das Label.
+  ╬               vom: 28.09.93 14:44    ╨ Datum des Labeleintrags.
+  ╬                                      ╨ Aus dem Bootsektor.
+  ╬          OK             Mehr         ╨ Nur wenn die Diskette mit
+  ╬                                      ╨ dem DX formatiert wurde.
+  ╘──────────────────────────────────────╒
+
+     OEM = Original Equipment Manufacturer
+
+     Das Formatierdatum erscheint nur, wenn die Diskette mit diesem
+     Programm formatiert wurde. Andernfalls steht hier die Daten-
+     trägernummer (nur bei Disketten).
+
+  Ab der DX-Version 2.10 finden Sie hier 2 Buttons: 'OK'  und 'Mehr'.
+  'Mehr' zeigt Informationen aus dem Bootsektor des jeweiligen
+  Laufwerks (natürlich nicht bei Netz- oder CD-Laufwerken).
+
+  Eine andere Möglichkeit, eine Laufwerksstatistik anzuzeigen bietet ein
+  Rechtsklick mit der Maus auf ein Laufwerk in der Laufwerkszeile.
+=== Datenträgeroperationen
+  Disketten formatieren:
+
+  Die Formatier-Routine besteht hauptsächlich aus Bios-Funktionen, so daß
+  es wahrscheinlich zu keinen Kompatibilitätsproblemen bei 'exotischen'
+  Laufwerken kommt. Unterstützt werden HD-Laufwerke für 1.2 und 1.44 MB,
+  wobei auch DD-Disketten formatiert werden können.
+  Sobald eine Diskette einen Fehler aufweist wird das Formatierprogramm
+  mit einer Fehlermeldung abgebrochen. Es werden also keine Sektoren
+  als 'BAD' markiert. (Ich gehe davon aus, daß Disketten mit schlechten
+  Sektoren mit der Zeit weitere Sektoren 'verlieren', so daß damit
+  die Datenkonsistenz nicht 100%ig gegeben ist.)
+  Die Verify-Option ist hierbei immer eingeschaltet und läßt sich auch
+  nicht deaktivieren.
+  Die Boot-Routine auf den Disketten enthält die Optionen:
+         - <Return>  Nochmals (nach evt. Diskettenwechsel) von der
+                     Diskette starten
+         - <Esc>     Von der Festplatte starten
+  Wenn Sie also beim Booten des Rechners die Diskette im Laufwerk
+  belassen, so können Sie mit der Esc-Taste direkt von der Festplatte
+  oder, falls gewünscht, von einer anderen System-Diskette booten.
+  Außerdem wird der Text, der mit dem Boot-Editor erstellt wurde,
+  angezeigt.
+  Mit dem Boot-Editor haben Sie auch die Möglichkeit, schon formatierte
+  Disketten mit dem Boot-Text zu bespielen.
+
+  Anzahl/max.Anzahl Formatierungen pro Spur:
+  Hier wird angegeben, wie oft eine Spur formatiert werden mußte,
+  bzw. die maximale Anzahl Formatierungen/Spur während des ganzen
+  Formatier-Vorganges.
+
+  Es kann vorkommen, daß der Laufwerkskopf durch den Spurwechsel noch
+  schwingt und somit diese Spur beim erstenmal nicht ordnungsgemäß
+  formatiert werden kann. Bei den heutigen Laufwerken ist dies kaum der
+  Fall, und mehrere Formatierungen deuten eher auf eine defekte Diskette
+  hin.
+
+  Der Button 'Überprüfen' testet die FAT der Diskette auf schlechte
+  Sektoren.
+  Der Quickformat-Modus ist über die Maus (Button 'Quick') oder über
+  die Tastatur mit der Taste 'q' zu erreichen.
+  Hier wird zunächst nach schlechten Sektoren gesucht. Falls keiner
+  vorhanden ist, wird der Bootsektor neu formatiert und geschrieben
+  sowie das Hauptverzeichnis und die FAT gelöscht.
+
+  Disk-Images und Kopien:
+
+  Es wird eine Diskette Sektor für Sektor physikalisch gelesen und als
+  Datei auf der Festplatte abgelegt. In dieser Image-Datei sind sämtliche
+  Informationen der Diskette (Bootsektor mit Label usw.) enthalten.
+  Imagedateien lassen sich jetzt bequem packen und archivieren. Über den
+  Menüpunkt 'Restaurieren' lässt sich diese Imagedatei wieder auf eine
+  Diskette (gleichen Formats bzw. 1.2MB auf 1.44MB) überspielen
+  (geht auch mit Return auf eine *.img-Datei).
+  Damit wurde eine 1 zu 1 Kopie der Diskette angefertigt.
+
+  Diskcopy:
+
+  Wenn genügend XMS-Speicher vorhanden ist, wird dieser als
+  Zwischenspeicher für Quelldisketten benutzt.
+  Auswahl der Laufwerke mit der Tastatur:
+         Quelle: A und B       Ziel: Alt-A und Alt-B
+
+  Der Schalter 'Image' zur Erstellung einer Image-Datei ist erst aktiv,
+  wenn schon eine Diskette eingelesen wurde.
+  Fall der Schreibvorgang auf eine Diskette fehlschlägt, so haben Sie
+  damit die Möglichkeit, die schon gelesene Diskette auf der Festplatte
+  abzuspeichern um sie dann über 'Restaurieren' später auf eine andere
+  Diskette zu speichern.
+
+  Es werden HD-Disketten und 3 1/2" DD-Disketten unterstützt.
+=== Rechner und Hex-Dez-Bin-Konverter                            (ALT-R Alt-H)
+        Funktion       Taste   Bedeutung
+        ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌
+         C A ......... ALT A   Clear All
+         C E ......... ALT E   Clear Entry
+          ±  .........   #     Vorzeichenwechsel
+          %  .........   %
+         HEX ......... ALT H   Hexadezimale Anzeige und Eingabe
+         DEZ ......... ALT D   Dezimale Anzeige
+         BIN ......... ALT B   Binäre Anzeige
+         M + ......... ALT +   Memory Plus
+         M - ......... ALT -   Memory Minus
+         M C ......... ALT C   Memory Clear
+         M R ......... ALT R   Memory Recall
+   Power off ......... ALT P   Ende
+          =  ......... Return
+        Ende ......... F10/Esc
+
+   Die Eingabe kann Ziffer für Ziffer mit der Rückschritt-Taste
+   (Backspace = Pfeil nach links) gelöscht werden.
+
+   Funktionsweise der Prozent-Taste an einem Beispiel:
+   geg.: 209 DM = Nettopreis
+   ges.: Warenwert incl. 15 % Mehrwertsteuer
+   Eingabe: 209 + 15 % => Jetzt zeigt die Anzeige die Mehrwertsteuer (15%)
+   in DM an (31.35), nach Betätigen der Return-Taste (=) erhalten Sie den
+   Gesamtbetrag von DM 240.35.
+
+   Hex-Dez-Bin-Konverter:
+
+   Zahlenumwandlung zwischen dem hexadezimalen, dezimalen
+   und binären Zahlensystem.
+
+   Der Gültigkeitsbereich zur Zahlenumwandlung beträgt:
+
+     -2.147.483.648  ...  +2.147.483.647 dezimal
+
+    =      80000000  ...  FFFFFFFF hex  (mit Vorzeichen, signed)
+
+   bzw.    00000000  ...  FFFFFFFF hex  (ohne Vorzeichen, unsigned)
+=== Asciitabelle                                                       (Alt-A)
+
+                           Asciitabelle hexadezimal
+         ┌───┬──────────────────────────────────────────────────┬───┐
+         │   │  0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  │   │
+         ├───┼──────────────────────────────────────────────────┼───┤
+         │ 0 │                                         │ 0 │
+         │ 1 │                                   │ 1 │
+         │ 2 │     !  "  #  $  %  &  '  (  )  *  +  ,  -  .  /  │ 2 │
+         │ 3 │  0  1  2  3  4  5  6  7  8  9  :  ;  <  =  >  ?  │ 3 │
+         │ 4 │  @  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  │ 4 │
+         │ 5 │  P  Q  R  S  T  U  V  W  X  Y  Z  [  \  ]  ^  _  │ 5 │
+         │ 6 │  `  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  │ 6 │
+         │ 7 │  p  q  r  s  t  u  v  w  x  y  z  {  |  }  ~    │ 7 │
+         │ 8 │  Ç  ü  é  â  ä  à  å  ç  ê  ë  è  ï  î  ì  Ä  Å  │ 8 │
+         │ 9 │  É  æ  Æ  ô  ö  ò  û  ù  ÿ  Ö  Ü  ¢  £  ¥  ₧  ƒ  │ 9 │
+         │ A │  á  í  ó  ú  ñ  Ñ  ª  º  ¿  ⌐  ¬  ½  ¼  ¡  «  »  │ A │
+         │ B │  ░  ▒  ▓  │  ┤  ╡  ╢  ╖  ╕  ╣  ║  ╗  ╝  ╜  ╛  ┐  │ B │
+         │ C │  └  ┴  ┬  ├  ─  ┼  ╞  ╟  ╚  ╔  ╩  ╦  ╠  ═  ╬  ╧  │ C │
+         │ D │  ╨  ╤  ╥  ╙  ╘  ╒  ╓  ╫  ╪  ┘  ┌  █  ▄  ▌  ▐  ▀  │ D │
+         │ E │  α  ß  Γ  π  Σ  σ  µ  τ  Φ  Θ  Ω  δ  ∞  φ  ε  ∩  │ E │
+         │ F │  ≡  ±  ≥  ≤  ⌠  ⌡  ÷  ≈  °  ∙  ·  √  ⁿ  ²  ■     │ F │
+         ├───┼──────────────────────────────────────────────────┼───┤
+         │   │  0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  │   │
+         └───┴──────────────────────────────────────────────────┴───┘
+                   Zeichen:  A       Ascii:  41 Hex   65 Dez
+                                             |        |
+                                             |   Asciicode dezimal
+                                        Asciicode hexadezimal
+
+
+
+     !Achtung! Die hier (in der Hilfe) gezeigten Codes entsprechen
+               nicht unbedingt dem Ascii-Code.
+               Dies ist abhängig davon ob der erweiterte Zeichensatz
+               eingeschaltet ist oder nicht.
+
+     Man kann auch Zeichen über die Tastatur eingeben und dann deren
+     Asciicode ablesen!
+     Return auf ein Zeichen: das Zeichen wird vergrößert dargestellt.
+=== Quickmenü                                                          (Alt-C)
+  In der Datei dxquick.dat können bis zu 60 Programmnamen mit den
+  dazugehörigen Pfaden abgespeichert werden, die über das Quickmenü
+  eingetragen und gestartet werden.
+
+  Im Quickmenü (Alt-C oder Mausklick auf den Punkt links unten im DX)
+  werden die Programme mit den Tasten 0 .. 9 (oder mit Doppelklick)
+  gestartet.
+
+  Die Schalter '00 10 20 30 40 50' können mit der Maus oder den Tasten-
+  kombinationen Alt-0 .. Alt-5 betätigt werden. Sie dienen zur Positio-
+  nierung des Laufbalkens, so daß z.B. mit der Taste Alt-3 auf Zeile Nr.
+  30 positioniert wird.
+
+  Über den Button 'Ändern' werden Programme eingetragen.
+  Folgende Optionen stehen zur Verfügung:
+
+     [ ] Im DX ausführen   'dX'
+         Wird diese Option aktiviert, so bleibt die Datei dxmain.exe
+         im Speicher, während das Programm ausgeführt wird. Sie haben
+         dann noch ca. 300 KB freien Speicher. Der Vorteil: dxmain.exe
+         muß nach Ausführung nicht nachgeladen werden, was bei 'normalen'
+         Programmstarts der Fall ist.
+         Der Button 'dX' (mit der Tastatur über X zu erreichen) erlaubt
+         weitere Einstellungen:
+
+         [ ] 25 Zeilen-Modus, während das Programm läuft.
+         [ ] Bildschirm löschen: Bevor das Programm ausgeführt wird,
+             soll der Bildschirm gelöscht werden.
+         [ ] Nach Ausführung warten: wartet auf einen Tastendruck nach
+             der Ausführung des Programmes mit einem Hinweis am unteren
+             Bildschirmrand.
+         [ ] Rahmenfarbe (der Overscan-Bereich = aüßerster Bildschirmrand)
+             wird auf schwarz gesetzt.
+         [ ] Im Fenster ausführen: Es wird für die Ausgabe des Programmes
+             das Packer- bzw. DOS-Fenster benutzt. Dies ist z.B. für
+             Batch-Programme sinnvoll.
+
+     [ ] Parameter angeben: Bevor das Programm gestartet wird, können
+         Parameter angegeben werden, die dem Programm mitgegeben werden.
+           < c:\test\programm.exe parameter >
+
+     [ ] Datei als Parameter: Dem Programm wird die Datei unter dem
+         Cursorbalken (im DX) als Parameter mitgegeben.
+
+     [ ] Verzeichnis wechseln: Es wird in das Verzeichnis des Programmes
+         gewechselt bevor es gestartet wird (falls ein Verzeichnis mit
+         angegeben wurde).
+
+  Falls Sie ein Programm 'im DX' ausführen lassen, kann es dazu kommen,
+  daß der Zeichensatz des DX zerstört wird (abhängig vom jeweiligen
+  Programm).
+  Abhilfe: Starten Sie das Programm nicht 'im DX', oder führen Sie einen
+  Programm-Refresh ('Einstellungen/Refresh') durch.
+
+  Das aktuelle Programm unter dem Cursorbalken des DX läßt sich im Quick-
+  menü über den Button 'Eintragen der aktuellen Datei' (Taste 'E')
+  einfügen.
+  Weitere Dateien können mit dem Schalter 'Datei' ausgewählt werden.
+=== Notizen, Zeit, Datum                                        (Alt-N, Alt-Z)
+ Notizen:
+ Über Alt-N oder den entsprechenden Menüpunkt wird eine der Dateien
+ dx?.ntz in den Editor geladen.
+ Das ? steht für eine Zahl von 1 bis 9, die Sie im Dialog mit der Tastatur
+ oder der Maus vorher eingeben können.
+ Diese Dateien sind als Notiz-Dateien gedacht, die schnell über Hotkey
+ aufgerufen und editiert werden können.
+
+ Mit Alt-Z oder einem Mausklick auf das Datum sehen Sie die aktuelle
+ Systemzeit und außerdem noch die Zeiten einiger Großstädte.
+
+ Die Systemzeit und das aktuelle Datum können hier neu eingestellt werden.
+
+ Die angegebenen Zeiten (Zeitverschiebungen) beziehen sich auf
+ die Systemzeit. Wird der Punkt '[X] Sommer' aktiviert, so wird
+ davon ausgegangen, daß die Systemzeit die Sommerzeit ist.
+ Damit wird jede angegebene Uhr um eine Stunde zurückgestellt.
+ Die jeweiligen Zeiten sind somit immer 'Winterzeiten'.
+
+ Evtl. örtliche Sommerzeiten können nicht berücksichtigt werden
+=== Befehlszeilenstapel                                                (Alt-B)
+  Hier werden die letzten 25 Dos-Befehle, die vom DX aus eingegeben
+  wurden, angezeigt.
+
+  Sie können einen Befehl wiederholen, indem Sie den Cursorbalken
+  auf die entsprechende Zeile bringen und dann Return drücken.
+
+  Wollen Sie einen Befehl editieren, also wieder in der Eingabezeile
+  haben, so drücken Sie hier Strg-Return.
+
+  Mit der Taste Entf haben Sie die Möglichkeit, einen Befehl zu löschen.
+
+  Tasten: Return  +  Strg-Return  +  Entf
+
+  Den letzten Befehl bekommt man über Backspace in die Eingabezeile, ohne
+  den Befehlszeilenstapel aufzurufen.
+
+  Der Stapel läßt sich auch in der DOS-Eingabezeile über
+  'Shift-Cursor-unten' aufrufen. Mit Return wird dann der ausgewählte
+  Text in die Eingabezeile geschrieben.
+
+  Über die Taste F2 haben Sie die Möglichkeit, den Stapel im DX-Format
+  oder als Batch-Datei abzuspeichern. Das Abspeichern im DX-Format
+  schreibt in die Datei dxcom.dat, die bei Programmstart immer geladen
+  wird. Den Namen der Batch-Datei können Sie in einem Dialog-Fenster frei
+  wählen.
+
+  Falls Sie die zuletzt eingegebenen Befehle beim nächsten Start des DX
+  wieder vorfinden wollen, müssen Sie den Stapel im DX-Format abspeichern.
+  Dies kann auch automatisch nach jedem Programm-Ende geschehen. Dazu
+  muß in der Konfiguration die Option
+
+              [X] Auto-Speichern Befehlszeilenstapel
+
+  aktiviert werden.
+=== CD-Player
+  Abspielen von Audio-CD's:
+  Die Bedienungsbuttons sind denen eines Hardware-Players angeglichen.
+
+  Die Verwaltung der CD's geschieht mit Hilfe einer indexsequentiellen
+  Datei: dxcdlib.dat, zu der ein Index dxcdidx.dat gehört.
+  Sind diese Dateien noch nicht vorhanden, so werden sie neu erzeugt.
+
+  Auf Grund der indexsequentiellen Verwaltung ist es evtl. notwendig,
+  die Datei ab und zu aufzuräumen (wobei der Dateiinhalt umkopiert wird),
+  um alte 'Eintrags-Leichen' (gelöschte Einträge) zu entfernen.
+  Dies geschieht mit dem Button: 'Aufräumen' unter 'Weiteres'.
+
+  Der Schalter 'Scan' schaltet die sogenannte Scan-Funktion ein und aus.
+  Hierbei wird jedes Stück etwa 12 Sekunden lang angespielt.
+
+  Die Anzahl der verwaltbaren CD's ist auf 5000 begrenzt.
+  Der benötigte Speicherplatz für eine CD beträgt ca. 3540 Bytes in der
+  Datei dxcdlib.dat.
+=== Lautstärke
+ Einstellung der Lautstärke einzelner Kanäle der Soundblaster-Karte.
+ Diese Funktion nur mit Soundblaster-Karten mit einem digitalen Signal-
+ Prozessor ab der Version 3 (Soundblaster PRO, Soundblaster 16, AWE32).
+ Es können getrennt die Lautstärken 'Wave', 'Midi' und 'CD' eingestellt
+ werden. 'Master' gibt die Gesamtlautstärke an.
+=== Mini-CD-Player
+ Diese kleine Audio CD-Steuerung ist im Gegensatz zum CD-Player im DX
+ integriert.
+ Die Bedeutung der einzelnen Schalter in der dargestellten Reihenfolge
+ von links nach rechts:
+
+   1. Pfeil nach oben  : Auswurf und Einzug der CD-Schublade
+   2. Pfeil nach rechts: Abspielen der CD
+   3. Punkt            : Stoppt das Abspielen
+   4.  '+'             : Anzeige des gerade gespielten Stückes
+   5. Doppelbalken     : Pause
+   6. Pfeil links      : Voriges Stück spielen
+   7. Pfeil rechts     : Nächstes Stück spielen
+
+ Abbruch mit Esc oder der rechten Maustaste.
+=== Öffne-Schließe CD-ROM                                           (Shift-F6)
+
+Wird dieser Menüpunkt gewählt oder die Tastenkombination Shift-F6
+gedrückt, so wird die Schublade des CD-Players geöffnet und ein kleines
+Fenster angezeigt.
+
+Nach CD-Wechsel kann nun der Schalter 'Schließen' betätigt werden, um die
+Schublade wieder zu schließen.
+=== Systemdateien editieren
+ Es wird der Editor dxe.exe gestartet und die Systemdateien autoexec.bat
+ und config.sys geladen (voreingestellt).
+
+ Welche Dateien geladen und editiert werden sollen, können Sie bestimmen,
+ indem der Inhalt der Datei dxsysdat.ini verändert wird.
+ Diese Datei finden Sie im DX-Verzeichnis. Hier finden Sie die zu ladenden
+ Dateien in Klarschrift. Ist diese Datei nicht vorhanden, so bekommen Sie
+ einen Hinweis und können diese Datei im Editor neu erzeugen.
+ Bsp. für den Inhalt von dxsysdat.ini:
+
+       c:\autoexec.bat
+       c:\config.sys
+
+ (Pro Zeile eine Datei).
+=== Dateien komprimieren                                             (Strg-F5)
+  Ausgewählte Dateien (oder auch nur die Datei unter dem Cursorbalken)
+  werden, mit dem unter 'Einstellungen' definierten Standard-Pack-
+  Programm komprimiert, im Verzeichnis des anderen Fensters abgelegt.
+  Die Dateiextension (zip, lzh oder arj) wird automatisch an den
+  Dateinamen angehängt.
+  Man hat die Möglichkeit, mit dem Button 'Packer' für diesen Vorgang
+  ein anderes Komprimierprogramm zu wählen.
+
+  Es ist auch möglich, ein komplettes Verzeichnis inclusive Unter-
+  verzeichnisse zu packen, wobei die Verzeichnisstruktur auch 'ein-
+  gepackt' wird.
+
+  Das jeweilige Packprogramm muß für den DX erreichbar sein. Es sollte
+  sich in einem Verzeichnis befinden, das in der Path-Anweisung
+  (autoexec.bat) vorhanden ist.
+
+  Achtung: Verzeichnisse werden nicht angezeigt, wenn man mit der Taste
+  Return eine gepackte Datei öffnet. Es werden nur Dateien angezeigt.
+  Betätigt man innerhalb einer gepackten Datei die Return-Taste,
+  so bekommt man eine detaillierte Statistik, in der auch das eventuell
+  mit eingepackte Verzeichnis angezeigt wird.
+
+  Die Verzeichnisstruktur wird wiederhergestellt, wenn die Datei
+  über 'Packen/Archiv dekomprimieren' (Strg-F10) ausgepackt wird.
+=== SFX-Erstellen                                                    (Strg-F6)
+
+  Es wird ein Archiv erstellt (wie mit Strg-F5 = Dateien komprimieren),
+  aus dem dann eine EXE-Datei erzeugt wird.
+
+  Das Archiv wird danach gelöscht.
+  Die EXE-Datei bleibt natürlich erhalten!
+
+  Wird diese EXE-Datei gestartet, so packt sie sich selbst aus.
+=== Archiv nach EXE                                                  (Strg-F7)
+
+  Der Cursorbalken muß sich auf einer gepackten Datei befinden
+  (*.lzh *.arj *.zip).
+
+  Nach Auswahl dieses Menüpunktes wird das entsprechende Pack-
+  programm aufgerufen (lha.exe, arj.exe oder zip2exe.exe)
+  und im selben Verzeichnis eine selbstentpackende .exe-Datei
+  aus dem Archiv erzeugt.
+
+  (Keine Abfrage! Die exe-Datei wird sofort erzeugt.)
+=== Archiv-Testen                                                    (Strg-F8)
+
+  Der Cursorbalken muß sich auf einer gepackten Datei befinden
+  (*.lzh *.arj *.zip *.exe).
+
+  Nach Auswahl dieses Menüpunktes wird das entsprechende Pack-
+  programm aufgerufen (lha.exe, arj.exe oder pkzip.exe), das
+  nun das Archiv auf Fehler testet.
+
+  Ist die ausgewählte Datei eine .exe-Datei so wird zuerst nach
+  dem Packprogramm gefragt, welches dann den Test ausführen soll.
+=== Archiv-Betrachten                                                (Strg-F9)
+  Der Cursorbalken muß sich auf einer gepackten Datei befinden
+  (*.lzh *.arj *.zip *.exe).
+
+  Nach Auswahl dieses Menüpunktes wird das entsprechende Pack-
+  programm aufgerufen (lha.exe, arj.exe oder pkzip.exe), das
+  nun den Inhalt der Datei anzeigt.
+
+  Ist die ausgewählte Datei eine .exe-Datei, so wird zuerst nach
+  dem Packprogramm gefragt, welches dann benutzt wird.
+
+  -> Drückt man die Return-Taste auf eine gepackte Datei, so
+     wird auch deren Inhalt -im DX-Format- angezeigt, und es
+     ist möglich, Dateien heraus oder hinein zu kopieren.
+
+  (Im Archiv Return = detaillierte Infos über die jeweilige Datei.)
+=== Archiv-Dekomprimieren                                           (Strg-F10)
+
+  Der Cursorbalken muß sich auf einer gepackten Datei befinden
+  (*.lzh *.arj *.zip).
+
+  Nach Auswahl dieses Menüpunktes wird das entsprechende Pack-
+  programm aufgerufen (lha.exe, arj.exe oder pkunzip.exe), das
+  nun die Datei entpackt.
+
+  Auch eventuell in der Datei vorhandene Verzeichnisstrukturen
+  werden wieder hergestellt.
+=== Arj-Multi-Volume-Backup und Restore
+  Dateien komprimieren und auf mehrere Disketten verteilen.
+  Das Programm arj.exe fordert Sie auf, die Diskette zu wechseln, falls
+  auf der ersten Diskette nicht genügend Platz vorhanden ist.
+
+  Dekomprimiert werden diese Dateien über 'ARJ-Multi-Volume-Restore'.
+  Achten Sie dabei darauf, daß alle Dateien in das gleiche Verzeichnis
+  entpackt werden.
+
+  Achtung: Die erzeugten Archive enthalten jeweils eine Datei, die
+  gesplittet wurde, d.h. in dem jeweiligen Einzelarchiv nicht komplett
+  vorhanden ist.
+
+  Diese Funktion nur mit der englischen Version ARJ 2.41e!
+=== DOS-Bild ansehen                                                  (Alt-F5)
+ Hiermit können Sie sich den DOS-Bildschirm ansehen, also die Ausgabe
+ eines zuvor gestarteten Programmes.
+
+ Falls diese Möglichkeit zu umständlich ist, können Sie in der Konfigu-
+ ration auf der Seite 'Konfig' den Schalter 'Warten nach Ausführung von
+ Programmen' einschalten. Sie bekommen dann nach jedem Programmstart die
+ Möglichkeit, sich die Ausgabe des Programmes anzusehen, um dann nach
+ einem Tastendruck in den DX zurückzukehren.
+
+ Noch schneller: Rechts-Mausklick in der oberen rechten Ecke des
+                 DX-Bildschirms.
+=== Letzter DOS-Befehl                                             (Backspace)
+ Es wird die DOS-Eingabezeile mit dem zuletzt gestarteten Befehl
+ geöffnet.
+
+ Über die Tastatur mit der Taste 'Backspace' = Pfeil nach links bzw.
+ Rückschritt (Taste über der Return-Taste).
+=== DOS-Eingabe im Vollbild                                           (Strg-O)
+ Es wird der DOS-Bildschirm eingeblendet, und Sie haben die
+ Möglichkeit, im DOS zu arbeiten, wobei der DX noch im Hintergrund ist.
+ Mit Strg-O, F10 oder der rechten Maustaste geht's wieder zurück
+ in den DX.
+=== Packerfenster
+ Pack-Operationen können je nach Einstellung (Fenster oder Vollbild)
+ auch in einem Fenster dargestellt werden. Dieses Fenster kann auch
+ im Quickmenü (Alt-C) für eigene Programme benutzt werden. Dies ist
+ aber nur bei einigen Programmen möglich, die Ausgaben im Textmodus
+ vornehmen wie z.B. DOS- Befehle.
+
+ Falls Probleme (Überschreiben des ganzen Bildschirms auch außerhalb des
+ Fensters) auftreten, dann schalten Sie den Vollbild-Modus ein.
+ Bekannte Probleme: bei installiertem Ansi.sys unter Windows 95 oder im
+ OS/2.
+=== Macrorecorder                                                      (Alt-F)
+ Der Macrorecorder soll dazu dienen, Menüpunkte wie z.B. Diskcopy
+ bequemer zu erreichen. Hier muß zuerst 'Optionen', 'Datenträger-
+ operationen' und dann 'Diskcopy' gewählt werden.
+ Nehmen Sie mit dem Recorder die Tastenkombinationen dafür auf
+ ('Alt-O','d','c'), so kann dieser Menüpunkt schneller erreicht werden.
+
+ Gestartet werden kann der Recorder über den Menüpunkt 'Einstellungen/
+ Macrorecorder' oder mit der Maus mit einem Rechts-Klick in der linken
+ oberen oder linken unteren Ecke des DX-Bildschirms oder mit Alt-F.
+
+ Durch Anklicken eines Eintrags in der Liste wird das dazugehörige Macro,
+ also die zuvor aufgenommene Tastenreihenfolge, ausgeführt.
+ Die Schalter 1 2 3 4 5 positionieren den Cursorbalken auf weitere Seiten.
+ Es können maximal 50 Macros aufgezeichnet werden. Pro Macro sind maximal
+ 100 Tastenanschläge möglich (aber wahrscheinlich nicht sinnvoll).
+
+ Bei der Aufnahme eines Macros haben Sie zwei Möglichkeiten: 1. Sie
+ nehmen ein Macro neu auf, und 2. Sie fügen die neu aufzuzeichnenden
+ Tastenanschläge einem schon existierenden Macro hinzu.
+ Ein Macro kann nicht editiert werden.
+=== Konfiguration 'Anzeige'
+ Laufwerkszeile: Die Zeile unterhalb der Dateifenster kann ein- und
+                 ausgeschaltet werden. Ein Rechtsklick auf die Laufwerks-
+                 zeile ergibt eine Laufwerksstatistik des Laufwerkes.
+
+ Schnelle Menüs: Es kann angegeben werden, ob die Menüs des DX ('Info',
+                 'Datei' usw.) auf Mausklick oder sofort, wenn die Maus
+                 darüberfährt, geöffnet werden sollen.
+
+ Zoomende Fenster: Die Fenster des DX können auf Wunsch ein wenig animiert
+                   geöffnet und geschlossen werden.
+
+ Ascii-Zeichensatz: Schalten Sie diesen 'normalen' Zeichensatz ein, wenn
+                    der DX-Zeichensatz nicht angezeigt werden kann. Dies
+                    ist z.B. in einem Fenster unter Windows wichtig.
+                    Sie können eine ini-Datei dxa.ini erzeugen, in der der
+                    Zeichensatz eingeschaltet ist, und dann den DX mit:
+                    dx a starten. Es wird dxa.ini geladen, und der Zeichen-
+                    satz ist von Beginn an der Ascii-Zeichensatz.
+
+ Versteckte Dateien: sind Dateien mit dem Attribut 'Hidden'. Werden diese
+                     Dateien angezeigt, so sind sie an dem Balken an 9.
+                     Stelle des Dateinamens zu erkennen. (Read-Only-
+                     Dateien bekommen dort einen Kreis.)
+
+ Dateifarben: Unter dem Menüpunkt 'Einstellungen/Dateifarben' haben Sie die
+              Möglichkeit, Dateien mit bestimmten Extensionen (z.B.: .exe)
+              andersfarbig darzustellen. Diese Option kann hier einge-
+              schaltet werden.
+
+ Die Rahmenfarbe und Farbe für markierte Dateien können hier mit der Maus
+ ausgewählt werden.
+
+ Die nächsten Seiten in der Konfiguration können mit 'Tab' und 'Shift-Tab'
+ bzw. mit der Maus erreicht werden.
+
+ Der Schalter 'Speichern' übernimmt die Einstellungen und speichert sie in
+ der Datei dx.ini ab (bzw. in aktueller Ini-Datei).
+=== Konfiguration 'Bestätigungen'
+ Mit den Schaltern auf der linken Seite dieses Registers können
+ verschiedene Sicherheitsabfragen des DX abgeschaltet werden.
+ !Vorsicht! mit z.B. 'Löschen bestätigen beim Drag & Drop' können Sie
+ sämtliche Abfragen abschalten, so daß ein direktes Löschen stattfindet,
+ wenn die Maustaste losgelassen wird.
+
+ Automatisches Speichern der Konfiguration:
+    Alle Einstellungen werden bei Beendigung des Programmes in der
+    aktuellen Ini-Datei (dx.ini o.ä.) gespeichert.
+    Die aktuelle Ini-Datei sehen Sie im Menü 'Einstellungen' neben 'Laden'.
+
+ Befehlszeilenstapel automatisch speichern:
+    Der Befehlszeilenstapel wird automatisch bei Beendigung des
+    Programmes in der Datei dxcom.dat gespeichert. Dxcom.dat wird immer
+    bei Neustart des DX geladen, so daß die darin abgelegten Befehle zur
+    Verfügung stehen.
+    Befehlszeilenstapel = die letzten 25 vom DX aus eingegebenen Befehle.
+
+ Meldungen beim Speichern und Laden:
+    Wenn die dx.ini geladen oder gespeichert wird, erscheint ein Hinweis
+    auf erfolgreiche Durchführung der Speicherung, wobei auch der Dateiname
+    der Ini-Datei angezeigt wird (es muß nicht dx.ini sein).
+
+ Abfrage beim Verlassen des DX:
+    Ist diese Option eingeschaltet, so bekommen Sie beim Verlassen des
+    DX ein Abfragefenster 'Wirklich verlassen?', das mit ja oder nein
+    beantwortet werden muß.
+=== Konfiguration 'Konfig.'
+ Einfg.-Taste:
+   Die Tasten 'Einfg' und 'Entf' dienen zum Markieren von Dateien.
+   Ist diese Option eingeschaltet, so wird der Markierungszustand
+   der Dateien invertiert. Andernfalls wird mit der Taste Einfg markiert
+   und mit Entf wieder demarkiert.
+
+ Gleiche Dateien markieren beim Verzeichnisvergleich:
+   Diese Option kann auch direkt beim Verzeichnisvergleich (Alt-F9)
+   umgeschaltet werden. Ist dies ausgeschaltet, so werden die Dateien
+   markiert, die in den zu vergleichenden Verzeichnissen nicht gleich sind.
+
+ Rechte Maustaste kopiert und löscht:
+   Beim Kopieren und Löschen von Dateien kann die rechte Maustaste als
+   Bestätigung und nicht wie üblich als Abbruch benutzt werden.
+   !Vorsicht! hierbei kann man sich schnell mal irren!
+
+ Verzeichnisse markieren mit der rechten Maustaste:
+   Die rechte Maustaste kann benutzt werden, um bei Verzeichnissen eine
+   'Dirinfo' anzeigen zu lassen. Das ist die Voreinstellung.
+   Wird dieser Schalter eingeschaltet, so werden mit der rechten Maustaste
+   die Verzeichnisse markiert. In diesem Fall bekommen Sie die
+   Informationen über das jeweilige Verzeichnis mit der Tastenkombination
+   Strg-Return.
+
+ Overlay ins EMS kopieren:
+   Wenn EMS-Speicher vorhanden ist (ca. 700KB), wird die Overlaydatei,
+   diese ist ein Teil der dxmain.exe, bei Programmstart dorthin kopiert,
+   d.h. keine Festplattenzugriffe mehr beim Aufruf der Overlays wie z.B
+   Disk-Format, Diskcopy, Rechner, Asciitabelle usw.
+
+ Signalton:
+   Beim Wechsel auf nicht mehr vorhandene Verzeichnisse oder Laufwerke ist
+   ein Signalton zu hören, und der Bildschirmrahmen blinkt kurz auf.
+   Der Signalton kann hier abgeschaltet werden.
+
+ Warten nach Ausführung von Programmen:
+   Wenn ein Programm aus dem DX gestartet wird, erscheint nach Beendigung
+   und vor der Rückkehr in den DX die Meldung: Weiter mit einer Taste...
+   Sie haben die Möglichkeit, die Ausgabe des gestarteten Programmes zu
+   lesen, um dann mit einem Tastendruck oder einer Maustaste in den DX
+   zurückzukehren.
+
+ Lange Dateinamen:
+   Unter Windows 95 können die Anzeige und das Kopieren und Umbenennen von
+   Dateien mit langen Dateinamen ein- und ausgeschaltet werden.
+   Wer mit den bisherigen Längen arbeiten möchte, der kann die Verwaltung
+   der langen Namen im DX hier abschalten.
+=== Konfiguration 'Editor'
+  Maus-Verzögerung:
+     Hier wird die Scroll-Geschwindigkeit bzw. die Verzögerung beim
+     Scrollen mit der Maus eingestellt. Je größer der Wert, desto
+     langsamer werden die Zeilen herauf oder heruntergescrollt.
+
+  Standard-Packprogramm:
+     Stellen Sie hier Ihr bevorzugtes Packprogramm ein.
+
+  Interner Viewer:
+     Der Betrachter (auf der Taste F3) kann zwischen einfach und normal
+     umgeschaltet werden.
+     Wurde hier der normale Viewer ausgewählt, so liegt auf der Taste
+     Strg-Q der einfache Betrachter und umgekehrt.
+
+  Editor für F4:
+     Tragen Sie hier Ihren Editor ein, den Sie dann mit F4 benutzen können.
+
+  Externer Viewer für Alt-F3:
+     Auf Alt-F3 kann ein externer Viewer oder ein weiterer Editor gelegt
+     werden.
+
+  Button-Panel:
+     Dies ist ein Fenster mit 5 Seiten, auf denen viele DX-Befehle durch
+     Mausklick gestartet werden können.
+     Die Seite, die zuerst angezeigt werden soll, kann hier eingestellt
+     werden.
+     Die fünfte Seite wird mit den ersten Befehlen aus dem 'Menü' gefüllt.
+=== Konfiguration 'Optionen'
+  Entpacken ins gleiche Verzeichnis:
+     Wenn Sie Dateien dekomprimieren, erscheint in der Eingabezeile
+     das Verzeichnis des anderen Fensters. Wird diese Option eingeschaltet,
+     dann steht dort das Verzeichnis des aktuellen Fensters.
+
+ Anzeige verbleibender Bytes beim Kopieren:
+    Diesen Schalter finden Sie auch direkt im 'Kopieren-Fenster'
+
+ Dateigrößen bei markierten Verzeichnissen auch anzeigen:
+    Werden Verzeichnisse markiert, so werden diese normalerweise als eine
+    Datei mit 0 Bytes gezählt. Dies kann hier geändert werden.
+    Bei eingeschalteter Option kann es bei großen Verzeichnissen lange
+    dauern, bis der Inhalt dieses Directorys ermittelt wurde.
+
+ Hardwarereset der Maus:
+    Der Reset der Maus, welcher ab und zu ausgeführt werden muß, kann
+    von Software-Reset auf Hardware-Reset umgeschaltet werden.
+    Bei Problemen mit der Maus sollte dieser Schalter eingeschaltet sein.
+
+ Ins neue Verzeichnis wechseln:
+    Wird ein Verzeichnis über F7 erzeugt, so wird gleich in dieses
+    Verzeichnis verzweigt.
+
+ Bildschirmschoner-Paßwort:
+    Das voreingestellt Paßwort lautet: 'dx'.
+
+ Namen der Laufwerke:
+    Wenn die Laufwerkswahl (Alt-F1/Alt-F2 oder Mausklick auf das
+    Verzeichnisfenster oben) zu langsam ist (z.B. beim Lesen der
+    Laufwerksnamen von der CD), kann die Anzeige der Laufwerksnamen
+    hier abgeschaltet werden.
+
+ Laufwerksnamen:
+    Hier kann angegeben werden, welche Laufwerksnamen angezeigt werden
+    sollen. Wird hier ein Laufwerksname abgeschaltet, so wird nur der
+    Laufwerksbuchstabe angezeigt, nicht aber der Name des Laufwerks.
+=== Bildschirmschoner                                               (Shift-F8)
+ Der Bildschirmschoner schaltet sich nach der hier voreingestellten Zeit
+ ein, wenn diese Funktion nicht mit F3 ausgeschaltet wurde.
+
+ Der Sternchenzähler ist eine kleine Spielerei, er läßt sich nur für den
+ Standard-Schoner (Blank mit Sternen) einschalten.
+
+ Externe Bildschirmschoner sind normale Exe-Dateien, die nach *.bss
+ umgenannt wurden (damit können alle *.bss Dateien als Bildschirmschoner
+ an ihrem Namen identifiziert werden).
+
+ !Achten Sie darauf, den Bildschirm nicht auszublenden (F7) wenn Sie
+ !einige der externen Schoner benutzen, Sie sehen sonst die Effekte nicht.
+
+ Der beste Schoner ist der Energiespar-Schoner. Er erfüllt tatsächlich den
+ Zweck, den Bildschirm zu schonen und schaltet zudem noch den Monitor in
+ den Energiesparmodus (falls der Monitor dies kann).
+ Wenn der Monitor keine Energiesparfunktion hat, so kann es evt. zu
+ Flimmern o.ä. kommen. In diesem Fall sollte der Energiesparmodus nicht
+ benutzt werden.
+ Dieser Modus wird aktiv, wenn Sie die anderen drei Schoner-Arten mit
+ F4, F6 und F8 ausschalten.
+=== Modem-Parameter
+ Die hier vorzunehmemden Einstellungen werden für die Funktionen
+    Adressliste
+    Telefonieren und
+    Modembefehle
+ benutzt.
+
+ Der Initialisierungsstring wird als erster zum Modem gesandt.
+ Die Infostrings werden in dem Menüpunkt 'Modembefehle' mit den Tasten
+ F2 und F3 an das Modem gesandt. Hiermit können Sie Einstellungen des
+ Modems abfragen. Falls Ihr Modem die voreingestellten Strings nicht
+ versteht, so schauen Sie in Ihrem Handbuch nach um einen funktionieren-
+ den String hier eintragen zu können.
+
+ Die Schnittstelle gibt an, wo Sie Ihr Modem angeschlossen haben.
+
+ Die Vorwahl gilt allgemein und wird immer vor einer Telefonnummer
+ gewählt. Wenn Sie eine Nebenstelle betreiben, so muß evt. eine '0'
+ vorgewählt werden.
+ Geben Sie dann unter Vorwahl die '0' gefolgt von einem (oder mehreren)
+ Komma ein. Dieses Komma bewirkt bei den meisten Modems eine Wartezeit,
+ in der Ihre Amtsleitung durchgestellt wird.
+=== Dateifarben
+ Im DX können Dateien mit bestimmten Extensionen andersfarbig dargestellt
+ werden. Diese Farben können hier eingestellt werden.
+ Damit diese Farben auch sichtbar werden, muß diese Funktion mit dem
+ Kontrollfeld ([ ] An) oder über die Tastatur mit der 'Space'-Taste
+ eingeschaltet werden. Dieses Kontrollfeld finden Sie auch in der
+ Konfiguration auf der Seite 'Anzeige' wieder.
+=== Farbpalette ändern
+ Im Textmodus, in dem der DX arbeitet, können 16 Farben gleichzeitig auf
+ dem Bildschirm angezeigt werden. Diese Farben können hier aus ca. 256000
+ Farben ausgewählt werden, indem die Anteile der drei Grundfarben Rot (R),
+ Grün (G) und Blau (B) verändert werden.
+
+ Bedienung mit der Maus oder Tastatur:
+       F1: Hilfe
+       F2: erhöht den Rot-Anteil
+   Alt-F2: verringert den Rot-Anteil
+     usw.
+ eine direkte Hilfe zu den Funktionstasten bekommen Sie Mit F1.
+=== Laden und Speichern (dx.ini und *.ini)
+ Sämtliche Einstellungen des Programms lassen sich hier
+ laden und speichern.
+
+ Zu Beginn des DX wird immer die Datei dx.ini geladen.
+ Wenn Sie den DX mit dem Parameter 'a' starten also mit 'dx a', wird die
+ Datei dxa.ini geladen. Ab jetzt beziehen sich alle 'Speichern'-Schalter
+ auf diese Datei. Dies können Sie im Menü 'Einstellungen' überprüfen.
+ Hier sehen Sie jetzt 'Laden (dxa.ini)' statt 'Laden (dx.ini)'.
+
+ Diese alternative Einstellungsdatei (dxa.ini) kann z.B. den Ascii-
+ Zeichensatz eingeschaltet haben. Damit können Sie nun den DX unter
+ Windows oder OS/2 im (lansamen) Fenster laufen lassen.
+ (Im Fenster kann Windows den DX-eigenen Zeichensatz nicht darstellen.)
+
+ Laden Sie eine andere Ini-Datei über 'Laden von ...', so wird diese zur
+ aktuellen Ini-Datei, d.h. alle Speichervorgänge beziehen sich ab jetzt
+ auf diese Datei.
+=== Reset des DX
+  Es werden beide Fenster neu eingelesen.
+  Die Maus und der Zeichensatz werden zurückgesetzt.
+  Dieser Punkt ist wichtig, falls residente oder andere Programme
+  den Zeichensatz zerstören oder die Maus irgendwie beeinflussen.
+=== Mausgeschwindigkeit
+ Hier läßt sich die Geschwindigkeit des Mauscursors einstellen und
+ abspeichern.
+
+ Um den Effekt zu sehen bzw. zu bemerken, muß die gewählte Einstellung
+ aktiviert werden.
+
+ Der Schalter 'Speichern' aktiviert den eingestellten Wert und speichert
+ ihn in der Datei dx.ini (bzw. in die aktuelle Ini-Datei) ab.
+
+ Wenn die Maus zu langsam eingestellt wurde, dann helfen nur noch die
+ Cursortasten weiter um die Einstellung wieder verändern zu können.
+=== Eintragen ins Menü                                              (Shift-F1)
+  Hier kann man Strg-Tastenkombinationen für eigene Programme definieren.
+  Die Namen der eingetragenen Programme erscheinen im Hauptmenü unter dem
+  Punkt "Menü" (Alt-M).
+  Das Eintragen kann auch durch Drag & Drop einer ausführbaren Datei auf
+  das Wort 'Menü' in der obersten Zeile geschehen.
+
+  Der Hotkey des Programmes wird durch die Eingabe einer Tilde(~) vor dem
+  entsprechenden Buchstaben bestimmt. ~Windows würde den Hotkey Strg-W
+  bekommen. Sie können dann im DX die Tastenkombination Strg-W drücken -
+  und Windows wird gestartet.
+  Zwei Strg-Kombinationen sind schon vom DX belegt und können hier nicht
+  benutzt werden. Dies sind Strg-O = DOS-Vollbild und Strg-Q = Anzeige
+  einer Datei im einfachen Betrachter oder im normalen Betrachter, dies
+  ist abhängig von der Einstellung des Betrachters auf der Taste F3 (in
+  der Konfiguration auf der Seite 'Editor').
+  Liegt auf F3 der normale Betrachter, so ist auf Strg-Q der einfache
+  Betrachter und umgekehrt.
+
+  Das einzutragende Präfix gibt an, ob das Programm zusammen mit einer
+  Datei gestartet werden soll oder nicht.
+
+  !.! als Präfix bedeutet, daß das Programm zusammen mit dem Namen und der
+  Erweiterung der Datei, die sich gerade unter dem Cursorbalken befindet,
+  gestartet wird. Weitere Ersatzzeichen:
+          !:\ = Laufwerk+Pfadname
+          !.! = Dateiname+Extension
+          !.- = Dateiname ohne Extension
+          !!  = Das "!" selbst.
+          *   = Dateien ohne Erweiterung
+
+  Bsp.: Ich möchte über den Hotkey Strg-D die Datei, die
+  ▌▌▌▌▌ sich gerade unter dem Cursorbalken befindet auf dem
+        Drucker ausgeben.
+
+     -> Über Shift-F1 in die Hauptmenüverwaltung
+
+     -> Einfügen wählen (der Cursorbalken muß sich für das
+        Hinzufügen auf einem leeren Eintrag befinden)
+
+     -> Eintragungen: Menüname : ~Drucken   ~D => Strg-D
+                      Dateiname: type
+                      Präfix   : !.! > PRN
+
+        Wenn gerade die Datei readme.doc unter dem Cursor
+        ist, dann wird über Strg-D der DOS-Befehl:
+        "type readme.doc > PRN" abgesetzt.
+
+  Bsp.: Zweiter Editor über Strg-E ==>
+  ▌▌▌▌▌               Menüname : ~Editor
+                      Dateiname: c:\wer\weiß\2edit.com
+                      Präfix   : !.!
+
+  In der Eingabe der Daten müssen die Felder Name und Programm ausgefüllt
+  sein. Andernfalls wird die Eingabe nicht übernommen.
+
+  Die drei Schaltfelder haben folgende Bedeutung:
+
+  [X] Trenner : Es wird statt des Namens ein Trennstrich in
+                das Menü eingefügt (optische Gestaltung des Menüs).
+
+  [X] Einfügen: Der Name wird in das Menü eingefügt, alle folgenden
+                Einträge verschieben sich nach unten.
+
+  [X] Wechsel : Bevor das angegebene Programm gestartet wird, wird in
+                das Verzeichnis (falls angegeben) des Programmes
+                gewechselt.
+
+  Die Daten werden in der Datei dxmenux.dat abgelegt.
+=== Point-And-Shoot-Verwaltung                                      (Shift-F2)
+  Im Hauptprogramm können .exe .com und .bat-Dateien durch Return
+  oder einen Maus-Doppelklick gestartet werden.
+  Um nun auch andere Dateien 'starten' zu können, muß eine Verknüpfung
+  dieser Datei mit dem dazugehörenden Programm vorgenommen werden.
+  Als Beispiel soll hier ein Bild mit dem Namen rose.pcx dienen.
+  Das Programm mit dem man Bilder betrachten kann soll picem.exe
+  sein. Damit das Bild über die Return-Taste zur Anzeige gebracht
+  werden kann, müssen folgende Einträge vorgenommen werden:
+
+  Extension: pcx
+  Dateiname: C:\TOOLS\picem.exe
+  Präfix   : !.!
+
+  Befindet sich der Cursorbalken im Hauptprogramm auf der Datei
+  rose.pcx, so wird mit Return folgender Befehl abgesetzt:
+
+             C:\TOOLS\picem.exe rose.pcx
+                  Dateiname       ! . !
+
+  Wenn sich das Programm picem.exe im Pfad befindet (PATH=), dann
+  reicht es auch, als Dateiname nur picem.exe oder picem anzugeben.
+
+  Erklärung der Präfixe (Platzhalter):
+
+          !:\ = Laufwerk+Pfadname
+          !.! = Dateiname+Extension
+          !.- = Dateiname ohne Extension
+          !!  = Das "!" selbst.
+          *   = Dateien ohne Erweiterung
+
+       Bsp.:  c:\test\unter\data.tx  (=!:\!.!)
+
+       !.-  = data       !:\!.-= c:\test\unter\data
+       !.!!!= data.tx! (zwar sinnlos aber wer's will!?)
+
+       Max. Anzahl von Verknüpfungen: 50.
+
+ Eintragungen können auch vorgenommen werden, indem einfach auf eine noch
+ nicht verknüpfte Datei 'Return' gedrückt wird. Sie werden dann gefragt,
+ ob die Erweiterung dieser Datei verknüpft werden soll.
+
+ Die hier eingetragenen Daten werden in der Datei dxpas.dat abgelegt.
+=== Quickview Ein-/Ausschalten                                         (Alt-2)
+ Mit dieser Funktion können Sie sich den Inhalt der Dateien im jeweils
+ anderen Fenster ansehen.
+ Während Sie beispielsweise im linken Fenster den Cursorbalken verschieben,
+ wird rechts der Inhalt der Dateien unter dem Cursorbalken angezeigt.
+
+ Dieser Betrachter ist ein Text-Betrachter. Exe oder andere Dateien werden
+ evt. nicht vollständig angezeigt, wenn in der Datei ein Dateiende-Zeichen
+ existiert.
+
+ Mit der Tab-Taste können Sie in dieses Fenster gelangen und durch diese
+ Datei scrollen (hierbei werden auch exe-Dateien ganz angezeigt).
+
+ In der 'normalen' also einspaltigen Anzeige der Dateien (mit Datum usw.)
+ kann man mit den Cursor-Tasten 'rechts' und 'links' die Fenster wechseln.
+=== Lange Namen Ein-/Ausschalten                                       (Alt-1)
+ Hiermit kann die Anzeige langer Dateinamen ein oder ausgeschaltet
+ werden. Dies ist natürlich nur unter Windows 95 möglich.
+ Anm.: Ich belasse die Anzeige im Normalzustand, und wenn ich einen
+ langen Namen sehen möchte, so benutze ich die Taste '#'. Damit wird
+ der aktuelle Dateiname als langer Name in der untersten Zeile angezeigt.
+ Alternativ geht dies auch mit der Maus: Einfach die Datei in die unterste
+ linke Ecke des Bildschirms ziehen (es erscheint der Text 'Langer Name' am
+ Cursor) oder zuerst einen Linksklick auf eine Datei, es erscheint das
+ Fragezeichen im Cursor, dann die rechte Maustaste festhalten.
+===  1.Fenstermenü:  Sortieren und Filter                 ('1' oder Strg-Leer)
+ ┌──────────────────────────┐
+ │ [ ] Mehrspaltig    Alt-Q │ 3 Spaltige Anzeige dieses Fensters
+ │──────────────────────────│
+ │ [X] Aufsteigend          │ Sortierung der Dateien dieses Fensters
+ │ [ ] Name                 │
+ │ [X] Erweiterung          │
+ │ [ ] Größe                │
+ │ [ ] Zeit                 │
+ │──────────────────────────│
+ │ [ ] Filter an            │ Filter An/Aus
+ │ [ ] Diese nicht          │ Diese Dateien (*.exe) werden nicht angezeigt.
+ │ [X] Nur diese Dateien    │ Nur diese Dateien (*.exe) anzeigen, wenn im
+ │──────────────────────────│ Filter *.exe angegeben wurde.
+ │ Filter:  Einrichten...   │
+ │──────────────────────────│ Der Filter kann mehrere Dateimasken
+ │ ┌──────────────────────┐ │ enthalten, also z.B.: *.exe;*.com;*.bat.
+ │ │          OK          │ │
+ │ └──────────────────────┘ │
+ └──────────────────────────┘
+=== 2. Fenstermenü  Auswählen und Wechseln                 ('2' oder Alt-Leer)
+
+   ┌─────────────────────────┐
+   │        Markieren:       │
+   │ ┌─────┐ ┌─────┐ ┌─────┐ │
+   │ │  +  │ │  -  │ │  *  │ │ +  = Markieren von Dateien über den
+   │ └─────┘ └─────┘ └─────┘ │      Markieren-Dialog
+   │ ┌─────────┐ ┌─────────┐ │+++ = alle Dateien markieren
+   │ │   +++   │ │   ---   │ │ -  = Markierung aufheben
+   │ └─────────┘ └─────────┘ │--- = Alle Dateien demarkieren
+   │       Verzeichnis:      │ *  = Markierung invertieren
+   │ ┌─────────────────────┐ │
+   │ │       Merken        │ │ Das aktuelle Verzeichnis wird im Button
+   │ └─────────────────────┘ │ darunter vermerkt.
+   │ ┌─────────────────────┐ │
+   │ │     C:\TOOLS\DX     │ │ Über diese zwei Buttons: Verzeichniswechsel.
+   │ └─────────────────────┘ │
+   │ ┌─────────────────────┐ │
+   │ │       F:\TMP        │ │ Verzeichnis des anderen Fensters.
+   │ └─────────────────────┘ │
+   └─────────────────────────┘
+=== 3. Fenstermenü  Verzeichniswechsel                   ('3' oder Shift-Leer)
+
+   ┌───────────────────────────────────────────┐
+   │  1.C:\TOOLS\DX                           │
+   │  2.E:\SPRACHEN\TP                        ▓│
+   │  3.E:\SPRACHEN\TP\DX                     ░│ 16 oft benutzte
+   │  4.D:\DX\DXBU\OLD.01\DX.20               ░│ Verzeichnisse können
+   │  5.D:\DX\DXBU\OLD.01\MUNIT.20            ░│ über Einfg eingetragen
+   │  6.D:\DX\DXTOOLS                         ░│ werden. Es wird das
+   │  7.D:\DX\DXINSTVO.LL                     ░│ gerade aktive Verzeichnis
+   │  8.D:\DX\DXINSTSH.ARE                    ░│ an die Stelle, auf der
+   │  9.D:\DX\DX.HLP                          ░│ sich der Cursorbalken
+   │ 10.E:\TMP                                ░│ befindet, eingetragen.
+   │ 11.E:\                                   ░│ Wird 'einFügen' gewählt,
+   │ 12.C:\                                   ░│ so werden alle folgenden
+   │ 13.D:\                                   │ Verzeichnisse nach unten
+   │───────────────────────────────────────────│ verschoben, und das letzte
+   │ ┌───────┐ ┌───────┐ ┌───────┐ ┌─────────┐ │ Verzeichnis fällt heraus.
+   │ │Wechsel│ │ Einfg │ │ Entf. │ │ Abbruch │ │ Wechsel über Tastatur:
+   │ └───────┘ └───────┘ └───────┘ └─────────┘ │  1..10 = Tasten 1,2,..,9,0
+   └───────────────────────────────────────────┘ 11..16 = Tasten Shift 1..6
+=== Tips und allgemeine Hinweise
+  +Die Suche im aktuellen Verzeichnis nach Dateien (im DX die Leertaste
+   drücken) erlaubt eine Suche nach Extensionen ==> zuerst den Punkt
+   eingeben. Diese Suche kann auch mit einem Rechtsklick mit der Maus
+   auf den unteren Fensterrahmen erreicht werden (dort wo dann das
+   Eingabefeld erscheint).
+
+  +Schneller Laufwerkswechsel: Geben Sie einfach den Buchstaben des
+   gewünschten Laufwerks zusammen mit der Shift-Taste ein.
+
+  +Die Anzeigebreite der Dateifenster kann mit den Tasten Alt-1 = Lange
+   Dateinamen, Alt-3= 3-spaltig oder Alt-5= 5-spaltig umgeschaltet werden.
+
+  +Die Fenstermenüs können mit den Tasten '1', '2' und '3' geöffnet werden.
+
+  +Return auf Archive (*.zip, *.arj, *.zip) zeigt deren Inhalt
+   im normalen DX-Format an. Hier hat man die Möglichkeit, Dateien
+   aus dem Archiv heraus oder hinein zu kopieren, zu löschen,
+   Komprimierungsstatistiken (mit Return) anzusehen oder über F3 sich
+   den Inhalt einer Datei, die sich im Archiv befindet, anzusehen.
+   Dabei wird die Datei ins temporäre Verzeichnis entpackt und
+   anschließend wieder gelöscht.
+
+   Es ist nicht möglich, in beiden Fenstern ein Archiv zu öffnen.
+
+   Bei Problemen mit der Maus:
+   In der Konfiguration den Hardware-Mausreset einschalten.
+
+  +Die Verwaltung von Dateien mit diesem Programm ist besonders schnell,
+   wenn ein Schreib-Lese-Cache auf Festplatten und ein Lesecache auf
+   Disketten- und CD-ROM-Laufwerke eingerichtet wurde. MS-DOS bietet dafür
+   das Programm Smartdrive an (Bsp.: smartdrv a b c+ d+).
+   Vorsicht: Bevor der Rechner ausgeschaltet wird, müssen die Daten im
+   Write-Behind-Cache auf die Platte geschrieben werden (falls Smartdrive
+   mit dem Parameter /n gestartet wurde). Mit Smartdrive geschieht dies
+   durch: smartdrv /c.
+
+  +Die Umgebungsvariable TMP bestimmt das Verzeichnis, in dem temporäre
+   Dateien abgelegt werden. Im Normalfall werden alle temp. Dateien auch
+   wieder gelöscht. Sollte der Rechner jedoch ausgeschaltet werden, bevor
+   dies geschieht, bleiben die Dateien erhalten und können von Hand
+   gelöscht werden (oder sie werden beim nächsten Gebrauch auch wieder
+   vom Programm gelöscht). Alle temp. Dateien, die hier benutzt werden,
+   beginnen mit den Buchstaben dx und haben die Extension tmp, also
+   z.B: dxtemp.tmp.
+
+   Die Variable TMP richten Sie ein, indem Sie in die autoexec.bat die
+   Zeile SET TMP=C:\DOS\TMP oder ähnlich aufnehmen. Das Verzeichnis (in
+   diesem Falle c:\dos\tmp) muß existieren.
+
+   Ist TMP nicht vorhanden, so wird TEMP benutzt. Ist auch diese Variable
+   nicht definiert, so wird als temporäres Verzeichnis das Stammver-
+   zeichnis des Programmes benutzt (Bsp.: c:\tools\dx).
+
+  +Packer: Unterstützt werden die Packprogramme:
+
+             ARJ   V2.41 V2.50
+             PKZIP V2.04 ZIP2EXE V2.04
+             LHA   V2.13 V2.55
+
+   Andere Versionen wurden nicht getestet.
+
+   Die Packer müssen in einem Verzeichnis stehen, das im Suchpfad
+   eingetragen ist, damit das Programm diese finden kann.
+   Bsp.: Packer sind im Verzeichnis c:\packer Suchpfad:
+   path=c:\dos;....;c:\packer.
+
+   Fehlermeldunden der Packer werden als Nummer, und falls vorhanden,
+   auch als Original-Text angezeigt.
+
+   !! Achtung: Der config.sys-Eintrag 'Files=...'muß >> 8 (default) sein!!
+   !! (z.B.: FILES=20) sonst kann es zu unerklärlichen Fehlern kommen.  !!
+
+ + Schnell alle Markierungen aufheben: Taste '~' oder Maus: Rechtsklick
+   auf das Fenstermenü 'Markieren' (der 2. Punkt im jeweiligen Fenster).
+
+ + Mal eben ins DOS-Bild sehen: Rechts-Klick in die rechte obere Ecke.
+=== Eingabebildschirme
+
+ Bedienung der Eingabebildschirme:
+
+       Durch die Eingabefelder scrollen: TAB
+                                 zurück: Shift-TAB
+                                 oder Cursor 
+
+       Aktivieren eines Eingabefeldes mit invertiertem Hotkey
+       (Alt-Tastenkombination mit dem erleuchteten Buchstaben
+       des jeweiligen Feldes) oder über Mausklick in das Feld.
+
+       Sind Eingabefelder aktiv, so sind eventuell vorhandene Buttons
+       deaktiviert (kein Umschalten der Buttons mit den Cursor-Tasten).
+
+       Auch hier gibt es Ausnahmen: Wenn die Buttonleiste nicht
+       deaktiviert ist, wird mit Beendigung der Eingabe über die
+       Return-Taste die gerade aktive Funktion ausgeführt.
+       Dies ist in manchen Fällen besonders praktisch, weil schnell...
+       (Beispiel: Markieren über die '+'-Taste)
+
+       Ist eine Scrollbox vorhanden (), wird sie mit der Tastatur über
+       Shift-Cursor-unten aktiviert.
+=== Das Kopieren mit dem DX                                               (F5)
+ Mit der Taste F5 oder durch Drag & Drop einer Datei in das andere
+ Fenster wird das 'Kopieren-Fenster' angezeigt.
+ Hier haben Sie die Auswahl zwischen 'Kopieren', 'Bewegen', 'Ziel' und
+ 'Abbruch'. Mit dem Schalter 'Ziel' gelangen Sie in den 'QCD' und können
+ sich ein beliebiges Zielverzeichnis aussuchen.
+ Das voreingestellte Zielverzeichnis ist das Verzeichnis des anderen
+ Fensters.
+
+ Die Optionen:
+
+     [ ] Vergleichen: Vergleicht die Quell- mit der Zieldatei, indem die
+         Zieldatei erneut von der Platte gelesen wird! Es wird also ein
+         'echter' Vergleich durchgeführt (im Gegensatz zum Schalter /v
+         beim copy-Befehl, hier werden nur Checksummen überprüft).
+         Diese Option kann über die Space-Taste umgeschaltet werden.
+
+     [ ] Attribute: Ist diese Option deaktiviert, so werden die Attribute
+         der Quelldateien nicht mit kopiert. Dies ist sinnvoll, wenn z.B.
+         Dateien von einer CD-Rom kopiert werden, die alle das Attribut
+         'Read-Only' haben. Ist das Quell-Laufwerk das erste CD-ROM Lauf-
+         werk, so wird diese Option automatisch abgeschaltet.
+
+ Der Schalter 'Anzeige restlicher Bytes' bewirkt die Anzeige der noch zu
+ kopierenden Bytes und Dateien beim Kopieren in der untersten Bildschirm-
+ zeile. Diese Option kann auch in der Konfiguration eingestellt und abge-
+ speichert werden.
+
+ Kopieren mehrerer Dateien in eine Datei: Einfach mehrere Dateien
+ markieren und als Ziel einen Dateinamen ohne Wildcards (?,*) eingeben.
+ Nach nochmaliger Bestätigung werden alle markierten Dateien nacheinander
+ in der angezeigten Reihenfolge in die Zieldatei kopiert.
+
+ Die Option 'Binäres kopieren' kopiert die Dateien ohne Veränderung.
+ Wird dies deaktiviert, so werden Dateiende-Zeichen (#26) entfernt
+ und am Ende jeder Quelldatei ein Carriage-Return und Line-Feed
+ (#13#10) angehängt.
+=== Externes Programm qcd.exe
+  Quick Change Directory:
+
+  Schneller Verzeichniswechsel auf allen Laufwerken.
+  Diese externe Datei entspricht dem QCD im DX auf
+  der Tastenkombination Alt-F10 oder im Menü, unter dem
+  Menüpunkt 'Datei/Quick Change Directory'.
+
+  Die Verzeichnisbäume werden in dem Verzeichnis abgelegt,
+  in dem sich die Datei qcd.exe befindet.
+
+  Verzeichnisbäume sind die Dateien dxCtree.dat, dxEtree.dat usw.
+
+  Weitere Möglichkeiten, die qcd.exe bietet, können mit qcd /?
+  abgefragt werden.
+  Hier ist es z.B. möglich, das Laufwerk zu wechseln und ein Verzeichnis
+  suchen zu lassen, indem Sie z.B. eingeben:
+
+            qcd d: test
+
+  Wechselt auf das Laufwerk d:, sucht dort nach einem  Verzeichnis
+  'test' und wechselt dorthin.
+=== Menüprogramm dxm.exe
+  Die Abkürzung DXM steht für DX-Menü. Dies ist das vom DX getrennte
+  Benutzermenü, welches auch im Hauptprogramm über F2 aufgerufen werden
+  kann. Hier wird allerdings nicht das dxm.exe aufgerufen sondern eine
+  Routine, die in der Overlay-Datei dxmain.exe vorhanden ist.
+
+  Gestartet wird dxm.exe über die Batch-Datei menu.bat.
+  Nach Auswahl eines Programmes, das von hier aus gestartet werden
+  soll, erzeugt DXM die Batch-Datei dxstart.bat im aktuellen Verzeichnis.
+  Nun wird wiederum diese Batch-Datei von der ersten
+  Batch (menu.bat) gestartet, so daß jetzt das ausgewählte Programm zur
+  Ausführung gelangt. Anschließend wird wieder dxm gestartet.
+
+  Der Vorteil dieser Methode ist die Tatsache, daß jetzt kein Programm im
+  Hauptspeicher verbleibt.
+
+  Der Bildschirmschoner innerhalb dxm.exe benutzt die Einstellungen aus der
+  dx.ini, die mit dem DX erzeugt wurde. D.h. es wird der Bildschirmschoner
+  benutzt, der im DX eingestellt ist.
+=== Alle Dateien des DX 4.0
+   dx      .bat   Startet den DX
+   menu    .bat   Start-Batch für externes Menüprogramm dxm.exe
+   dxstart .bat   Wird von dxm.exe erzeugt, um Programme zu starten
+   dxoffice.bmp   Icon für die Microsoft-Office Startleiste
+   *       .bss   Externe Bildschirmschoner
+   dx?tree .dat   Verzeichnisstrukturen der Laufwerke
+   dxfilter.dat   Abgespeicherte Filtermasken
+   dxmenux .dat   Menüdatei für das Hauptmenü ('Menü')
+   dxmenu  .dat   Menüdatei für das Benutzermenü (F2)
+   dxcom   .dat   Befehlszeilenstapel (Alt-B)
+   dxpas   .dat   Point-And-Shoot Daten (Verknüpfungen)
+   dxadress.dat   Adressliste
+   dxcdlib .dat   Liste der CD's mit Interpreten, Titel, Zeiten...
+   dxcdidx .dat   Index der Datei dxcdlib
+   dxquick .dat   Einträge im Quickmenü
+   dxmacro .dat   Macros
+   dxverz  .dat   Einträge im Menü 'Verzeichniswechsel' (3. Fenstermenü)
+   epson500.drv   Druckertreiber für Epson-kompatible Drucker
+   hp520   .drv   Druckertreiber für HP Deskjet 520
+   dx      .exe   Die Start-Datei lädt dxmain.exe und startet den DX.
+   dx      .com   Start-Datei verbraucht nur ca. 1KB im Speicher
+   dxmain  .exe   Das Hauptprogramm
+   dxm     .exe   Externes Benutzermenü (über menu.bat starten!)
+   dxdouble.exe   Suche nach doppelten Dateien
+   dxdfind .exe   Suche nach Dateien
+   dxe     .exe   DX-Editor
+   dxhedit .exe   Hex-Editor
+   dxview  .exe   Dateibetrachter
+   dxrech  .exe   Rechner
+   dxascii .exe   Ascii-Tabelle
+   dxcd    .exe   CD-Player
+   dxspeich.exe   Speicherauszug
+   dxkal   .exe   Kalender
+   adrkonv .exe   Konvertiert Adressen aus älteren DX-Versionen (<3.0)
+   dxsize  .exe   Verzeichnisgrößen
+   dxmap   .exe   Laufwerksübersicht
+   qcd     .exe   Verzeichniswechsel
+   lha     .exe   Komprimierungsprogramm LHA
+   lha     .doc   Dokumentation des Packers LHA
+   dxhlp   .hlp   Diese Online-Hilfe
+   dx      .ico   Icon für Windows
+   dx      .ini   Einstellungen des Hauptprogramms
+   dx?     .ntz   Notiz-Dateien für eigene Notizen auf Hotkey (Alt-N)
+   dx      .pif   Pif-Datei für Windows
+   dxsysdat.ini   Enthält Namen der Dateien die über
+                  'Systemdateien editieren' in den Editor dxe.exe
+                  geladen werden können
+   helptext       Online-Hilfe als Ascii-Text
+
+
+  Einige Dateien werden erst erzeugt, wenn sie gebraucht werden.
+  Sie erhalten dann einmal einen Hinweis, daß diese Datei nicht
+  vorhanden ist.

@@ -1,0 +1,222 @@
+=== Contents
+  1. Keyboard 1
+  2. Keyboard 2
+  3. Working with the mouse
+  4. The main screen and how files are shown
+  5. Info     Program status
+  6. ▔▔▔▔     Environment variables
+  7.          Calendar
+  8.          Stopwatches
+  9.          Address list
+ 10.          Telephone
+ 11.          Modem commands
+ 12.          Memory, interfaces
+ 13.          Memory dump
+ 14. Menu     User menu                                                 (F2)
+ 15. ▔▔▔▔     Self-defined entries                                (Shift-F1)
+ 16. File     Change attributes                                    (Ctrl-F1)
+ 17. ▔▔▔▔     Change time and date                                 (Ctrl-F2)
+ 18.          Print
+ 19.          View                                                      (F3)
+ 20.          Edit                                                      (F4)
+ 21.          Hex editor                                                (F9)
+ 22.          Synchronize directories
+ 23.          Find duplicate files
+ 24.          Find files (also text)                                (Alt-F7)
+ 25.          Find text in selected files                           (Alt-F8)
+ 26.          Compare directories                                   (Alt-F9)
+ 27.          QCD quick directory change                           (Alt-F10)
+ 28.          Split                                                (Ctrl-F3)
+ 29.          Join                                                 (Ctrl-F4)
+ 30.          Send and receive files
+ 31. Options  Directory sizes                                        (Alt-V)
+ 32. ▔▔▔▔▔▔▔  Drive overview                                         (Alt-L)
+ 33.          Drive statistics                                       (Alt-S)
+ 34.          Disk operations
+ 35.          Calculator + hex-dec-bin converter               (Alt-R Alt-H)
+ 36.          ASCII table                                            (Alt-A)
+ 37.          Quick menu                                             (Alt-C)
+ 38.          Notes, time, date                               (Alt-N)(Alt-Z)
+ 39.          Command line history                                   (Alt-B)
+ 40.          CD player
+ 41.          Volume
+ 42.          Mini CD player
+ 43.          Open/close CD-ROM                                   (Shift-F6)
+ 44.          Edit system files                                   (Shift-F3)
+ 45. Pack     Compress                                             (Ctrl-F5)
+ 46. ▔▔▔▔     Create SFX                                           (Ctrl-F6)
+ 47.          Archive to exe                                       (Ctrl-F7)
+ 48.          Test archive                                         (Ctrl-F8)
+ 49.          View archive                                         (Ctrl-F9)
+ 50.          Extract archive                                     (Ctrl-F10)
+ 51.          Multi-volume backup and restore
+ 52.          Show the shell screen                                 (Alt-F5)
+ 53.          Last shell command                                 (Backspace)
+ 54.          Full-screen shell input                               (Ctrl-O)
+ 55.          Packer window
+ 56. Settings Macro recorder                                         (Alt-F)
+ 57. ▔▔▔▔▔▔▔▔ Configuration: display
+ 58.          Configuration: confirmations
+ 59.          Configuration: configuration
+ 60.          Configuration: editor
+ 61.          Configuration: options
+ 62.          Screen saver                                        (Shift-F8)
+ 63.          Modem parameters
+ 64.          File colours
+ 65.          Change colour palette
+ 66.          Load and save settings
+ 67.          Reset DX
+ 68.          Mouse speed
+ 69.          Add to the menu                                     (Shift-F1)
+ 70.          Point-and-shoot (file associations)                 (Shift-F2)
+ 71.          Quickview on/off
+ 72.          Long names on/off                                      (Alt-1)
+ 73. 1st window menu: sort + file filter             ('1' or Ctrl-Space)
+ 74. 2nd window menu: selection                       ('2' or Alt-Space)
+ 75. 3rd window menu: change directory             ('3' or Shift-Space)
+ 76. - Tips and general notes
+ 77. - Input screens
+ 78. - Copying with DX
+ 79. - External programs (qcd and others)
+ 80. - The menu program dxm
+ 81. - All files of DOS-Expander
+=== Keyboard 1
+=== Keyboard 2
+=== Working with the mouse
+=== The main screen and how files are shown
+=== Program status
+=== Environment variables
+=== Calendar
+=== Stopwatches
+=== Address list
+=== Telephone
+=== Modem commands
+=== Memory, interfaces
+=== Memory dump
+=== User menu                                                            (F2)
+ Here you start programs 'in a hurry'. The programs entered with
+ 'Admin' are started with the cursor keys, the mouse or the function keys.
+ Clicking a button with the right mouse button lets you change the entry,
+ enter a new one or move it.
+ The menu item 'Separator' simply enters one of the offered characters
+ (line - or asterisk * ...) as the name. This lets you arrange the
+ buttons more clearly.
+
+  Control: cursor keys, PgUp, PgDn, Tab and the mouse.
+  Start  : Enter, the function keys or the mouse.
+  F9     : opens the 'Admin' menu.
+  Esc    : quits the user menu.
+  Ctrl-Enter or a right click on one of the buttons opens the local
+  menu of that button. Its functions explain themselves (New, Change,
+  Delete, Exchange, Separator and Quit).
+
+  The programs are divided into groups. A group is a menu item at the
+  top of the screen. You set up the groups yourself (e.g. ~Tools
+  ~Games ~Applications). Each group is a set of 21 buttons.
+  The programs within a group are sorted with 'Entries: Sort' in the
+  'Admin' menu. Double-click the program to move or highlight it with
+  Enter, move it, and drop it again with a double click or Enter.
+
+
+  Modify entries:
+  ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+  Insert, change and delete entries.
+  With 'Insert' you choose a program in a 'small DX' (only programs
+  and scripts are shown) and name it with Enter. The name is then
+  inserted into the current group or set at the current position.
+
+  [X] Directory change: when this option is on, the program is started
+  in its own directory. Many programs need their home directory as the
+  current directory, so this option is on by default.
+  'Drive' (or Alt-F1/Alt-F2) changes to another place, such as your
+  home directory or a mounted volume.
+
+
+  Add a group:
+  ▔▔▔▔▔▔▔▔▔▔▔▔
+  Every group gets a hotkey, which you mark when naming the group:
+  a tilde (~) before the letter. ~Games gives the hotkey G for this
+  group, i.e. pressing 'g' shows this group of programs.
+
+  The programs are started through the shell (sh -c), so command lines
+  with arguments work.
+
+  The entries are stored in the file dxmenu.txt in the DX directory
+  (~/.config/dx).
+=== Self-defined entries
+=== Change attributes
+=== Change time and date
+=== Print
+=== View
+=== Edit
+=== Hex editor
+=== Synchronize directories
+=== Find duplicate files
+=== Find files
+=== Find text in selected files
+=== Compare directories
+=== QCD quick directory change
+=== Split
+=== Join
+=== Send and receive files
+=== Directory sizes
+=== Drive overview
+=== Drive statistics
+=== Disk operations
+=== Calculator + hex-dec-bin converter
+=== ASCII table
+=== Quick menu
+=== Notes, time, date
+=== Command line history
+=== CD player
+=== Volume
+=== Mini CD player
+=== Open/close CD-ROM
+=== Edit system files
+=== Compress
+=== Create SFX
+=== Archive to exe
+=== Test archive
+=== View archive
+=== Extract archive
+=== Multi-volume backup and restore
+=== Show the shell screen
+=== Last shell command
+=== Full-screen shell input
+=== Packer window
+=== Macro recorder
+=== Configuration: display
+=== Configuration: confirmations
+=== Configuration: configuration
+=== Configuration: editor
+=== Configuration: options
+=== Screen saver
+=== Modem parameters
+=== File colours
+=== Change colour palette
+=== Load and save settings
+=== Reset DX
+=== Mouse speed
+=== Add to the menu
+=== Point-and-shoot
+=== Quickview on/off
+=== Long names on/off
+=== 1st window menu: sort + file filter
+=== 2nd window menu: selection
+=== 3rd window menu: change directory
+=== Tips and general notes
+=== Input screens
+=== Copying with DX
+=== External programs
+=== The menu program dxm
+  DXM stands for DX menu. It is the user menu as a program of its own;
+  the main program shows the same menu on F2.
+
+  Choose a program and DXM runs it; when the program ends, the menu
+  comes back. Esc or 'Quit' ends DXM.
+
+  The screen saver of DXM uses the settings of DX (dx.conf): the delay
+  and the password.
+=== All files of DOS-Expander
+   dx.conf        Settings
+   dxmenu.txt     Entries of the user menu (F2, dxm)

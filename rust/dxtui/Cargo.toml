@@ -1,0 +1,9 @@
+[package]
+name = "dxtui"
+version.workspace = true
+edition.workspace = true
+description = "Text-mode screen for the DOS-Expander ports: 80x25 cells, DX palette and glyphs, Crt-style drawing"
+
+[dependencies]
+crossterm.workspace = true
+libc = "0.2"

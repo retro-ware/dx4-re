@@ -9,14 +9,19 @@ pub fn decode(bytes: &[u8]) -> String {
         .collect()
 }
 
-/// Characters outside CP437 become '?'.
+/// Non-ASCII characters map to CP437 0x80..0xFF, else to the control-code glyphs (☺, ►, ↑, ...);
+/// anything else becomes '?'.
 pub fn encode(s: &str) -> Vec<u8> {
     s.chars()
         .map(|c| {
             if (c as u32) < 0x80 {
                 c as u8
             } else {
-                HIGH.chars().position(|h| h == c).map_or(b'?', |i| 0x80 + i as u8)
+                HIGH.chars()
+                    .position(|h| h == c)
+                    .map(|i| 0x80 + i as u8)
+                    .or_else(|| (1..32).find(|&b| crate::glyph::glyph(b) == c))
+                    .unwrap_or(b'?')
             }
         })
         .collect()
