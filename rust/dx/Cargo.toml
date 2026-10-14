@@ -6,3 +6,7 @@ edition.workspace = true
 [dependencies]
 dxtui = { path = "../dxtui" }
 libc = "0.2"
+
+[[bin]]
+name = "x4"
+path = "src/main.rs"

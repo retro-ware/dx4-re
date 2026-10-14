@@ -48,7 +48,7 @@ terminals; texts are English, file formats are our own.
 - Spec: captures in `ref/dxmain/`, the German manual `ref/help/dxhelp.de.txt` (keys, mouse click points),
   strings in `work/dxmain_strings.txt`. Behaviour clone, not a decompilation.
 - Done: see CHECKLIST.md "Rust rewrite". Commands run with `$SHELL -c` in the panel directory and wait for
-  Return; `cd DIR` on the command line changes the panel; F2/Shift-F1 start `dxm` from next to `dx`.
+  Return; `cd DIR` on the command line changes the panel; F2/Shift-F1 start `dxm` from next to `x4`. The binary is `x4`; `tools/install.sh` installs `x4` and `dxm` into `~/bin`.
 - State in `$DX_HOME`: `dx.conf` (panels, sort, view, filter, bookmarks, associations `assoc.EXT`, colours
   `color.EXT`, editor/viewer, saver), `dxhist.txt`, `qcd.txt`, `notes.txt`.
 - Differences: drives → places bar; file colours default to programs red, pictures yellow (DX.INI is binary);
