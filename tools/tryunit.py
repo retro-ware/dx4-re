@@ -142,7 +142,8 @@ for k in addr:
     i, j = xi.get(a), yi.get(a)
     if not (i and j and a + i.size > k):
         a = ystarts[bisect.bisect_right(ystarts, k) - 1]
-        i, j = xi.get(a) or next(CS.disasm(bytes(ocode[a:a + 16]), a)), yi[a]
+        i, j = xi.get(a) or next(CS.disasm(bytes(ocode[a:a + 16]), a), None), yi.get(a)
+        if i is None or j is None: continue
     ov = [op.imm if op.type == 2 else op.mem.disp for op in i.operands if op.type in (2, 3)]
     bv = [op.imm if op.type == 2 else op.mem.disp for op in j.operands if op.type in (2, 3)]
     for u, v in zip(ov, bv):
