@@ -85,7 +85,8 @@
     run via COMSPEC/RunWindow; TQuickLst = object(TList) with DrawLine override, function QuickMenu returns the command) matches strict
   - [x] o1146 TreeSel (directory tree browser over dx?tree.dat: TTreeLst/TPathLst lists, incremental search, F5/F6/F7 hot buttons,
     Alt-F1 drive change, Ctrl-Return dir sizes via DirTree.ScanDirs, tree build/load with nested ReadBranch; replaces U1146, used by CopyDlg) matches strict
-  - [ ] o0340 TreeDlg WIP (agent B, size 0x2330 vs built 0x25c0, procs from 0x6e1 on diverge)
+  - [x] o0340 ExtColor (file-type colour dialog: 16 extension rows with text/background pickers, Vorher/Speichern,
+    writes Colors[2]+Blk562 of dx.ini via SaveColors; the earlier TreeDlg WIP under this segment was a misfiled 1146 attempt) matches strict
   - [x] strict tryunit recheck (2026-10-14): all matched units pass; remaining 'real diffs' are classifier false positives only:
     Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping
