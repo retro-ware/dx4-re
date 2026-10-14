@@ -3,20 +3,17 @@ unit Filters;
 
 interface
 
+uses DXGlob;
+
 type
   Str80 = string[80];
-  TFilterOpts = record
-    Attr: Word;
-    MaxSize, MinSize: Longint;
-    MinTime, MaxTime: Longint;
-  end;
 
 function LoadFilter(var Mask: Str80; var Opts: TFilterOpts): Boolean;
 procedure SaveFilter(Mask: Str80; Opts: TFilterOpts);
 
 implementation
 
-uses Crt, DXGlob, Buttons, Mouse, Screen, Windows, Dialogs, Lists, Fonts;
+uses Crt, Buttons, Mouse, Screen, Windows, Dialogs, Lists, Fonts;
 
 type
   TFilter = record

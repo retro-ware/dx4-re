@@ -59,3 +59,9 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
   offset leave no gap (strings are byte-aligned): AddGroup = result(-1), two Bytes(-2,-3), S: string[40] at -0x2c.
 - Unreferenced locals are common (SizeStr/FormatNum: Byte at -1 + Word after T; DiskImg.RestoreImage: 512-byte buffer
   + 3 bytes). The strict classifier catches them; MATCH(addr) under the old one did not.
+- tools/dsnames.py builds work/dsnames_DXMAIN.json: original DS offset -> global name, from tryunit addr maps + test link
+  map publics (DATA segment paragraph). The 'CfgColors' 65-byte block ($9E0..$A20) is really ~40 separate option globals
+  (SaverOn, ThinButtons, ConfirmDel, PackFull, LongNames=$A18 ...) that SaveCfg/StateIO copy as one block -> the DS
+  layout step must declare them contiguously (TColors(CfgColors) casts).
+- tools/dd.py (orig/built disassembly of ranges), tools/bpoffs.py (bp-offset sets per proc), tools/mapline.py (code
+  offset -> source line via T.MAP line table) are the quick strict-diff triage tools.

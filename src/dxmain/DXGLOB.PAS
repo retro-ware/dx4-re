@@ -73,7 +73,7 @@ const
   CmpDirNames: Boolean = False;
 
 type
-  THistory = array[0..25] of string[128];
+  THistory = array[0..26] of string[128];
   PHistory = ^THistory;
 
 var
@@ -97,6 +97,58 @@ var
   CfgBlkA9C: array[0..31] of Byte;
   CfgLABE, CfgLAC2, CfgLAC6, CfgLACA: Longint;
   CfgBlkAFE: array[0..47] of Byte;
+
+type
+  { dx.ini record (SaveCfg 0362 / StateIO 031b) }
+  TColors = array[0..64] of Byte;
+  TBlk26 = array[0..25] of Byte;
+  TBlk32 = array[0..31] of Byte;
+  TBlk48 = array[0..47] of Byte;
+  TProg = record
+    W: Word;
+    S: string[20];
+  end;
+  TConfig = record
+    Id: string;
+    Colors: TColors;
+    Colors2: TColors;
+    S182, S203: string[128];
+    W284: Word;
+    S286, S2D6: string[79];
+    S326: string[12];
+    B333: Byte;
+    W334: Word;
+    Drives: array[1..26] of Boolean;
+    Progs: array[1..9] of TProg;
+    B41F: Byte;
+    S420, S470: string[79];
+    S4C0, S511: string[80];
+    Blk562: TBlk32;
+    B582, B583: Byte;
+    L584, L588, L58C, L590: Longint;
+    B594: Byte;
+    Blk595: TBlk48;
+    Pw: string[11];
+    S1, S2, S3: string[77];
+    Prn1, Prn2: string[12];
+    B6D5, B6D6, B6D7, B6D8, B6D9, B6DA, B6DB, B6DC, B6DD, B6DE, B6DF: Byte;
+    W6E0: Word;
+    Blk6E2: TBlk26;
+    S6FC: string[12];
+    B709, B70A, B70B: Byte;
+    B70C, B70D, B70E, B70F, B710, B711: Byte;
+  end;
+  { panel filter (Filters 1153), also stored in TPanel at $13FE }
+  TFilterOpts = record
+    Attr: Word;
+    MaxSize, MinSize: Longint;
+    MinTime, MaxTime: Longint;
+  end;
+
+var
+  ActivePanel: Byte;      { $560: 1 or 2 }
+  GA15: Boolean;          { $A15 }
+  CfgStr822: string[12];  { $822 }
 
 type
   { panel record of resident unit 0365 (placeholder layout, size $1411) }
@@ -130,7 +182,9 @@ type
     B1261: Byte;
     Blk1262: array[0..9] of Byte;
     S126C: string[80];
-    Fill12BD: array[$12BD..$1410] of Byte;
+    Fill12BD: array[$12BD..$13FD] of Byte;
+    Filter: TFilterOpts;
+    B1410: Byte;
   end;
 
   PPanel = ^TPanel;

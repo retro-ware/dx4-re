@@ -73,6 +73,8 @@
     o1546 CDAudio (MSCDEX driver, replaces U1546), o1067 CmdMenu (dir command menu + macros), o100d TextView (text viewer)
   - [x] o1013 DiskImg (floppy image make/restore) matches strict (RestoreImage: unused 512-byte Sector buffer + 3-byte gap before Res)
   - [x] o032b ComXfer (serial file transfer) and o0331 PalEdit (palette editor) match strict (PalEdit: 1 [di+PalIdx] table false positive)
+  - [x] o031b StateIO (state across shell-outs: XMS/dxtemp.tmp, dx.ini + dxcom.dat loading; TConfig/TFilterOpts moved to DXGlob,
+    THistory is [0..26], TPanel.Filter at $13FE) matches strict
   - [ ] o0340 TreeDlg WIP (agent B, size 0x2330 vs built 0x25c0, procs from 0x6e1 on diverge)
   - [x] strict tryunit recheck (2026-10-14): all matched units pass; remaining 'real diffs' are classifier false positives only:
     Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)

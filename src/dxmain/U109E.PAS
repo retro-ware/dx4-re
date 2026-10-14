@@ -10,6 +10,8 @@ function GetEms(var Free, Total: Longint): Boolean;
 function XmsInfo(Handle: Word; var Locks, FreeHandles: Byte; var Size: Word): Boolean;
 function XmsLock(Handle: Word; var Addr: Longint): Boolean;
 procedure XmsUnlock(Handle: Word);
+function P109E_3B7(Size, Ofs: Longint; P: Pointer; Handle: Word): Boolean;
+function P109E_316(Size, Ofs: Longint; P: Pointer; Handle: Word): Boolean;
 
 implementation
 
@@ -34,6 +36,14 @@ begin
 end;
 
 procedure XmsUnlock(Handle: Word);
+begin
+end;
+
+function P109E_3B7(Size, Ofs: Longint; P: Pointer; Handle: Word): Boolean;
+begin
+end;
+
+function P109E_316(Size, Ofs: Longint; P: Pointer; Handle: Word): Boolean;
 begin
 end;
 
