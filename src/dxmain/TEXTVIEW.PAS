@@ -12,7 +12,7 @@ procedure ViewFile(Name: Str80; Mode: Byte);
 
 implementation
 
-uses Dos, Crt, DXGlob, Mouse, Screen, Windows, ScrSave, Dialogs, Status, Palette, U13A9;
+uses Dos, Crt, DXGlob, Mouse, Screen, Windows, ScrSave, Dialogs, Status, Palette, ViewDlgs;
 
 type
   TView = record
@@ -366,7 +366,7 @@ var
       Block := MaxBlock;
       OpenDialog;
       MouseShow;
-      P13A9_201(10, 15, 60, 5, 1, 3);
+      DlgFrame(10, 15, 60, 5, 1, 3);
       MouseHide;
       WriteCenterXY(1, 1, 60, 'Das kann leider etwas dauern ...');
       GotoXY(24, 4);
@@ -506,7 +506,7 @@ begin
   IdxOfs := Ofs(LineIdx^);
   Seek(F, BlockPos^[Block]);
   BlockRead(F, Buf^, MaxSize, Got);
-  if IOResult <> 0 then P13A9_277('Fehler beim Lesen der Datei!', '');
+  if IOResult <> 0 then InfoBox('Fehler beim Lesen der Datei!', '');
   Size := MaxSize;
   if MaxSize < $FFF0 then
   begin
