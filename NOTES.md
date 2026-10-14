@@ -55,8 +55,20 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
 - Temp layout rule (Execute.RunWindow, verified): a string-literal temp is Length+1 bytes, NOT rounded; only the *next*
   allocation is word-aligned. So a trailing 1-byte local (odd end) is invisible in a statement whose first temp is a
   literal of even length ('PATH' -> 5 bytes at the same slot), but shifts every later statement's temps by 2.
-- Function results live at [bp-1]/[bp-2]/[bp-4] as the first local; locals declared before a string var that end at an odd
-  offset leave no gap (strings are byte-aligned): AddGroup = result(-1), two Bytes(-2,-3), S: string[40] at -0x2c.
+- Function results live at [bp-1]/[bp-2]/[bp-4] as the first local. Local layout rule (FindDlg, verified against a 0x894
+  frame): every multi-byte local (strings included) starts at align_down(free - size + 1); 1-byte locals are not aligned.
+  AddGroup = result(-1), two Bytes(-2,-3), S: string[40] at -0x2c (even anyway); FindDlg: Code: Integer(-0x550), then a
+  6-byte unused local, SaveS: string[128] at -0x5d8 (a 7-byte string[6] there would land at -0x558 and shift SaveS to -0x5da).
+- Statement temps (literal copies, string expression results) use the same rule and the pool restarts at the end of the
+  locals for every statement (ParseFilters: ';' temp and the two ErrorBox literals share the same top slot).
+- Byte/Char compares with two complex operands: the operand evaluated FIRST (pushed, or loaded into dl) is the RIGHT one;
+  al holds the left operand (`if UpCase(C) <> UpCase(Dir[1])`, `Selected[I] <> Valid[I]`).
+- `WordVar in [9, 13]` compiles to byte compares on the low byte (`mov al,[W]; cmp al,9; cmp al,13`) while
+  `(W = $3F7)` right after it is a word compare: the mixed shape is `(Key in [9, 13]) or (Key = $3F7)`.
+- `repeat ... until A or B or (K = c1) or ...` with a far backward jump ends in `cmp K,cN; je exit; jmp loop`; a chain of
+  `cmp K,c; je exit` on a Word (not `in`) means ORed equality tests, not a set.
+- Dialogs.SelectDrive clobbers Mouse.MouseMap (0x5c60, 0x8c0 bytes): callers save/restore it with `Save := MouseMap`
+  (BlockCopy, src pushed first) like AddProg does.
 - Unreferenced locals are common (SizeStr/FormatNum: Byte at -1 + Word after T; DiskImg.RestoreImage: 512-byte buffer
   + 3 bytes). The strict classifier catches them; MATCH(addr) under the old one did not.
 - tools/dsnames.py builds work/dsnames_DXMAIN.json: original DS offset -> global name, from tryunit addr maps + test link

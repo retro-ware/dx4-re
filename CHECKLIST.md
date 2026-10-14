@@ -79,6 +79,8 @@
     (loop over Longint I is a repeat/until entered via goto; {$I+} except file procs; U0365 P0365_C3B takes S by value)
   - [x] o13a9 ViewDlgs (viewer dialogs: DlgFrame/InfoBox, CutFile copy-a-range, hex/ascii SearchDlg; replaces U13A9) matches strict;
     placeholders U13B0 (+P13B0_60D/6C0 button pair, $109-byte buttons) and new U13AD (help entry)
+  - [x] o1150 FindDlg (extended file search dialog: masks/filters, attributes, date and size ranges, drive bar, load/save
+    filter; typed consts DateTo/DateFrom/MinSizeStr/MaxSizeStr/Archive/ReadOnly/SysAttr/Hidden at DS $400..$43A) matches strict
   - [ ] o0340 TreeDlg WIP (agent B, size 0x2330 vs built 0x25c0, procs from 0x6e1 on diverge)
   - [x] strict tryunit recheck (2026-10-14): all matched units pass; remaining 'real diffs' are classifier false positives only:
     Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)
