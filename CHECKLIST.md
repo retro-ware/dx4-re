@@ -87,6 +87,8 @@
     Alt-F1 drive change, Ctrl-Return dir sizes via DirTree.ScanDirs, tree build/load with nested ReadBranch; replaces U1146, used by CopyDlg) matches strict
   - [x] o0340 ExtColor (file-type colour dialog: 16 extension rows with text/background pickers, Vorher/Speichern,
     writes Colors[2]+Blk562 of dx.ini via SaveColors; the earlier TreeDlg WIP under this segment was a misfiled 1146 attempt) matches strict
+  - [x] o031f SBMixer (Sound Blaster mixer: BLASTER env parsing, DSP reset/version check in asm, Master/Wave/Midi/CD
+    L+R sliders via mixer regs $22/$04/$26/$28; all helpers nested in procedure Mixer) matches strict
   - [x] strict tryunit recheck (2026-10-14): all matched units pass; remaining 'real diffs' are classifier false positives only:
     Palette/Status/TextView/U1D10/PalEdit ([bx/di+table] typed-const tables without direct DS refs), ComXfer (1 byte, resync in a literal pool)
   - placeholders for not yet decompiled units: U156F, U142F (overlays), U1D10 (resident); DXGlob has overlapping

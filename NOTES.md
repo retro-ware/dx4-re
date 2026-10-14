@@ -77,3 +77,8 @@ Source: `~/Downloads/DX4.ZIP` (extracted read-only to `dist/DX4/`). Author: Hein
   layout step must declare them contiguously (TColors(CfgColors) casts).
 - tools/dd.py (orig/built disassembly of ranges), tools/bpoffs.py (bp-offset sets per proc), tools/mapline.py (code
   offset -> source line via T.MAP line table) are the quick strict-diff triage tools.
+- Binary-op operand order (SBMixer, verified): the compiler evaluates the operand needing more registers first and
+  keeps the other one in cx/dx. `(7 - CurY) + Y` compiles to cx := Y; ax := 7 - CurY; add ax,cx (left complex, right
+  simple -> right loaded into cx first), while `Y + (7 - CurY)` gives dx := 7 - CurY; ax := Y; add ax,dx. For `or`:
+  `(T and $F) or (V shl 4)` evaluates `V shl 4` first. So when the dump shows a simple operand loaded first into cx,
+  it is the RIGHT operand of a left-complex expression.
