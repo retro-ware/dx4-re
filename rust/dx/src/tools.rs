@@ -67,6 +67,7 @@ pub fn command(app: &mut App, c: u16) {
             }
         }
         ASSOC => assoc(app),
+        FILE_COLORS => file_colors(app),
         _ => dlg::info(&mut app.ui, "DOS-Expander", &["This function is not available.".into()]),
     }
 }
@@ -162,10 +163,10 @@ fn status(app: &mut App) {
         let dirs = p.entries.iter().filter(|e| e.is_dir && !e.is_up()).count();
         let bytes: u64 = p.entries.iter().filter(|e| !e.is_dir).map(|e| e.size).sum();
         l.push(format!("{side} panel: {}", panel::shorten(&p.path.display().to_string(), 50)));
-        l.push(format!("  {files} files ({} bytes), {dirs} directories, {} marked", panel::group(bytes),
+        l.push(format!("  {files} files ({}), {dirs} directories, {} marked", files::human(bytes),
             p.marked().len()));
         if let Some((free, total)) = files::disk_space(&p.path) {
-            l.push(format!("  {} of {} bytes free", panel::group(free), panel::group(total)));
+            l.push(format!("  {} of {} free", files::human(free), files::human(total)));
         }
     }
     l.push(format!("Settings: {}", app.conf.path().display()));
@@ -894,7 +895,7 @@ fn dupes(app: &mut App) {
     let mut paths = vec![];
     for (size, v) in &groups {
         for (k, p) in v.iter().enumerate() {
-            let s = if k == 0 { format!("{:>12}", panel::group(*size)) } else { " ".repeat(12) };
+            let s = if k == 0 { format!("{:>9}", files::human(*size)) } else { " ".repeat(9) };
             lines.push(format!("{s}  {}", rel(&base, p)));
             paths.push(p.clone());
         }
@@ -944,7 +945,7 @@ fn dir_sizes(app: &mut App) {
     for e in &dirs {
         let (b, n, ok) = tree_size(&dir.join(&e.name), &mut app.ui);
         total += b;
-        v.push((b, format!("{:<24} {:>15} {:>7} files", panel::fit(&e.name, 24), panel::group(b), n)));
+        v.push((b, format!("{:<24} {:>9} {:>7} files", panel::fit(&e.name, 24), files::human(b), n)));
         if !ok {
             break;
         }
@@ -953,8 +954,8 @@ fn dir_sizes(app: &mut App) {
     app.ui.pop_screen();
     v.sort_by(|x, y| y.0.cmp(&x.0));
     let mut lines: Vec<String> = v.into_iter().map(|x| x.1).collect();
-    lines.push(format!("{:<24} {:>15}", "(files here)", panel::group(files)));
-    lines.push(format!("{:<24} {:>15}", "Total", panel::group(total + files)));
+    lines.push(format!("{:<24} {:>9}", "(files here)", files::human(files)));
+    lines.push(format!("{:<24} {:>9}", "Total", files::human(total + files)));
     dlg::list(&mut app.ui, "Directory sizes", &lines, 0);
 }
 
@@ -977,7 +978,7 @@ pub fn dir_info(app: &mut App) {
     }
     app.ui.pop_screen();
     let what = if items.len() == 1 { items[0].name.clone() } else { format!("{} entries", items.len()) };
-    dlg::info(&mut app.ui, "Size", &[what, format!("{} bytes in {n} files", panel::group(b))]);
+    dlg::info(&mut app.ui, "Size", &[what, format!("{} in {n} files", files::human(b))]);
 }
 
 fn drives(app: &mut App) {
@@ -986,8 +987,8 @@ fn drives(app: &mut App) {
         .iter()
         .map(|p| {
             let (f, t) = files::disk_space(p).unwrap_or((0, 0));
-            format!("{:<30} {:>18} free of {:>18}", panel::fit(&p.display().to_string(), 30), panel::group(f),
-                panel::group(t))
+            format!("{:<30} {:>9} free of {:>9}", panel::fit(&p.display().to_string(), 30), files::human(f),
+                files::human(t))
         })
         .collect();
     if let Some(i) = dlg::list(&mut app.ui, "Drive overview", &lines, 0) {
@@ -1001,9 +1002,9 @@ fn drive_stat(app: &mut App) {
     if let Some((f, t)) = files::disk_space(&p) {
         let used = t - f;
         let pct = if t > 0 { used * 100 / t } else { 0 };
-        l.push(format!("Total: {:>20} bytes", panel::group(t)));
-        l.push(format!("Used:  {:>20} bytes", panel::group(used)));
-        l.push(format!("Free:  {:>20} bytes", panel::group(f)));
+        l.push(format!("Total: {:>9}", files::human(t)));
+        l.push(format!("Used:  {:>9}", files::human(used)));
+        l.push(format!("Free:  {:>9}", files::human(f)));
         let bar = (pct as usize * 30) / 100;
         l.push(format!("[{}{}] {pct}%", "█".repeat(bar), "░".repeat(30 - bar)));
     }
@@ -1231,6 +1232,47 @@ fn assoc(app: &mut App) {
         app.conf.set(&k, cmd.trim());
     }
     let _ = app.conf.save();
+}
+
+const COLOR_NAMES: [&str; 16] = ["Black", "Blue", "Green", "Cyan", "Red", "Magenta", "Brown", "Light grey",
+    "Dark grey", "Light blue", "Light green", "Light cyan", "Light red", "Light magenta", "Yellow", "White"];
+
+/// Settings / File colours: switches the colours on and off and sets the colour of an extension
+/// (`color.EXT = n` in dx.conf, `color.EXT = none` drops a default).
+fn file_colors(app: &mut App) {
+    let mut sel = 0;
+    loop {
+        let on = app.conf.flag("file_colors", true);
+        let mut map: Vec<(String, u8)> = crate::file_colors_all(&app.conf).into_iter().collect();
+        map.sort();
+        let mut lines = vec![format!("[{}] Colours on", if on { 'x' } else { ' ' }), "New entry...".to_string()];
+        lines.extend(map.iter().map(|(e, c)| format!("{e:<10} {}", COLOR_NAMES[*c as usize])));
+        let Some(i) = dlg::list(&mut app.ui, "File colours", &lines, sel) else { break };
+        sel = i;
+        if i == 0 {
+            app.conf.set("file_colors", if on { "off" } else { "on" });
+        } else {
+            let (mut ext, cur) = if i == 1 {
+                (app.p[app.act].current().map(|e| e.ext().to_lowercase()).unwrap_or_default(), 11)
+            } else {
+                map[i - 2].clone()
+            };
+            if i == 1 && (!dlg::ask(&mut app.ui, "File colours", "Extension:", &mut ext, 20) || ext.trim().is_empty()) {
+                continue;
+            }
+            let ext = ext.trim().trim_start_matches('.').to_lowercase();
+            let mut names: Vec<String> = COLOR_NAMES.iter().enumerate().map(|(n, c)| format!("{n:>2}  {c}")).collect();
+            names.push("    No colour".into());
+            let Some(c) = dlg::list(&mut app.ui, &format!("Colour of .{ext}"), &names, cur as usize) else { continue };
+            app.conf.set(&format!("color.{ext}"), if c < 16 { c.to_string() } else { "none".into() });
+        }
+        let _ = app.conf.save();
+        let colors = crate::file_colors(&app.conf);
+        for p in &mut app.p {
+            p.colors = colors.clone();
+        }
+        app.redraw();
+    }
 }
 
 #[cfg(test)]

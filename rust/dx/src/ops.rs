@@ -2,7 +2,6 @@
 
 use crate::dlg;
 use crate::files::Entry;
-use crate::panel::group;
 use dxtui::ui::Ui;
 use std::fs;
 use std::io;
@@ -205,7 +204,7 @@ fn describe(v: &[Entry]) -> String {
         format!("'{}'", v[0].name)
     } else {
         let bytes: u64 = v.iter().filter(|e| !e.is_dir).map(|e| e.size).sum();
-        format!("{} files ({} bytes)", v.len(), group(bytes))
+        format!("{} files ({})", v.len(), crate::files::human(bytes))
     }
 }
 

@@ -69,6 +69,8 @@ pub struct MouseState {
     pub idle: i32,
     /// Set by a double click (left button) until read.
     pub double: bool,
+    /// Wheel notches not yet handled (negative up, positive down).
+    pub wheel: i32,
 }
 
 pub struct Crt {

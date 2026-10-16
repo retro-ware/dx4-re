@@ -162,7 +162,7 @@ impl Panel {
 
     /// Rows of the file window (between the frame's top and the separator above the status line).
     pub fn list_rows(rows: i32) -> i32 {
-        rows - 10
+        (rows - 10).max(1)
     }
 
     /// Inner width.
@@ -206,6 +206,20 @@ impl Panel {
         }
     }
 
+    /// Mouse wheel: moves the view by `delta` lines (whole columns in the column views); the cursor stays
+    /// on the same entry while it is visible, else it is pulled to the nearest visible one.
+    pub fn scroll(&mut self, rows: i32, delta: i32) {
+        let n = self.entries.len();
+        let (r, c) = self.layout(rows);
+        let page = r * c;
+        if n <= page {
+            return;
+        }
+        let (step, max) = if c > 1 { (r as i64, (n.div_ceil(r) - c) * r) } else { (1, n - page) };
+        self.top = (self.top as i64 + step * delta as i64).clamp(0, max as i64) as usize;
+        self.cur = self.cur.clamp(self.top, (self.top + page).min(n) - 1);
+    }
+
     // --- drawing ---
 
     /// Name in the DOS 8.3 look ("dx       bat") when it fits, else the plain name, cut to `w`.
@@ -238,7 +252,7 @@ impl Panel {
         } else if e.is_dir {
             "►SUB-DIR◄".to_string()
         } else {
-            format!("{:>9}", files::size_str(e.size, 9))
+            format!("{:>9}", files::human(e.size))
         };
         let (d, t) = files::date_time(e.mtime);
         let s = format!("{name}│{size}│{d}│{t:>6}");
@@ -326,7 +340,7 @@ impl Panel {
                 } else if e.is_dir {
                     "►SUB-DIR◄".to_string()
                 } else {
-                    format!("{:>9}", files::size_str(e.size, 9))
+                    format!("{:>9}", files::human(e.size))
                 };
                 let nw = iw - 10;
                 (format!("{}│{size}", fit(&e.name, nw)), iw)
@@ -414,7 +428,7 @@ impl Panel {
         let s = if !marked.is_empty() {
             let bytes: u64 = marked.iter().map(|e| e.size).sum();
             let n = marked.len();
-            format!("{} bytes in {n} marked file{}", group(bytes), if n == 1 { "" } else { "s" })
+            format!("{} in {n} marked file{}", files::human(bytes), if n == 1 { "" } else { "s" })
         } else if let Some(e) = self.current() {
             let nw = self.name_w().max(1) as usize;
             let size = if e.is_up() {
@@ -422,7 +436,7 @@ impl Panel {
             } else if e.is_dir {
                 "►SUB-DIR◄".to_string()
             } else {
-                files::size_str(e.size, 10)
+                files::human(e.size)
             };
             let (d, t) = files::date_time(e.mtime);
             let name = fit(&e.name, nw);
@@ -484,17 +498,4 @@ pub fn shorten(s: &str, w: usize) -> String {
     let a: String = s.chars().take(head).collect();
     let b: String = s.chars().skip(n - tail).collect();
     format!("{a}...{b}")
-}
-
-/// 1234567 -> "1,234,567"
-pub fn group(n: u64) -> String {
-    let s = n.to_string();
-    let mut out = String::new();
-    for (i, c) in s.chars().enumerate() {
-        if i > 0 && (s.len() - i) % 3 == 0 {
-            out.push(',');
-        }
-        out.push(c);
-    }
-    out
 }

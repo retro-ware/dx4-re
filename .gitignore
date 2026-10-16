@@ -6,3 +6,4 @@ orig/
 __pycache__/
 .venv/
 target/
+*.EXE

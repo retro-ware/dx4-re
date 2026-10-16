@@ -434,8 +434,9 @@
 === Modem parameters
  This function belonged to the DOS version and is not available here.
 === File colours
- Files are coloured by extension. Add entries like 'color.txt = 10' to
- dx.conf (colours 0-15); 'file_colors = off' switches the colours off.
+ Files are coloured by extension. The first line of the list switches the
+ colours on and off; pick an entry or 'New entry...' to choose the colour
+ of an extension. The settings are kept in dx.conf as 'color.txt = 10'.
 === Change colour palette
  This function belonged to the DOS version and is not available here.
 === Load and save settings

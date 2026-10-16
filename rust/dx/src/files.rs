@@ -198,21 +198,19 @@ pub fn matches_any(masks: &str, name: &str) -> bool {
     !any
 }
 
-/// Size with thousands kept short enough for `w` columns (K/M/G suffixes when needed).
-pub fn size_str(n: u64, w: usize) -> String {
-    let s = n.to_string();
-    if s.len() <= w {
-        return s;
+/// Size in human readable form: "512 B", "1.5 KB", "23.4 MB", "117 GB" (powers of 1024, at most 7 characters).
+pub fn human(n: u64) -> String {
+    if n < 1024 {
+        return format!("{n} B");
     }
     let mut v = n as f64;
-    for u in ["K", "M", "G", "T", "P"] {
+    for u in ["KB", "MB", "GB", "TB", "PB", "EB"] {
         v /= 1024.0;
-        let s = format!("{}{u}", v.round() as u64);
-        if s.len() <= w {
-            return s;
+        if v < 1023.95 || u == "EB" {
+            return if v < 99.95 { format!("{v:.1} {u}") } else { format!("{v:.0} {u}") };
         }
     }
-    "*".repeat(w)
+    unreachable!()
 }
 
 /// "dd.mm.yy" and "hh:mm" of a time stamp.
@@ -267,5 +265,14 @@ mod tests {
         assert_eq!(split_ext("dx.bat"), ("dx", "bat"));
         assert_eq!(split_ext(".profile"), (".profile", ""));
         assert_eq!(split_ext("a.tar.gz"), ("a.tar", "gz"));
+    }
+
+    #[test]
+    fn human_sizes() {
+        assert_eq!(human(0), "0 B");
+        assert_eq!(human(1023), "1023 B");
+        assert_eq!(human(1536), "1.5 KB");
+        assert_eq!(human(150 * 1024 * 1024), "150 MB");
+        assert_eq!(human(1024 * 1024 - 1), "1.0 MB");
     }
 }

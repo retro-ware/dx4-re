@@ -41,6 +41,12 @@ pub struct App {
 
 const HIST_MAX: usize = 25;
 
+/// Fewest screen lines: menu, path box, file window of one line, status, places and function key bars.
+const MIN_ROWS: i32 = 11;
+
+/// Lines moved per mouse wheel notch.
+const WHEEL_STEP: i32 = 3;
+
 /// Returned by `App::mouse` for a double click on a file.
 const DOUBLE_CLICK: u16 = 0xFFFE;
 
@@ -135,7 +141,7 @@ impl App {
     /// Matches the logical screen to the terminal and places the panels.
     fn layout(&mut self) {
         let (w, h) = self.ui.term_size();
-        let (w, h) = (w.max(80), h.max(25));
+        let (w, h) = (w.max(80), h.max(MIN_ROWS));
         if (w, h) != (self.ui.cols(), self.ui.rows()) {
             self.ui.resize(w, h);
         }
@@ -780,6 +786,16 @@ impl App {
     fn mouse(&mut self) -> u16 {
         let m = self.ui.mouse;
         let rows = self.ui.rows();
+        if m.wheel != 0 {
+            self.ui.mouse.wheel = 0;
+            let i = if m.x > self.p[0].w { 1 } else { 0 };
+            if !(self.quickview && i != self.act) {
+                let step = if self.p[i].layout(rows).1 > 1 { 1 } else { WHEEL_STEP };
+                self.p[i].scroll(rows, m.wheel * step);
+                self.draw_files();
+            }
+            return 0;
+        }
         if m.button == 0 {
             return 0;
         }
@@ -1095,23 +1111,34 @@ impl App {
     }
 }
 
-/// Colours of files by extension: `color.EXT = n` entries, defaults as in the DX 4 distribution
-/// (programs red, pictures yellow); `file_colors = off` switches them off.
+/// Colours of files by extension: `color.EXT = n` entries over defaults (programs red, archives magenta,
+/// pictures yellow); `file_colors = off` switches them off.
 pub fn file_colors(conf: &Settings) -> std::collections::HashMap<String, u8> {
-    let mut m = std::collections::HashMap::new();
     if !conf.flag("file_colors", true) {
-        return m;
+        return Default::default();
     }
-    for e in ["bat", "exe", "com", "sh", "cmd", "btm"] {
-        m.insert(e.to_string(), 4);
-    }
-    for e in ["bmp", "gif", "pcx", "jpg", "jpeg", "png", "tif", "tiff", "webp", "svg"] {
-        m.insert(e.to_string(), 14);
+    file_colors_all(conf)
+}
+
+/// The colour table regardless of the on/off switch.
+pub fn file_colors_all(conf: &Settings) -> std::collections::HashMap<String, u8> {
+    let mut m = std::collections::HashMap::new();
+    let defaults: [(&[&str], u8); 3] = [
+        (&["bat", "exe", "com", "sh", "cmd", "btm"], 12),
+        (&["zip", "arj", "lzh", "rar", "7z", "tar", "gz", "tgz", "bz2", "xz", "zst"], 13),
+        (&["bmp", "gif", "pcx", "jpg", "jpeg", "png", "tif", "tiff", "webp", "svg"], 14),
+    ];
+    for (exts, c) in defaults {
+        for e in exts {
+            m.insert(e.to_string(), c);
+        }
     }
     for (k, v) in conf.with_prefix("color.") {
-        if let Ok(n) = v.parse::<u8>() {
-            m.insert(k[6..].to_lowercase(), n & 15);
-        }
+        let e = k[6..].to_lowercase();
+        match v.parse::<u8>() {
+            Ok(n) => m.insert(e, n & 15),
+            Err(_) => m.remove(&e),
+        };
     }
     m
 }
@@ -1217,6 +1244,8 @@ mod tests {
                 .collect();
             p.cur = 0;
             p.top = 0;
+            // the original's colours (programs dark red)
+            p.colors = [("bat", 4u8), ("bmp", 14)].iter().map(|&(e, c)| (e.to_string(), c)).collect();
         }
         a.act = 0;
         a
@@ -1237,6 +1266,36 @@ mod tests {
         compare(&a, "PANEL.SCR");
     }
 
+    #[test]
+    fn short_screen_shrinks_the_file_window() {
+        let home = std::env::temp_dir().join(format!("dx-test-short-{}", std::process::id()));
+        let mut a = App::new(Ui::new(Crt::new(80, 14)), Settings::load(&home.join("dx.conf")), home);
+        a.redraw();
+        assert_eq!(a.ui.rows(), 14);
+        assert_eq!(Panel::list_rows(14), 4);
+        // separator above the status line, status line, bottom frame, places bar, function keys
+        let ch = |x: i32, y: i32| a.ui.cells()[((y - 1) * 80 + x - 1) as usize] as u8;
+        assert_eq!(ch(1, 10), 0xC3); // ├
+        assert_eq!(ch(1, 12), 0xC0); // └
+    }
+
+    #[test]
+    fn frame_buttons_click() {
+        let home = std::env::temp_dir().join(format!("dx-test-btn-{}", std::process::id()));
+        let mut a = App::new(Ui::new(Crt::new(80, 25)), Settings::load(&home.join("dx.conf")), home);
+        a.p[1].chdir(Path::new("/usr/bin"));
+        a.redraw();
+        let iw = a.p[1].w - 2;
+        let x = a.p[1].x;
+        assert_eq!(a.ui.cells()[(4 * 80 + x + iw - 5 - 1) as usize] as u8, 0x1E); // ▲
+        a.ui.crt.mouse = dxtui::MouseState { x: x + iw - 5, y: 5, button: 1, ..Default::default() };
+        a.mouse();
+        assert_eq!(a.p[1].path, std::fs::canonicalize("/usr").unwrap());
+        a.ui.crt.mouse = dxtui::MouseState { x: x + iw - 1, y: 5, button: 1, ..Default::default() };
+        a.mouse();
+        assert_eq!(a.p[1].path, Path::new("/"));
+    }
+
     fn compare(a: &App, name: &str) {
         let scr = reference(name);
         let cells = a.ui.cells().to_vec();
@@ -1245,7 +1304,9 @@ mod tests {
             let (ch, at) = (scr[2 * i], scr[2 * i + 1]);
             let (x, y) = (i % 80 + 1, i / 80 + 1);
             // translated or system-specific: menu bar and clock, path text, places bar, function key labels
-            let skip_ch = y == 1 || y == 3 || y >= 24;
+            // sizes are human readable here, bytes in the original
+            let size_col = (15..=23).contains(&(x % 40)) && (6..=22).contains(&y);
+            let skip_ch = y == 1 || y == 3 || y >= 24 || size_col;
             // (41,13) holds the DOS mouse cursor
             let skip_at = (x, y) == (41, 13) || y == 1 || y == 3 || y == 24 || y == 25 && x > 1;
             if !skip_at && (cells[i] >> 8) as u8 != at || !skip_ch && cells[i] as u8 != ch {

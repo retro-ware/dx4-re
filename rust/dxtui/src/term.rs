@@ -154,6 +154,8 @@ impl Term {
                 }
             }
             MouseEventKind::Up(_) => m.button = 0,
+            MouseEventKind::ScrollUp => m.wheel -= 1,
+            MouseEventKind::ScrollDown => m.wheel += 1,
             _ => {}
         }
     }
